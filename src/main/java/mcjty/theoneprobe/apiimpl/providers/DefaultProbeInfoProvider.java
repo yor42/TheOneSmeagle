@@ -7,7 +7,6 @@ import mcjty.theoneprobe.api.*;
 import mcjty.theoneprobe.apiimpl.ProbeConfig;
 import mcjty.theoneprobe.apiimpl.elements.ElementProgress;
 import mcjty.theoneprobe.compat.RedstoneFluxTools;
-import mcjty.theoneprobe.compat.TeslaTools;
 import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.setup.ModSetup;
 import net.minecraft.block.*;
@@ -211,11 +210,7 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
     private void showRF(IProbeInfo probeInfo, World world, BlockPos pos) {
         ProbeConfig config = ConfigSetup.getDefaultConfig();
         TileEntity te = world.getTileEntity(pos);
-        if (ModSetup.tesla && TeslaTools.isEnergyHandler(te)) {
-            long energy = TeslaTools.getEnergy(te);
-            long maxEnergy = TeslaTools.getMaxEnergy(te);
-            addRFInfo(probeInfo, config, energy, maxEnergy);
-        } else if (te instanceof IBigPower) {
+        if (te instanceof IBigPower) {
             long energy = ((IBigPower) te).getStoredPower();
             long maxEnergy = ((IBigPower) te).getCapacity();
             addRFInfo(probeInfo, config, energy, maxEnergy);
