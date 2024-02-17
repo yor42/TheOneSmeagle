@@ -42,10 +42,6 @@ repositories {
         name = "CoFH Maven"
         url = "http://maven.covers1624.net"
     }
-    maven {
-        name = "TESLA"
-        url = "https://maven.mcmoddev.com"
-    }
 }
 
 def ENV = System.getenv()
@@ -74,7 +70,6 @@ minecraft {
 dependencies {
     deobfCompile "mezz.jei:jei_${jei_version}"
     deobfCompile "cofh:RedstoneFlux:${redstoneflux_version}"
-    deobfCompile "net.darkhax.tesla:Tesla-1.12.2:1.0.63"
 }
 
 jar {
