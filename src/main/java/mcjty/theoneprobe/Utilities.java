@@ -29,7 +29,7 @@ public class Utilities {
 
     @Nonnull
     public static String getProviderId(@Nonnull String name) {
-        return String.format("%s:%s_provider", TopExtras.MODID, name);
+        return String.format("%s:%s_provider", TheOneProbe.MODID, name);
     }
 
     public static void addItemStack(@Nonnull List<ItemStack> stacks, @Nonnull Set<Item> foundItems, @Nonnull ItemStack stack) {

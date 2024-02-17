@@ -34,7 +34,6 @@ public class ModSetup {
     public static File modConfigDir;
 
     public static boolean baubles = false;
-    public static boolean tesla = false;
     public static boolean redstoneflux = false;
 
     public void preInit(FMLPreInitializationEvent e) {
@@ -64,11 +63,6 @@ public class ModSetup {
     }
 
     private void setupModCompat() {
-        tesla = Loader.isModLoaded("tesla");
-        if (tesla) {
-            logger.log(Level.INFO, "The One Probe Detected TESLA: enabling support");
-        }
-
         redstoneflux = Loader.isModLoaded("redstoneflux");
         if (redstoneflux) {
             logger.log(Level.INFO, "The One Probe Detected RedstoneFlux: enabling support");
