@@ -1,6 +1,7 @@
 package mcjty.theoneprobe.apiimpl.providers;
 
 import mcjty.theoneprobe.api.*;
+import mcjty.theoneprobe.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.StringUtils;
-import topextras.Utilities;
 
 public class PaintingInfoProvider implements IProbeInfoEntityProvider {
 
