@@ -9,5 +9,6 @@ item.theoneprobe.iron_helmet_probe.name=Iron Helmet with Probe
 item.theoneprobe.creativeprobe.name=The Creative Probe
 item.theoneprobe.probenote.name=The One Probe Read Me
 theoneprobe.probe.enchanting_power=Enchanting Power
+theoneprobe.probe.tnt_fuse=TNT Fuse
 
 itemGroup.Probe=The One Probe
