@@ -110,9 +110,9 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
                 int fuel = ((TileEntityBrewingStand) te).getField(1);
                 probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
                         .item(new ItemStack(Items.BLAZE_POWDER), probeInfo.defaultItemStyle().width(16).height(16))
-                        .text(LABEL + "Fuel: " + INFO + fuel);
+                        .text(LABEL + "{*theoneprobe.probe.fuel_indicator*} " + INFO + fuel);
                 if (brewtime > 0) {
-                    probeInfo.text(LABEL + "Time: " + INFO + brewtime + " ticks");
+                    probeInfo.text(LABEL + "{*theoneprobe.probe.time_indicator*} " + INFO + brewtime + " ticks");
                 }
 
             }
@@ -305,16 +305,8 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         } else {
             if (Tools.show(mode, config.getShowModName())) {
                 probeInfo.vertical()
-                        .text(NAME + getBlockUnlocalizedName(block))
                         .text(MODNAME + modid);
-            } else {
-                probeInfo.vertical()
-                        .text(NAME + getBlockUnlocalizedName(block));
+            }
             }
         }
     }
-
-    private static String getBlockUnlocalizedName(Block block) {
-        return STARTLOC + block.getUnlocalizedName() + ".name" + ENDLOC;
-    }
-}
