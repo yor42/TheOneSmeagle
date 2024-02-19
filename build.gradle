@@ -72,7 +72,7 @@ dependencies {
     deobfCompile "mezz.jei:jei_${jei_version}"
     deobfCompile "cofh:RedstoneFlux:${redstoneflux_version}"
 
-    implementation fg.deobf("blank:DynamicTrees-1.12.2-0.9.29")
+    implementation "blank:DynamicTrees-1.12.2-0.9.29"
 
 }
 
