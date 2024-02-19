@@ -71,9 +71,6 @@ minecraft {
 dependencies {
     deobfCompile "mezz.jei:jei_${jei_version}"
     deobfCompile "cofh:RedstoneFlux:${redstoneflux_version}"
-
-    deobfCompile "dynamictrees:DynamicTrees-1.12.2-0.9.29"
-
 }
 
 jar {
