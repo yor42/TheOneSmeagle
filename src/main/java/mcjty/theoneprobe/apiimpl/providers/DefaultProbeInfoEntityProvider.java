@@ -68,7 +68,7 @@ public class DefaultProbeInfoEntityProvider implements IProbeInfoEntityProvider 
                 probeInfo.progress(health, maxHealth, probeInfo.defaultProgressStyle().lifeBar(true).showText(false).width(150).height(10));
 
                 if (mode == ProbeMode.EXTENDED) {
-                    probeInfo.text(LABEL + "Health: " + INFOIMP + health + " / " + maxHealth);
+                    probeInfo.text(LABEL + "{*theoneprobe.probe.health_indicator*} " + INFOIMP + health + " / " + maxHealth);
                 }
 
                 if (armor > 0) {
@@ -79,7 +79,7 @@ public class DefaultProbeInfoEntityProvider implements IProbeInfoEntityProvider 
             if (Tools.show(mode, config.getShowMobGrowth()) && entity instanceof EntityAgeable) {
                int age = ((EntityAgeable) entity).getGrowingAge();
                if (age < 0) {
-                   probeInfo.text(LABEL + "Growing time: " + ((age * -1) / 20) + "s");
+                   probeInfo.text(LABEL + "{*theoneprobe.probe.growing_time_indicator*} " + ((age * -1) / 20) + "s");
                }
             }
 
@@ -115,7 +115,7 @@ public class DefaultProbeInfoEntityProvider implements IProbeInfoEntityProvider 
                         .item(stack, new ItemStyle().width(16).height(16))
                         .text(INFO + stack.getDisplayName());
                 if (mode == ProbeMode.EXTENDED) {
-                    probeInfo.text(LABEL + "Rotation: " + INFO + itemFrame.getRotation());
+                    probeInfo.text(LABEL + "{*theoneprobe.probe.rotation_indicator*} " + INFO + itemFrame.getRotation());
                 }
             } else {
                 probeInfo.text(LABEL + "Empty");
@@ -135,7 +135,7 @@ public class DefaultProbeInfoEntityProvider implements IProbeInfoEntityProvider 
                 if (username == null) {
                     probeInfo.text(WARNING + "Unknown owner");
                 } else {
-                    probeInfo.text(LABEL + "Owned by: " + INFO + username);
+                    probeInfo.text(LABEL + "{*theoneprobe.probe.owned_by_indicator*} " + INFO + username);
                 }
             } else if (entity instanceof EntityTameable) {
                 probeInfo.text(LABEL + "Tameable");
@@ -146,16 +146,16 @@ public class DefaultProbeInfoEntityProvider implements IProbeInfoEntityProvider 
             if (entity instanceof EntityHorse) {
                 double jumpStrength = ((EntityHorse) entity).getHorseJumpStrength();
                 double jumpHeight = -0.1817584952 * jumpStrength * jumpStrength * jumpStrength + 3.689713992 * jumpStrength * jumpStrength + 2.128599134 * jumpStrength - 0.343930367;
-                probeInfo.text(LABEL + "Jump height: " + INFO + dfCommas.format(jumpHeight));
+                probeInfo.text(LABEL + "{*theoneprobe.probe.jump_height_indicator*} " + INFO + dfCommas.format(jumpHeight));
                 IAttributeInstance iattributeinstance = ((EntityHorse) entity).getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-                probeInfo.text(LABEL + "Speed: " + INFO + dfCommas.format(iattributeinstance.getAttributeValue()));
+                probeInfo.text(LABEL + "{*theoneprobe.probe.speed_indicator*} " + INFO + dfCommas.format(iattributeinstance.getAttributeValue()));
             }
         }
 
         if (entity instanceof EntityWolf && ConfigSetup.showCollarColor) {
             if (((EntityWolf) entity).isTamed()) {
                 EnumDyeColor collarColor = ((EntityWolf) entity).getCollarColor();
-                probeInfo.text(LABEL + "Collar: " + INFO + collarColor.getName());
+                probeInfo.text(LABEL + "{*theoneprobe.probe.collar_color_indicator*} " + INFO + collarColor.getName());
             }
         }
     }
