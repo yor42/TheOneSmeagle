@@ -15,6 +15,7 @@ theoneprobe.probe.harvestable_indicator=Harvestable
 theoneprobe.probe.not_harvestable_indicator=Not Harvestable
 theoneprobe.probe.fuel_indicator=Fuel:
 theoneprobe.probe.time_indicator=Time:
+theoneprobe.probe.error_indicator=Error:
 theoneprobe.probe.tool_indicator=Tool:
 theoneprobe.probe.growing_time_indicator=Growing Time:
 theoneprobe.probe.health_indicator=Health:
@@ -25,6 +26,10 @@ theoneprobe.probe.jump_height_indicator=Jump height:
 theoneprobe.probe.speed_indicator=Speed:
 theoneprobe.probe.collar_color_indicator=Collar Color:
 
+
+theoneprobe.probe.config=The One Probe Config
+theoneprobe.probe.config.presets=Presets:
+theoneprobe.probe.config.scale=Scale:
 
 item.theoneprobe.probenote.name=The One Probe Read Me
 item.theoneprobe.probenote.things_to_know=Things you should know about

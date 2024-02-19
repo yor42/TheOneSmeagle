@@ -92,7 +92,7 @@ public class GuiConfig extends GuiScreen {
         y += 20;
 
         hitboxes = new ArrayList<>();
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Presets:");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "{*theoneprobe.probe.config.presets*}");
         y += 12;
         for (Preset preset : presets) {
             y = addPreset(x, y, preset);
@@ -100,7 +100,7 @@ public class GuiConfig extends GuiScreen {
 
         y += 20;
 
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Scale:");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "{*theoneprobe.probe.config.scale*}");
         y += 12;
         addButton(x+10, y, 30, 14, "--", () -> { ConfigSetup.setScale(1.2f);}); x += 36;
         addButton(x+10, y, 30, 14, "-", () -> { ConfigSetup.setScale(1.1f);}); x += 36;
@@ -188,8 +188,8 @@ public class GuiConfig extends GuiScreen {
                 .vertical()
                 .text(NAME + pickBlock.getDisplayName())
                 .text(MODNAME + modid);
-        probeInfo.text(LABEL + "Fuel: " + INFO + "5 volts");
-        probeInfo.text(LABEL + "Error: " + ERROR + "Oups!");
+        probeInfo.text(LABEL + "{*theoneprobe.probe.fuel_indicator*} " + INFO + "5 volts");
+        probeInfo.text(LABEL + "{*theoneprobe.probe.error_indicator*} " + ERROR + "Oups!");
 
         renderElements(probeInfo, ConfigSetup.getDefaultOverlayStyle());
     }
