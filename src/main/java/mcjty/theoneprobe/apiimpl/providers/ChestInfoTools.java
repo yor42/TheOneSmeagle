@@ -129,7 +129,7 @@ public class ChestInfoTools {
                 }
             }
         } catch(RuntimeException e) {
-            throw new RuntimeException("Getting the contents of a " + world.getBlockState(pos).getBlock().getRegistryName() + " (" + te.getClass().getName() + ")", e);
+            throw new RuntimeException("{*theoneprobe.probe.get_contents*} " + world.getBlockState(pos).getBlock().getRegistryName() + " (" + te.getClass().getName() + ")", e);
         }
         return maxSlots;
     }

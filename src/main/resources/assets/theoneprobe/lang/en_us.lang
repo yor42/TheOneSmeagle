@@ -10,11 +10,16 @@ item.theoneprobe.creativeprobe.name=The Creative Probe
 theoneprobe.probe.enchanting_power=Enchanting Power:
 theoneprobe.probe.tnt_fuse=TNT Fuse:
 
+theoneprobe.probe.get_contents=Getting the contents of a
+theoneprobe.probe.harvestable_indicator=Harvestable
+theoneprobe.probe.not_harvestable_indicator=Not Harvestable
 theoneprobe.probe.fuel_indicator=Fuel:
 theoneprobe.probe.time_indicator=Time:
+theoneprobe.probe.tool_indicator=Tool:
 theoneprobe.probe.growing_time_indicator=Growing Time:
 theoneprobe.probe.health_indicator=Health:
 theoneprobe.probe.rotation_indicator=Rotation:
+theoneprobe.probe.unknown_owner_indicator=Unknown owner
 theoneprobe.probe.owned_by_indicator=Owned by:
 theoneprobe.probe.jump_height_indicator=Jump height:
 theoneprobe.probe.speed_indicator=Speed:

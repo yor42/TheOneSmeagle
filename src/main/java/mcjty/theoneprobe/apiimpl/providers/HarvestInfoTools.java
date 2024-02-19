@@ -53,7 +53,7 @@ public class HarvestInfoTools {
             } else {
                 harvestName = harvestLevels[harvestLevel];
             }
-            probeInfo.text(LABEL + "Tool: " + INFO + harvestTool + " (level " + harvestName + ")");
+            probeInfo.text(LABEL + "{*theoneprobe.probe.tool_indicator*} " + INFO + harvestTool + " (level " + harvestName + ")");
         }
     }
 
@@ -66,9 +66,9 @@ public class HarvestInfoTools {
 
         boolean harvestable = block.canHarvestBlock(world, pos, player) && world.getBlockState(pos).getBlockHardness(world, pos) >= 0;
         if (harvestable) {
-            probeInfo.text(OK + "Harvestable");
+            probeInfo.text(OK + "{*theoneprobe.probe.harvestable_indicator*}");
         } else {
-            probeInfo.text(WARNING + "Not harvestable");
+            probeInfo.text(WARNING + "{*theoneprobe.probe.not_harvestable_indicator*}");
         }
     }
 

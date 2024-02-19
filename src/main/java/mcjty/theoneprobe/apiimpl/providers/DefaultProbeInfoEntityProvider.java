@@ -133,7 +133,7 @@ public class DefaultProbeInfoEntityProvider implements IProbeInfoEntityProvider 
             if (ownerId != null) {
                 String username = UsernameCache.getLastKnownUsername(ownerId);
                 if (username == null) {
-                    probeInfo.text(WARNING + "Unknown owner");
+                    probeInfo.text(WARNING + "{*theoneprobe.probe.unknown_owner_indicator*}");
                 } else {
                     probeInfo.text(LABEL + "{*theoneprobe.probe.owned_by_indicator*} " + INFO + username);
                 }
