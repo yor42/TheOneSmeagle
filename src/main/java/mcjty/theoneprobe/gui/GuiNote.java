@@ -45,7 +45,7 @@ public class GuiNote extends GuiScreen {
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
         int x = guiLeft+5;
         int y = guiTop+8;
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, "Things you should know about" + TextFormatting.GOLD + " The One Probe"); y += 10;
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, "{*item.theoneprobe.probenote.things_to_know*}" + TextFormatting.GOLD + " The One Probe"); y += 10;
         y += 10;
 
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, BOLD + "This mod can show a tooltip on screen"); y += 10;
@@ -112,13 +112,13 @@ public class GuiNote extends GuiScreen {
         hitY = y + guiTop;
         hitX = x + guiLeft;
         drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, 0xff000000);
-        RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, "Needed"); x += BUTTON_MARGIN;
+        RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, "{*item.theoneprobe.probenote.needed*}"); x += BUTTON_MARGIN;
 
         drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, 0xff000000);
-        RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, "Not needed"); x += BUTTON_MARGIN;
+        RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, "{*item.theoneprobe.probenote.not_needed*}"); x += BUTTON_MARGIN;
 
         drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, 0xff000000);
-        RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, "Extended"); x += BUTTON_MARGIN;
+        RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, "{*item.theoneprobe.probenote.extended*}"); x += BUTTON_MARGIN;
 
         y += BUTTON_HEIGHT - 4;
         return y;
