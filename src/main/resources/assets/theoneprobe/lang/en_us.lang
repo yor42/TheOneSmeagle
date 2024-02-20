@@ -15,6 +15,7 @@ theoneprobe.probe.notool_indicator=No Tool
 theoneprobe.probe.enchanting_power_indicator=Enchanting Power:
 theoneprobe.probe.tnt_fuse_indicator=TNT Fuse:
 theoneprobe.probe.fuel_indicator=Fuel:
+theoneprobe.probe.power_indicator=Power:
 theoneprobe.probe.time_indicator=Time:
 theoneprobe.probe.error_indicator=Error:
 theoneprobe.probe.tool_indicator=Tool:
