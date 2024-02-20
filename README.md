@@ -9,9 +9,16 @@ The purpose of this mod is to show on-screen information about the block you are
 
 This mod is very configurable so you can disable all the features mentioned above if they do not fit your playing style or modpack.
 
-This fork adds features from TOP Extras and updates the gradle from 2.7 to 3.1
 
 This mod also has a flexible API that other mods can use to add more information. The API can be found [here](https://github.com/McJty/TheOneProbe/tree/master/src/main/java/mcjty/theoneprobe/api).
+
+## Changes from The One Probe
+* Features from TOP Extras
+    * View Enchantment power of Bookshelfs
+    * View Inventorys of Minecrats and Mules
+    * View how long the fuse of lit TNT has left          
+* Updated gradle version from 2.7 to 3.1
+* Replaced the hardcoded strings with lanugague translatable versions 
 
 ***
 
@@ -44,5 +51,7 @@ You're free to use the mod in your modpack.
 - [McJty](https://twitter.com/McJty) - Project Owner
 
 **Copyright © 2016 McJty**
+
 **Copyright © 2022 TechLord22**
+
 **Copyright © 2024 Strubium**
