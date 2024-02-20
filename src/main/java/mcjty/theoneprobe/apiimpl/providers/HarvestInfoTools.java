@@ -121,14 +121,14 @@ public class HarvestInfoTools {
         IProbeInfo horizontal = probeInfo.horizontal(alignment);
         if (harvestable) {
             horizontal.icon(ICONS, 0, offs, dim, dim, iconStyle)
-                    .text(OK + ((harvestTool != null) ? harvestTool : "No tool"));
+                    .text(OK + ((harvestTool != null) ? harvestTool : "{*theoneprobe.probe.notool_indicator*}"));
         } else {
             if (harvestName == null || harvestName.isEmpty()) {
                 horizontal.icon(ICONS, 16, offs, dim, dim, iconStyle)
-                        .text(WARNING + ((harvestTool != null) ? harvestTool : "No tool"));
+                        .text(WARNING + ((harvestTool != null) ? harvestTool : "{*theoneprobe.probe.notool_indicator*}"));
             } else {
                 horizontal.icon(ICONS, 16, offs, dim, dim, iconStyle)
-                        .text(WARNING + ((harvestTool != null) ? harvestTool : "No tool") + " (level " + harvestName + ")");
+                        .text(WARNING + ((harvestTool != null) ? harvestTool : "{*theoneprobe.probe.notool_indicator*}") + " (level " + harvestName + ")");
             }
         }
     }
