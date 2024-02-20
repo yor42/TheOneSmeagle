@@ -9,6 +9,6 @@ public class TopModConfigGui extends GuiConfig {
 
     public TopModConfigGui(GuiScreen parentScreen) {
         super(parentScreen, new ConfigElement(ConfigSetup.mainConfig.getCategory(ConfigSetup.CATEGORY_CLIENT)).getChildElements(),
-                TheOneProbe.MODID, false, false, "{*theoneprobe.probe.config*}");
+                TheOneProbe.MODID, false, false, "The One Probe Config");
     }
 }

@@ -7,12 +7,13 @@ item.theoneprobe.diamond_helmet_probe.name=Diamond Helmet with Probe
 item.theoneprobe.gold_helmet_probe.name=Gold Helmet with Probe
 item.theoneprobe.iron_helmet_probe.name=Iron Helmet with Probe
 item.theoneprobe.creativeprobe.name=The Creative Probe
-theoneprobe.probe.enchanting_power=Enchanting Power:
-theoneprobe.probe.tnt_fuse=TNT Fuse:
 
 theoneprobe.probe.get_contents=Getting the contents of a
 theoneprobe.probe.harvestable_indicator=Harvestable
 theoneprobe.probe.not_harvestable_indicator=Not Harvestable
+theoneprobe.probe.notool_indicator=No Tool
+theoneprobe.probe.enchanting_power_indicator=Enchanting Power:
+theoneprobe.probe.tnt_fuse_indicator=TNT Fuse:
 theoneprobe.probe.fuel_indicator=Fuel:
 theoneprobe.probe.time_indicator=Time:
 theoneprobe.probe.error_indicator=Error:
@@ -26,15 +27,6 @@ theoneprobe.probe.jump_height_indicator=Jump height:
 theoneprobe.probe.speed_indicator=Speed:
 theoneprobe.probe.collar_color_indicator=Collar Color:
 
-
-theoneprobe.probe.config=The One Probe Config
-theoneprobe.probe.config.presets=Presets:
-theoneprobe.probe.config.scale=Scale:
-
 item.theoneprobe.probenote.name=The One Probe Read Me
-item.theoneprobe.probenote.things_to_know=Things you should know about
-item.theoneprobe.probenote.needed=Needed
-item.theoneprobe.probenote.not_needed=Needed
-item.theoneprobe.probenote.extended=Extended
 
 itemGroup.Probe=The One Probe

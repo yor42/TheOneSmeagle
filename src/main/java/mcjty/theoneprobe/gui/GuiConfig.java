@@ -92,7 +92,7 @@ public class GuiConfig extends GuiScreen {
         y += 20;
 
         hitboxes = new ArrayList<>();
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "{*theoneprobe.probe.config.presets*}");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Presets:");
         y += 12;
         for (Preset preset : presets) {
             y = addPreset(x, y, preset);
@@ -100,7 +100,7 @@ public class GuiConfig extends GuiScreen {
 
         y += 20;
 
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "{*theoneprobe.probe.config.scale*}");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Scale:");
         y += 12;
         addButton(x+10, y, 30, 14, "--", () -> { ConfigSetup.setScale(1.2f);}); x += 36;
         addButton(x+10, y, 30, 14, "-", () -> { ConfigSetup.setScale(1.1f);}); x += 36;

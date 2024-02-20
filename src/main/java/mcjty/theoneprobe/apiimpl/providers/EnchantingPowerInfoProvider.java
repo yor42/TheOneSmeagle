@@ -47,7 +47,7 @@ public class EnchantingPowerInfoProvider implements IProbeInfoProvider {
         if (enchantingPower > 0.0F) {
             probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
                     .item(ENCHANTED_BOOK)
-                    .text(TextStyleClass.LABEL + "{*theoneprobe.probe.enchanting_power*} " + TextFormatting.LIGHT_PURPLE + Utilities.FORMAT.format(enchantingPower));
+                    .text(TextStyleClass.LABEL + "{*theoneprobe.probe.enchanting_power_indicator*} " + TextFormatting.LIGHT_PURPLE + Utilities.FORMAT.format(enchantingPower));
         }
     }
 }

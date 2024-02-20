@@ -376,9 +376,9 @@ public class ConfigSetup {
         Configuration cfg = mainConfig;
         try {
             cfg.load();
-            cfg.addCustomCategoryComment(CATEGORY_THEONEPROBE, "The One Probe configuration");
-            cfg.addCustomCategoryComment(CATEGORY_PROVIDERS, "Provider configuration");
-            cfg.addCustomCategoryComment(CATEGORY_CLIENT, "Client-side settings");
+            cfg.addCustomCategoryComment(CATEGORY_THEONEPROBE, "The One Probe Configuration");
+            cfg.addCustomCategoryComment(CATEGORY_PROVIDERS, "Provider Configuration");
+            cfg.addCustomCategoryComment(CATEGORY_CLIENT, "Clientside Settings");
             init(cfg);
         } catch (Exception e1) {
             TheOneProbe.setup.getLogger().log(Level.ERROR, "Problem loading config file!", e1);
