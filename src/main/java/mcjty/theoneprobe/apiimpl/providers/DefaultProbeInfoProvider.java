@@ -141,7 +141,7 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         if (redstonePower > 0) {
             probeInfo.horizontal()
                     .item(new ItemStack(Items.REDSTONE), probeInfo.defaultItemStyle().width(14).height(14))
-                    .text(LABEL + "Power: " + INFO + redstonePower);
+                    .text(LABEL + "{*theoneprobe.probe.power_indicator*} " + INFO + redstonePower);
         }
     }
 
