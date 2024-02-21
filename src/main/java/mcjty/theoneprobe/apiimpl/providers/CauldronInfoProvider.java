@@ -41,7 +41,7 @@ public class CauldronInfoProvider implements IProbeInfoProvider {
 
                     if (fill > 0) {
                         horizontalPane.item((fill == maxFill) ? WATER_BUCKET : WATTER_BOTTLE);
-                        horizontalPane.text(TextStyleClass.LABEL + "" + fill + ((fill == 1) ? " {*topextras.top.cauldron_fill_1*}" : " {*topextras.top.cauldron_fill_2*}"));
+                        horizontalPane.text(TextStyleClass.LABEL + "" + fill + ((fill == 1) ? " {*theoneprobe.probe.bottle_indicator*}" : " {*theoneprobe.probe.bottles_indicator*}"));
                     } else {
                         horizontalPane.item(BUCKET);
                         horizontalPane.text(TextStyleClass.LABEL + "{*topextras.top.empty*} ");
