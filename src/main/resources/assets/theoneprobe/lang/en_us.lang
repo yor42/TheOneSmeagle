@@ -29,6 +29,7 @@ theoneprobe.probe.unknown_owner_indicator=Unknown owner
 theoneprobe.probe.owned_by_indicator=Owned by:
 theoneprobe.probe.jump_height_indicator=Jump height:
 theoneprobe.probe.speed_indicator=Speed:
+theoneprobe.probe.playing_indicator=Playing:
 theoneprobe.probe.collar_color_indicator=Collar Color:
 
 gui.theoneprobe.gui_note.title=Things you should know about §6The One Probe

@@ -29,14 +29,14 @@ public class JukeboxProvider implements IProbeInfoProvider {
 
                 ItemStack record = jukebox.getRecord();
                 if (record.isEmpty()) {
-                    probeInfo.text(TextStyleClass.WARNING + "{*topextras.top.empty*}");
+                    probeInfo.text(TextStyleClass.WARNING + "{*theoneprobe.probe.empty_indicator*}");
                     return;
                 }
 
                 IProbeInfo horizontalPane = probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER));
                 horizontalPane.item(record);
                 String recordName = (record.getItem() instanceof ItemRecord) ? ((ItemRecord) record.getItem()).getRecordNameLocal() : record.getDisplayName();
-                horizontalPane.text(TextStyleClass.INFO + "{*topextras.top.jukebox_record*} " + I18n.format(recordName));
+                horizontalPane.text(TextStyleClass.INFO + "{*theoneprobe.probe.playing_indicator*} " + I18n.format(recordName));
             }
         }
     }
