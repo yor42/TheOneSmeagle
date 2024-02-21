@@ -3,9 +3,9 @@ _More immersive alternative for WAILA, fork of The One Probe_
 
 ## Introduction to The One Smeagle (TOS)
 
-The One Smeagle is a fork of The One Probe (or TOP in short) that is meant to be a more immersive version of WAILA/HWYLA. You don't get to see the information tooltip all the time but only when you have the probe in your hand (Configurable)
+The One Smeagle is a fork of The One Probe (or TOP in short) that is meant to be a more immersive version of WAILA/HWYLA.
 
-The purpose of this mod is to show on-screen information about the block you are looking at whenever you hold the probe in your hand (or off-hand). The mod itself will show basic information like the name of the block, the mod the block comes from, and also the tool to use for harvesting the block. In addition this mod will also show the amount of RF energy that is stored in the block (if the block supports RF) and if you are sneaking it will also give a list of all items that are in the block if it is an inventory (like a chest).
+The purpose of this mod is to show on-screen information about the block you are looking at whenever you hold the probe in your hand (or off-hand). The mod itself will show basic information like the name of the block, the mod the block comes from, and also the tool to use for harvesting the block. In addition this mod will also show the amount of RF energy that is stored in the block (if the block supports RF), and if you are sneaking it will also give a list of all items that are in the block if it is an inventory (like a chest).
 
 This mod is very configurable so you can disable all the features mentioned above if they do not fit your playing style or modpack.
 
@@ -22,10 +22,11 @@ This mod also has a flexible API that other mods can use to add more information
 * Updated gradle version from 2.7 to 3.1
 * Replaced the hardcoded strings with lanugague translatable versions
 * Updated ru_ru.lang (By: @bigenergy)
+* New en_ud.lang
 * New uk_ua.lang (By: @SKZGx)
 * New zh_tw.lang (By: @HJ-zhtw)
 
-Note: Languages other than english are not fully translated feel free to submit a PR
+Note: Languages other than english are not fully translated, feel free to submit a PR
 
 ***
 
