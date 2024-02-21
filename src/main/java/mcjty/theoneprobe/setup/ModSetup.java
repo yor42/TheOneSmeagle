@@ -47,12 +47,14 @@ public class ModSetup {
         TheOneProbe.theOneProbeImp.registerProvider(new DebugProbeInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new BlockProbeInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new EnchantingPowerInfoProvider());
+        TheOneProbe.theOneProbeImp.registerProvider(new JukeboxProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new DefaultProbeInfoEntityProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new DebugProbeInfoEntityProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new EntityProbeInfoEntityProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new ChestHorseInfoProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new MinecartInfoProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new TNTInfoProvider());
+        TheOneProbe.theOneProbeImp.registerEntityProvider(new PaintingInfoProvider());
 
         modConfigDir = e.getModConfigurationDirectory();
         ConfigSetup.init();
