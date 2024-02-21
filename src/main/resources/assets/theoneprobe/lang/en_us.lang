@@ -12,6 +12,7 @@ theoneprobe.probe.get_contents=Getting the contents of a
 theoneprobe.probe.harvestable_indicator=Harvestable
 theoneprobe.probe.not_harvestable_indicator=Not Harvestable
 theoneprobe.probe.notool_indicator=No Tool
+theoneprobe.probe.empty_indicator=Empty
 theoneprobe.probe.bottle_indicator=Bottle
 theoneprobe.probe.bottles_indicator=Bottles
 theoneprobe.probe.enchanting_power_indicator=Enchanting Power:

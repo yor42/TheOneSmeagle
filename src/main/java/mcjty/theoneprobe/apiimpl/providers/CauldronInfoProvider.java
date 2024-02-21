@@ -41,10 +41,11 @@ public class CauldronInfoProvider implements IProbeInfoProvider {
 
                     if (fill > 0) {
                         horizontalPane.item((fill == maxFill) ? WATER_BUCKET : WATTER_BOTTLE);
-                        horizontalPane.text(TextStyleClass.LABEL + "" + fill + ((fill == 1) ? " {*theoneprobe.probe.bottle_indicator*}" : " {*theoneprobe.probe.bottles_indicator*}"));
+                        horizontalPane.text(TextStyleClass.LABEL + ((fill == 1) ? " {*theoneprobe.probe.bottle_indicator*}" : " {*theoneprobe.probe.bottles_indicator*}"));
                     } else {
-                        horizontalPane.item(BUCKET);
-                        horizontalPane.text(TextStyleClass.LABEL + "{*topextras.top.empty*} ");
+                        probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
+                        .item(BUCKET)
+                        .text(TextStyleClass.LABEL + "{*theoneprobe.probe.empty_indicator*} ");
                     }
                     return;
                 }
