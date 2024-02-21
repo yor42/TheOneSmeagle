@@ -10,6 +10,7 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.item.Item;
@@ -40,11 +41,14 @@ public class RenderHelper {
         entity.rotationPitch = 0.0F;
         GlStateManager.translate(0.0F, (float) entity.getYOffset() + (entity instanceof EntityHanging ? 0.5F : 0.0F), 0.0F);
         Minecraft.getMinecraft().getRenderManager().playerViewY = 180F;
+        EntityRendererManager dispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
         try {
-            Minecraft.getMinecraft().getRenderManager().renderEntity(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
+            dispatcher.setRenderShadow(false);
+            dispatcher.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, matrixStack, buffer, 15728880);
         } catch (Exception e) {
             TheOneProbe.setup.getLogger().error("Error rendering entity!", e);
         }
+        dispatcher.setRenderShadow(true);
         GlStateManager.popMatrix();
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 
