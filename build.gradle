@@ -77,7 +77,7 @@ minecraft {
 dependencies {
     deobfCompile "mezz.jei:jei_${jei_version}"
     deobfCompile "cofh:RedstoneFlux:${redstoneflux_version}"
-    deobfCompile "net.darkhax.tesla:Tesla-1.12.2:1.0.63"
+    compile "net.darkhax.tesla:Tesla-1.12.2:1.0.63+"
 }
 
 jar {
