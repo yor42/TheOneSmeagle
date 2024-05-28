@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://files.minecraftforge.net/maven"
         }
     }
     dependencies {
@@ -53,7 +53,7 @@ if (ENV.DRONE_BUILD_NUMBER) {
 }
 
 group = "mcjty.theoneprobe"
-archivesBaseName = "theoneprobe"
+archivesBaseName = "theonesmeagle"
 
 if (System.getenv('BUILD_NUMBER') != null) {
     version += "-${System.getenv('BUILD_NUMBER')}"

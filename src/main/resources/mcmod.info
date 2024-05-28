@@ -7,8 +7,8 @@
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["McJty"],
-  "credits": "",
+  "authorList": ["McJty", "smeagle"],
+  "credits": "bigenergy, SKZGx, HJ-zhtw for language translations",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
