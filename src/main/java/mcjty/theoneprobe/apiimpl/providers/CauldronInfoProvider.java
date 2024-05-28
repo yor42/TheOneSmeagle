@@ -37,11 +37,10 @@ public class CauldronInfoProvider implements IProbeInfoProvider {
                     int fill = blockState.getValue(integerProperty);
                     int maxFill = Collections.max(integerProperty.getAllowedValues());
 
-                    IProbeInfo horizontalPane = probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER));
-
                     if (fill > 0) {
-                        horizontalPane.item((fill == maxFill) ? WATER_BUCKET : WATTER_BOTTLE);
-                        horizontalPane.text(TextStyleClass.LABEL + ((fill == 1) ? " {*theoneprobe.probe.bottle_indicator*}" : " {*theoneprobe.probe.bottles_indicator*}"));
+                        probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
+                        .item((fill == maxFill) ? WATER_BUCKET : WATTER_BOTTLE)
+                        .text(TextStyleClass.LABEL + ((fill == 1) ? " {*theoneprobe.probe.bottle_indicator*}" : " {*theoneprobe.probe.bottles_indicator*}"));
                     } else {
                         probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
                         .item(BUCKET)
