@@ -14,8 +14,6 @@ public class KeyInputHandler {
             if (!ConfigSetup.holdKeyToMakeVisible) {
                 ConfigSetup.setVisible(!ConfigSetup.isVisible);
             }
-//        } else if (KeyBindings.generateLag.isPressed()) {
-//            PacketHandler.INSTANCE.sendToServer(new PacketGenerateLag());
         }
     }
 }

@@ -11,6 +11,12 @@ import java.util.Collection;
 
 public class NetworkTools {
 
+    /**
+     * Reads an NBTTagCompound from the given ByteBuf.
+     *
+     * @param dataIn The ByteBuf to read from.
+     * @return The NBTTagCompound read from the buffer, or null if an error occurred.
+     */
     public static NBTTagCompound readNBT(ByteBuf dataIn) {
         PacketBuffer buf = new PacketBuffer(dataIn);
         try {
@@ -21,6 +27,12 @@ public class NetworkTools {
         return null;
     }
 
+    /**
+     * Writes an NBTTagCompound to the given ByteBuf.
+     *
+     * @param dataOut The ByteBuf to write to.
+     * @param nbt The NBTTagCompound to write.
+     */
     public static void writeNBT(ByteBuf dataOut, NBTTagCompound nbt) {
         PacketBuffer buf = new PacketBuffer(dataOut);
         try {
@@ -30,8 +42,13 @@ public class NetworkTools {
         }
     }
 
-
-    /// This function supports itemstacks with more then 64 items.
+    /**
+     * Reads an ItemStack from the given ByteBuf.
+     * Supports ItemStacks with more than 64 items.
+     *
+     * @param dataIn The ByteBuf to read from.
+     * @return The ItemStack read from the buffer, or ItemStack.EMPTY if an error occurred.
+     */
     public static ItemStack readItemStack(ByteBuf dataIn) {
         PacketBuffer buf = new PacketBuffer(dataIn);
         try {
@@ -45,7 +62,13 @@ public class NetworkTools {
         return ItemStack.EMPTY;
     }
 
-    /// This function supports itemstacks with more then 64 items.
+    /**
+     * Writes an ItemStack to the given ByteBuf.
+     * Supports ItemStacks with more than 64 items.
+     *
+     * @param dataOut The ByteBuf to write to.
+     * @param itemStack The ItemStack to write.
+     */
     public static void writeItemStack(ByteBuf dataOut, ItemStack itemStack) {
         PacketBuffer buf = new PacketBuffer(dataOut);
         NBTTagCompound nbt = new NBTTagCompound();
@@ -58,6 +81,12 @@ public class NetworkTools {
         }
     }
 
+    /**
+     * Reads a String from the given ByteBuf.
+     *
+     * @param dataIn The ByteBuf to read from.
+     * @return The String read from the buffer, or null if the length was -1, or an empty string if the length was 0.
+     */
     public static String readString(ByteBuf dataIn) {
         int s = dataIn.readInt();
         if (s == -1) {
@@ -71,6 +100,12 @@ public class NetworkTools {
         return new String(dst);
     }
 
+    /**
+     * Writes a String to the given ByteBuf.
+     *
+     * @param dataOut The ByteBuf to write to.
+     * @param str The String to write.
+     */
     public static void writeString(ByteBuf dataOut, String str) {
         if (str == null) {
             dataOut.writeInt(-1);
@@ -83,6 +118,12 @@ public class NetworkTools {
         }
     }
 
+    /**
+     * Reads a UTF-8 encoded String from the given ByteBuf.
+     *
+     * @param dataIn The ByteBuf to read from.
+     * @return The String read from the buffer, or null if the length was -1, or an empty string if the length was 0.
+     */
     public static String readStringUTF8(ByteBuf dataIn) {
         int s = dataIn.readInt();
         if (s == -1) {
@@ -96,6 +137,12 @@ public class NetworkTools {
         return new String(dst, java.nio.charset.StandardCharsets.UTF_8);
     }
 
+    /**
+     * Writes a UTF-8 encoded String to the given ByteBuf.
+     *
+     * @param dataOut The ByteBuf to write to.
+     * @param str The String to write.
+     */
     public static void writeStringUTF8(ByteBuf dataOut, String str) {
         if (str == null) {
             dataOut.writeInt(-1);
@@ -108,16 +155,36 @@ public class NetworkTools {
         }
     }
 
+    /**
+     * Reads a BlockPos from the given ByteBuf.
+     *
+     * @param dataIn The ByteBuf to read from.
+     * @return The BlockPos read from the buffer.
+     */
     public static BlockPos readPos(ByteBuf dataIn) {
         return new BlockPos(dataIn.readInt(), dataIn.readInt(), dataIn.readInt());
     }
 
+    /**
+     * Writes a BlockPos to the given ByteBuf.
+     *
+     * @param dataOut The ByteBuf to write to.
+     * @param pos The BlockPos to write.
+     */
     public static void writePos(ByteBuf dataOut, BlockPos pos) {
         dataOut.writeInt(pos.getX());
         dataOut.writeInt(pos.getY());
         dataOut.writeInt(pos.getZ());
     }
 
+    /**
+     * Writes an enum value to the given ByteBuf.
+     *
+     * @param buf The ByteBuf to write to.
+     * @param value The enum value to write.
+     * @param nullValue The value to write if the actual value is null.
+     * @param <T> The enum type.
+     */
     public static <T extends Enum<T>> void writeEnum(ByteBuf buf, T value, T nullValue) {
         if (value == null) {
             buf.writeInt(nullValue.ordinal());
@@ -126,10 +193,25 @@ public class NetworkTools {
         }
     }
 
+    /**
+     * Reads an enum value from the given ByteBuf.
+     *
+     * @param buf The ByteBuf to read from.
+     * @param values The array of possible enum values.
+     * @param <T> The enum type.
+     * @return The enum value read from the buffer.
+     */
     public static <T extends Enum<T>> T readEnum(ByteBuf buf, T[] values) {
         return values[buf.readInt()];
     }
 
+    /**
+     * Writes a collection of enum values to the given ByteBuf.
+     *
+     * @param buf The ByteBuf to write to.
+     * @param collection The collection of enum values to write.
+     * @param <T> The enum type.
+     */
     public static <T extends Enum<T>> void writeEnumCollection(ByteBuf buf, Collection<T> collection) {
         buf.writeInt(collection.size());
         for (T type : collection) {
@@ -137,14 +219,28 @@ public class NetworkTools {
         }
     }
 
+    /**
+     * Reads a collection of enum values from the given ByteBuf.
+     *
+     * @param buf The ByteBuf to read from.
+     * @param collection The collection to populate with the enum values.
+     * @param values The array of possible enum values.
+     * @param <T> The enum type.
+     */
     public static <T extends Enum<T>> void readEnumCollection(ByteBuf buf, Collection<T> collection, T[] values) {
         collection.clear();
         int size = buf.readInt();
-        for (int i = 0 ; i < size ; i++) {
+        for (int i = 0; i < size; i++) {
             collection.add(values[buf.readInt()]);
         }
     }
 
+    /**
+     * Writes a Float value to the given ByteBuf.
+     *
+     * @param buf The ByteBuf to write to.
+     * @param f The Float value to write, or null to indicate no value.
+     */
     public static void writeFloat(ByteBuf buf, Float f) {
         if (f != null) {
             buf.writeBoolean(true);
@@ -154,6 +250,12 @@ public class NetworkTools {
         }
     }
 
+    /**
+     * Reads a Float value from the given ByteBuf.
+     *
+     * @param buf The ByteBuf to read from.
+     * @return The Float value read from the buffer, or null if no value was written.
+     */
     public static Float readFloat(ByteBuf buf) {
         if (buf.readBoolean()) {
             return buf.readFloat();

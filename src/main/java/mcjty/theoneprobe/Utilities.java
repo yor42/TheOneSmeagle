@@ -1,7 +1,5 @@
 package mcjty.theoneprobe;
 
-
-import mcjty.theoneprobe.Tools;
 import mcjty.theoneprobe.api.ElementAlignment;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.ProbeMode;
@@ -19,12 +17,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Utilities {
-
-    public static final String MODID_DYNAMIC_TREES = "dynamictrees";
-    public static final String MODID_APOTHEOSIS = "apotheosis";
-    public static final String MODID_PROJECTE = "projecte";
-    public static final String MODID_THAUMCRAFT = "thaumcraft";
-
     public static final DecimalFormat FORMAT = new DecimalFormat("#,###.#");
 
     @Nonnull
