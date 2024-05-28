@@ -15,6 +15,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
@@ -24,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import static mcjty.theoneprobe.api.TextStyleClass.*;
-
+@SideOnly(Side.CLIENT)
 public class GuiConfig extends GuiScreen {
     private static final int WIDTH = 230;
     private static final int HEIGHT = 230;
@@ -84,12 +86,10 @@ public class GuiConfig extends GuiScreen {
         int y = guiTop + 10;
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Placement:");
         y += 12;
-        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, "Click on corner in screenshot");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, "Click a corner in the screenshot");
         y += 10;
-        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, "to move tooltip there");
-        y += 10;
-
-        y += 20;
+        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, "to move the tooltip there");
+        y += 30;
 
         hitboxes = new ArrayList<>();
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Presets:");
@@ -256,5 +256,4 @@ public class GuiConfig extends GuiScreen {
 
         GlStateManager.popMatrix();
     }
-
 }
