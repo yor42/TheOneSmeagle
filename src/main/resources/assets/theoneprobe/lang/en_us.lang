@@ -32,6 +32,8 @@ theoneprobe.probe.speed_indicator=Speed:
 theoneprobe.probe.playing_indicator=Playing:
 theoneprobe.probe.collar_color_indicator=Collar Color:
 
+config.theoneprobe.config.title=The One Probe Config
+
 gui.theoneprobe.gui_note.title=Things you should know about §6The One Probe
 gui.theoneprobe.gui_note.body.1=§lThis mod can show a tooltip on screen
 gui.theoneprobe.gui_note.body.2=§lwhen you look at a block or an entity
