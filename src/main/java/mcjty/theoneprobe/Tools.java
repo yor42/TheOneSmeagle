@@ -59,12 +59,7 @@ public class Tools {
         }
         String modId = container.getModId();
         String lowercaseModId = modId.toLowerCase(Locale.ENGLISH);
-        String modName = modNamesForIds.get(lowercaseModId);
-        if (modName == null) {
-            modName = WordUtils.capitalize(modId);
-            modNamesForIds.put(lowercaseModId, modName);
-        }
-        return modName;
+        return modNamesForIds.computeIfAbsent(lowercaseModId, key -> WordUtils.capitalize(modId));
     }
 
     public static boolean show(ProbeMode mode, IProbeConfig.ConfigMode cfg) {

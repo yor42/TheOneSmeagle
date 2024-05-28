@@ -7,12 +7,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.IOException;
 
 import static mcjty.theoneprobe.config.ConfigSetup.*;
-import static net.minecraft.util.text.TextFormatting.*;
-
+@SideOnly(Side.CLIENT)
 public class GuiNote extends GuiScreen {
     private static final int WIDTH = 256;
     private static final int HEIGHT = 160;
