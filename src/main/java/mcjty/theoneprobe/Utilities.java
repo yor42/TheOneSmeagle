@@ -17,13 +17,27 @@ import java.util.List;
 import java.util.Set;
 
 public class Utilities {
+
     public static final DecimalFormat FORMAT = new DecimalFormat("#,###.#");
 
+    /**
+     * Generates a provider ID for a given name.
+     *
+     * @param name The name to include in the provider ID.
+     * @return The generated provider ID.
+     */
     @Nonnull
     public static String getProviderId(@Nonnull String name) {
         return String.format("%s:%s_provider", TheOneProbe.MODID, name);
     }
 
+    /**
+     * Adds an ItemStack to a list, merging it with existing stacks if possible.
+     *
+     * @param stacks The list of ItemStacks to add to.
+     * @param foundItems A set of items already present in the stacks list.
+     * @param stack The ItemStack to add.
+     */
     public static void addItemStack(@Nonnull List<ItemStack> stacks, @Nonnull Set<Item> foundItems, @Nonnull ItemStack stack) {
         if (stack.isEmpty()) return;
         if (foundItems.contains(stack.getItem())) {
@@ -39,6 +53,13 @@ public class Utilities {
         foundItems.add(stack.getItem());
     }
 
+    /**
+     * Displays the contents of a chest in the IProbeInfo.
+     *
+     * @param probeInfo The IProbeInfo to display the chest contents in.
+     * @param stacks The list of ItemStacks representing the chest contents.
+     * @param mode The mode of the probe.
+     */
     public static void showChestContents(@Nonnull IProbeInfo probeInfo, @Nonnull List<ItemStack> stacks, @Nonnull ProbeMode mode) {
         IProbeInfo vertical = probeInfo.vertical(probeInfo.defaultLayoutStyle().borderColor(ConfigSetup.chestContentsBorderColor).spacing(0));
         int rows = 0;
@@ -64,3 +85,4 @@ public class Utilities {
         }
     }
 }
+
