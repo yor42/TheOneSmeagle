@@ -1,5 +1,9 @@
 package mcjty.theoneprobe.gui;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 class HitBox {
     private final int x1;
     private final int y1;

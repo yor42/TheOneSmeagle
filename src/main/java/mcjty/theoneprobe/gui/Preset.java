@@ -2,10 +2,11 @@ package mcjty.theoneprobe.gui;
 
 import mcjty.theoneprobe.api.TextStyleClass;
 import org.apache.commons.lang3.tuple.Pair;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.Map;
-
+@SideOnly(Side.CLIENT)
 class Preset {
     private final String name;
     private final int boxBorderColor;

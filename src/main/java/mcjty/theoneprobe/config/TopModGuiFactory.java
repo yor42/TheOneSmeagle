@@ -3,9 +3,11 @@ package mcjty.theoneprobe.config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Set;
-
+@SideOnly(Side.CLIENT)
 public class TopModGuiFactory implements IModGuiFactory {
 
     @Override

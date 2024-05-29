@@ -32,8 +32,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -41,7 +39,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import static mcjty.theoneprobe.api.TextStyleClass.ERROR;
-@SideOnly(Side.CLIENT)
 public class OverlayRenderer {
 
     private static Map<Pair<Integer,BlockPos>, Pair<Long, ProbeInfo>> cachedInfo = new HashMap<>();
