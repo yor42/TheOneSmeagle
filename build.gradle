@@ -1,7 +1,6 @@
 // For those who want the bleeding edge
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
         maven {
             name = "forge"

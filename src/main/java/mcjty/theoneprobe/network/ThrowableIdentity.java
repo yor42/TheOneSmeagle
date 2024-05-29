@@ -17,7 +17,7 @@ public class ThrowableIdentity {
         if (catchedThrowables.containsKey(identity)) {
             long lasttime = catchedThrowables.get(identity);
             if (curtime < lasttime + ConfigSetup.loggingThrowableTimeout) {
-                // If this exception occured less then some time ago we don't report it.
+                // If this exception occurred less then some time ago we don't report it.
                 return;
             }
         }
