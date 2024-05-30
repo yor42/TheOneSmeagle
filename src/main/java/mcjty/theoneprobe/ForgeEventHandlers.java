@@ -43,6 +43,7 @@ public class ForgeEventHandlers {
             if (event.getOriginal().hasCapability(PlayerProperties.PLAYER_GOT_NOTE, null)) {
                 PlayerGotNote oldStore = event.getOriginal().getCapability(PlayerProperties.PLAYER_GOT_NOTE, null);
                 PlayerGotNote newStore = PlayerProperties.getPlayerGotNote(event.getEntityPlayer());
+                assert oldStore != null;
                 newStore.copyFrom(oldStore);
             }
         }

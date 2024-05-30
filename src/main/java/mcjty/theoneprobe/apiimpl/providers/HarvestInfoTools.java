@@ -26,7 +26,7 @@ import static mcjty.theoneprobe.api.TextStyleClass.*;
 public class HarvestInfoTools {
 
     private static final ResourceLocation ICONS = new ResourceLocation(TheOneProbe.MODID, "textures/gui/icons.png");
-    private static String[] harvestLevels = new String[]{
+    private static final String[] harvestLevels = new String[]{
             "stone",
             "iron",
             "diamond",

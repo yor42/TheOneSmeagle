@@ -7,8 +7,6 @@ import mcjty.theoneprobe.apiimpl.TheOneProbeImp;
 
 public class ElementHorizontal extends AbstractElementPanel {
 
-    public static final int SPACING = 5;
-
     public ElementHorizontal(Integer borderColor, int spacing, ElementAlignment alignment) {
         super(borderColor, spacing, alignment);
     }

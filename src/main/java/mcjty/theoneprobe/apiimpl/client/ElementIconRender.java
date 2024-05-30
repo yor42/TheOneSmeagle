@@ -18,9 +18,6 @@ public class ElementIconRender {
 
         if (u == -1) {
             TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(icon.toString());
-            if (sprite == null) {
-                return;
-            }
             Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             RenderHelper.drawTexturedModalRect(x, y, sprite, w, h);
         } else {

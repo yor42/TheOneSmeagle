@@ -21,7 +21,7 @@ public class ProbeInfo extends ElementVertical {
     }
 
     public ProbeInfo() {
-        super((Integer) null, 2, ElementAlignment.ALIGN_TOPLEFT);
+        super(null, 2, ElementAlignment.ALIGN_TOPLEFT);
     }
 
     public static List<IElement> createElements(ByteBuf buf) {

@@ -4,7 +4,7 @@ import mcjty.theoneprobe.api.ElementAlignment;
 import mcjty.theoneprobe.api.ILayoutStyle;
 
 /**
- * Style for a horizonatl or vertical layout.
+ * Style for a horizontal or vertical layout.
  */
 public class LayoutStyle implements ILayoutStyle {
     private Integer borderColor = null;

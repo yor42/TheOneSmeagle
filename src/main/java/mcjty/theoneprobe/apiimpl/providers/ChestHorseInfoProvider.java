@@ -33,7 +33,7 @@ public class ChestHorseInfoProvider implements IProbeInfoEntityProvider {
 
     @Override
     public void addProbeEntityInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, Entity entity, IProbeHitEntityData data) {
-        // hopper and chest minecarts
+        // hopper and chest minecart's
         if (entity instanceof AbstractChestHorse && ((AbstractChestHorse) entity).hasChest()) {
             int maxSlots;
             if (entity.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) {

@@ -15,6 +15,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Objects;
+
 import static mcjty.theoneprobe.api.TextStyleClass.INFO;
 import static mcjty.theoneprobe.api.TextStyleClass.LABEL;
 
@@ -37,7 +39,7 @@ public class DebugProbeInfoProvider implements IProbeInfoProvider {
     private void showDebugInfo(IProbeInfo probeInfo, World world, IBlockState blockState, BlockPos pos, Block block, EnumFacing side) {
         String simpleName = block.getClass().getSimpleName();
         IProbeInfo vertical = probeInfo.vertical(new LayoutStyle().borderColor(0xffff4444).spacing(2))
-                .text(LABEL + "Reg Name: " + INFO + block.getRegistryName().toString())
+                .text(LABEL + "Reg Name: " + INFO + Objects.requireNonNull(block.getRegistryName()))
                 .text(LABEL + "Unlocname: " + INFO + block.getUnlocalizedName())
                 .text(LABEL + "Meta: " + INFO + blockState.getBlock().getMetaFromState(blockState))
                 .text(LABEL + "Class: " + INFO + simpleName)

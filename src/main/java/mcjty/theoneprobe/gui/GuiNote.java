@@ -99,7 +99,6 @@ public class GuiNote extends GuiScreen {
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, I18n.format("gui.theoneprobe.gui_note.tail.2"));
         y += 10;
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, I18n.format("gui.theoneprobe.gui_note.tail.3"));
-        y += 10;
     }
 
     private int hitX;
@@ -137,7 +136,6 @@ public class GuiNote extends GuiScreen {
 
         drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, 0xff000000);
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, I18n.format("gui.theoneprobe.gui_note.button.extended"));
-        x += BUTTON_MARGIN;
 
         y += BUTTON_HEIGHT - 4;
         return y;

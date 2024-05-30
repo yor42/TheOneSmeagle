@@ -102,40 +102,22 @@ public class GuiConfig extends GuiScreen {
 
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Scale:");
         y += 12;
-        addButton(x+10, y, 30, 14, "--", () -> { ConfigSetup.setScale(1.2f);}); x += 36;
-        addButton(x+10, y, 30, 14, "-", () -> { ConfigSetup.setScale(1.1f);}); x += 36;
-        addButton(x+10, y, 30, 14, "0", () -> { ConfigSetup.setScale(1f);}); x += 36;
-        addButton(x+10, y, 30, 14, "+", () -> { ConfigSetup.setScale(0.9f);}); x += 36;
-        addButton(x+10, y, 30, 14, "++", () -> { ConfigSetup.setScale(0.8f);}); x += 36;
+        addButton(x+10, y, "--", () -> ConfigSetup.setScale(1.2f)); x += 36;
+        addButton(x+10, y, "-", () -> ConfigSetup.setScale(1.1f)); x += 36;
+        addButton(x+10, y, "0", () -> ConfigSetup.setScale(1f)); x += 36;
+        addButton(x+10, y, "+", () -> ConfigSetup.setScale(0.9f)); x += 36;
+        addButton(x+10, y, "++", () -> ConfigSetup.setScale(0.8f));
 
         int margin = 90;
-        hitboxes.add(new HitBox(0, 0, margin, margin, () -> {
-            ConfigSetup.setPos(5, 5, -1, -1);
-        }));
-        hitboxes.add(new HitBox(margin, 0, WIDTH - margin, margin, () -> {
-            ConfigSetup.setPos(-1, 5, -1, -1);
-        }));
-        hitboxes.add(new HitBox(WIDTH - margin, 0, WIDTH, margin, () -> {
-            ConfigSetup.setPos(-1, 5, 5, -1);
-        }));
-        hitboxes.add(new HitBox(0, margin, margin, HEIGHT - margin, () -> {
-            ConfigSetup.setPos(5, -1, -1, -1);
-        }));
-        hitboxes.add(new HitBox(margin, margin, WIDTH - margin, HEIGHT - margin, () -> {
-            ConfigSetup.setPos(-1, -1, -1, -1);
-        }));
-        hitboxes.add(new HitBox(WIDTH - margin, margin, WIDTH, HEIGHT - margin, () -> {
-            ConfigSetup.setPos(-1, -1, 5, -1);
-        }));
-        hitboxes.add(new HitBox(0, HEIGHT - margin, margin, HEIGHT, () -> {
-            ConfigSetup.setPos(5, -1, -1, 5);
-        }));
-        hitboxes.add(new HitBox(margin, HEIGHT - margin, WIDTH - margin, HEIGHT, () -> {
-            ConfigSetup.setPos(-1, -1, -1, 20);
-        }));
-        hitboxes.add(new HitBox(WIDTH - margin, HEIGHT - margin, WIDTH, HEIGHT, () -> {
-            ConfigSetup.setPos(-1, -1, 5, 5);
-        }));
+        hitboxes.add(new HitBox(0, 0, margin, margin, () -> ConfigSetup.setPos(5, 5, -1, -1)));
+        hitboxes.add(new HitBox(margin, 0, WIDTH - margin, margin, () -> ConfigSetup.setPos(-1, 5, -1, -1)));
+        hitboxes.add(new HitBox(WIDTH - margin, 0, WIDTH, margin, () -> ConfigSetup.setPos(-1, 5, 5, -1)));
+        hitboxes.add(new HitBox(0, margin, margin, HEIGHT - margin, () -> ConfigSetup.setPos(5, -1, -1, -1)));
+        hitboxes.add(new HitBox(margin, margin, WIDTH - margin, HEIGHT - margin, () -> ConfigSetup.setPos(-1, -1, -1, -1)));
+        hitboxes.add(new HitBox(WIDTH - margin, margin, WIDTH, HEIGHT - margin, () -> ConfigSetup.setPos(-1, -1, 5, -1)));
+        hitboxes.add(new HitBox(0, HEIGHT - margin, margin, HEIGHT, () -> ConfigSetup.setPos(5, -1, -1, 5)));
+        hitboxes.add(new HitBox(margin, HEIGHT - margin, WIDTH - margin, HEIGHT, () -> ConfigSetup.setPos(-1, -1, -1, 20)));
+        hitboxes.add(new HitBox(WIDTH - margin, HEIGHT - margin, WIDTH, HEIGHT, () -> ConfigSetup.setPos(-1, -1, 5, 5)));
     }
 
     @Override
@@ -165,17 +147,15 @@ public class GuiConfig extends GuiScreen {
     private int addPreset(int x, int y, Preset preset) {
         drawRect(x + 10, y - 1, x + 10 + WIDTH - 50, y + 10, 0xff000000);
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 20, y, preset.getName());
-        hitboxes.add(new HitBox(x + 10 - guiLeft, y - 1 - guiTop, x + 10 + WIDTH - 50 - guiLeft, y + 10 - guiTop, () -> {
-            applyPreset(preset);
-        }));
+        hitboxes.add(new HitBox(x + 10 - guiLeft, y - 1 - guiTop, x + 10 + WIDTH - 50 - guiLeft, y + 10 - guiTop, () -> applyPreset(preset)));
         y += 14;
         return y;
     }
 
-    private void addButton(int x, int y, int width, int height, String text, Runnable runnable) {
-        drawRect(x, y, x + width-1, y + height-1, 0xff000000);
+    private void addButton(int x, int y, String text, Runnable runnable) {
+        drawRect(x, y, x + 30 -1, y + 14 -1, 0xff000000);
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 3, text);
-        hitboxes.add(new HitBox(x - guiLeft, y - guiTop, x + width -1 - guiLeft, y + height -1 - guiTop, runnable));
+        hitboxes.add(new HitBox(x - guiLeft, y - guiTop, x + 30 -1 - guiLeft, y + 14 -1 - guiTop, runnable));
     }
 
     private void renderProbe() {

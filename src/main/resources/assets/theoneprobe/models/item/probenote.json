@@ -1,6 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "theoneprobe:items/probe_note"
+    "layer0": "items/paper",
+    "layer1": "theoneprobe:items/paper_probe"
   }
 }

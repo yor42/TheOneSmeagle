@@ -30,7 +30,7 @@ public class ClientForgeEventHandlers {
             GuiScreen current = Minecraft.getMinecraft().currentScreen;
             if (event.getGui() == null && (current instanceof GuiConfig || current instanceof GuiNote)) {
                 ignoreNextGuiClose = false;
-                // We don't want our gui to be closed for a new 'null' guil
+                // We don't want our gui to be closed for a new 'null' gui
                 event.setCanceled(true);
             }
         }

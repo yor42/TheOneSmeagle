@@ -5,6 +5,7 @@ import mcjty.theoneprobe.TheOneProbe;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ThrowableIdentity {
     private final String identifier;
@@ -46,9 +47,7 @@ public class ThrowableIdentity {
 
         ThrowableIdentity that = (ThrowableIdentity) o;
 
-        if (identifier != null ? !identifier.equals(that.identifier) : that.identifier != null) return false;
-
-        return true;
+        return Objects.equals(identifier, that.identifier);
     }
 
     @Override

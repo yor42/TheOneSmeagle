@@ -14,6 +14,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collections;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+@SideOnly(Side.CLIENT)
 public class CommandTopCfg implements ICommand {
 
 
@@ -36,7 +39,7 @@ public class CommandTopCfg implements ICommand {
         return "topcfg [ " + args + " ]";
     }
 
-    private static Map<String,Consumer<String[]>> SUBCOMMANDS = new HashMap<>();
+    private static final Map<String,Consumer<String[]>> SUBCOMMANDS = new HashMap<>();
 
     static {
         SUBCOMMANDS.put("center", s -> ConfigSetup.setPos(-1, -1, -1, -1));
@@ -71,7 +74,7 @@ public class CommandTopCfg implements ICommand {
             int rightx = Integer.parseInt(args[3]);
             int bottomy = Integer.parseInt(args[4]);
             ConfigSetup.setPos(leftx, topy, rightx, bottomy);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ignored) {
         }
     }
 

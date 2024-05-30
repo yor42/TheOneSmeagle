@@ -17,10 +17,7 @@ public class BaubleTools {
             return false;
         }
         ItemStack stackInSlot = handler.getStackInSlot(4);
-        if (!stackInSlot.isEmpty() && stackInSlot.getItem() == ModItems.probeGoggles) {
-            return true;
-        }
-        return false;
+        return !stackInSlot.isEmpty() && stackInSlot.getItem() == ModItems.probeGoggles;
     }
 
     public static Item initProbeGoggle() {

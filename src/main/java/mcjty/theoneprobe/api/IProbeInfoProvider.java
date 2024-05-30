@@ -13,7 +13,7 @@ public interface IProbeInfoProvider {
 
     /**
      * Return a unique ID (usually combined with the modid) to identify this provider.
-     * @return
+     * @return a unique ID to identify this provider
      */
     String getID();
 

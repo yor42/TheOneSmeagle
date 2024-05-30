@@ -303,7 +303,7 @@ public class ConfigSetup {
         for (String s : splitted) {
             TextFormatting format = TextFormatting.getValueByName(s);
             if (format != null) {
-                builder.append(format.toString());
+                builder.append(format);
             }
         }
         return builder.toString();

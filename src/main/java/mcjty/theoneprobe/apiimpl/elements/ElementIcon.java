@@ -9,6 +9,8 @@ import mcjty.theoneprobe.apiimpl.styles.IconStyle;
 import mcjty.theoneprobe.network.NetworkTools;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Objects;
+
 public class ElementIcon implements IElement {
 
     private final ResourceLocation icon;
@@ -28,7 +30,7 @@ public class ElementIcon implements IElement {
     }
 
     public ElementIcon(ByteBuf buf) {
-        icon = new ResourceLocation(NetworkTools.readString(buf), NetworkTools.readString(buf));
+        icon = new ResourceLocation(Objects.requireNonNull(NetworkTools.readString(buf)), Objects.requireNonNull(NetworkTools.readString(buf)));
         u = buf.readInt();
         v = buf.readInt();
         w = buf.readInt();

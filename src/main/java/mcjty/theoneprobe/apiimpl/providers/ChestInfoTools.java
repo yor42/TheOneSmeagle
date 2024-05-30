@@ -19,10 +19,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static mcjty.theoneprobe.api.TextStyleClass.INFO;
 
@@ -80,7 +77,7 @@ public class ChestInfoTools {
     }
 
     private static void showChestContents(IProbeInfo probeInfo, World world, BlockPos pos, List<ItemStack> stacks, boolean detailed) {
-        IProbeInfo vertical = null;
+        IProbeInfo vertical;
         IProbeInfo horizontal = null;
 
         int rows = 0;
@@ -117,7 +114,7 @@ public class ChestInfoTools {
         try {
             if (te != null && te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) {
                 IItemHandler capability = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                maxSlots = capability.getSlots();
+                maxSlots = Objects.requireNonNull(capability).getSlots();
                 for (int i = 0; i < maxSlots; i++) {
                     addItemStack(stacks, foundItems, capability.getStackInSlot(i));
                 }

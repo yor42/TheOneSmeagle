@@ -27,6 +27,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 import java.util.Collections;
+import java.util.Objects;
 
 import static mcjty.theoneprobe.api.TextStyleClass.*;
 
@@ -129,7 +130,7 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
     private void showRedstonePower(IProbeInfo probeInfo, World world, IBlockState blockState, IProbeHitData data, Block block,
                                    boolean showLever) {
         if (showLever && block instanceof BlockLever) {
-            // We are showing the lever setting so we don't show redstone in that case
+            // We are showing the lever setting, so we don't show redstone in that case
             return;
         }
         int redstonePower;
@@ -284,7 +285,7 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
             }
         }
 
-        if (!pickBlock.isEmpty()) {
+        if (!Objects.requireNonNull(pickBlock).isEmpty()) {
             if (Tools.show(mode, config.getShowModName())) {
                 probeInfo.horizontal()
                         .item(pickBlock)

@@ -1,7 +1,7 @@
 package mcjty.theoneprobe.api;
 
 /**
- * Style for a horizonatl or vertical layout.
+ * Style for a horizontal or vertical layout.
  */
 public interface ILayoutStyle {
     /// The color that is used for the border of the progress bar
