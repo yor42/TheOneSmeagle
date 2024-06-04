@@ -16,8 +16,6 @@ import javax.annotation.Nonnull;
 
 public class EnchantingPowerInfoProvider implements IProbeInfoProvider {
 
-    private static final ItemStack ENCHANTED_BOOK = new ItemStack(Items.ENCHANTED_BOOK);
-
     @Override
     public String getID() {
         return Utilities.getProviderId("enchanting_power");
@@ -46,7 +44,8 @@ public class EnchantingPowerInfoProvider implements IProbeInfoProvider {
         }
         if (enchantingPower > 0.0F) {
             probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
-                    .item(ENCHANTED_BOOK).text(TextStyleClass.LABEL + "{*theoneprobe.probe.enchanting_power_indicator*} " + TextFormatting.LIGHT_PURPLE + Utilities.FORMAT.format(enchantingPower));
+                    .item(new ItemStack(Items.ENCHANTED_BOOK), probeInfo.defaultItemStyle().width(16).height(16))
+                    .text(TextStyleClass.LABEL + "{*theoneprobe.probe.enchanting_power_indicator*} " + TextFormatting.LIGHT_PURPLE + Utilities.FORMAT.format(enchantingPower));
         }
     }
 }

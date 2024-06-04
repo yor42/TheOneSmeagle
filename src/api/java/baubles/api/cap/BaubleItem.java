@@ -3,7 +3,7 @@ package baubles.api.cap;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import net.minecraft.item.ItemStack;
-
+@SuppressWarnings("unused")
 public class BaubleItem implements IBauble
 {
 	private BaubleType baubleType;

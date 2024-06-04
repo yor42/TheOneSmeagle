@@ -1,14 +1,14 @@
 [
 {
   "modid": "theoneprobe",
-  "name": "The One Probe",
-  "description": "A Probe to rule them all!",
+  "name": "The One Smeagle",
+  "description": "A Probe to rule them all!, forked from The One Probe",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
   "authorList": ["McJty", "smeagle"],
-  "credits": "bigenergy, SKZGx, HJ-zhtw for language translations",
+  "credits": "bigenergy, SKZGx, and HJ-zhtw for language translations",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

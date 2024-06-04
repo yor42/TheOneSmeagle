@@ -19,6 +19,8 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 public class ModItems {
     public static CreativeProbe creativeProbe;
     public static Probe probe;
@@ -61,6 +63,7 @@ public class ModItems {
             }
 
             @Override
+            @ParametersAreNonnullByDefault
             public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
                 if (this.isInCreativeTab(tab)) {
                     ItemStack stack = new ItemStack(this);

@@ -52,7 +52,7 @@ public class ChestInfoTools {
 
             if (!stacks.isEmpty()) {
                 boolean showDetailed = Tools.show(mode, config.getShowChestContentsDetailed()) && stacks.size() <= ConfigSetup.showItemDetailThresshold;
-                showChestContents(probeInfo, world, pos, stacks, showDetailed);
+                showChestContents(probeInfo, stacks, showDetailed);
             }
         }
     }
@@ -76,7 +76,7 @@ public class ChestInfoTools {
         }
     }
 
-    private static void showChestContents(IProbeInfo probeInfo, World world, BlockPos pos, List<ItemStack> stacks, boolean detailed) {
+    private static void showChestContents(IProbeInfo probeInfo, List<ItemStack> stacks, boolean detailed) {
         IProbeInfo vertical;
         IProbeInfo horizontal = null;
 

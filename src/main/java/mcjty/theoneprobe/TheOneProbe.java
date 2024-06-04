@@ -18,11 +18,9 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Mod(modid = TheOneProbe.MODID, name="TheOneProbe",
-        dependencies =
-                "after:forge@[" + TheOneProbe.MIN_FORGE11_VER + ",);" +
-                "after:tesla",
+        dependencies = "after:forge@[" + TheOneProbe.MIN_FORGE11_VER + ",);",
         version = TheOneProbe.VERSION,
-        acceptedMinecraftVersions = "[1.12,1.13)",
+        acceptedMinecraftVersions = "[1.12,1.13]",
         guiFactory = "mcjty.theoneprobe.config.TopModGuiFactory")
 public class TheOneProbe {
     public static final String MODID = "theoneprobe";

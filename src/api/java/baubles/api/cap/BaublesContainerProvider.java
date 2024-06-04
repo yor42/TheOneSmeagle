@@ -5,7 +5,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
-
+@SuppressWarnings("unused")
 public class BaublesContainerProvider implements INBTSerializable<NBTTagCompound>, ICapabilityProvider {
 
 	private final BaublesContainer container;

@@ -292,7 +292,7 @@ public class OverlayRenderer {
 
         IProbeConfig probeConfig = TheOneProbe.theOneProbeImp.createProbeConfig();
         try {
-            DefaultProbeInfoProvider.showStandardBlockInfo(probeConfig, mode, probeInfo, blockState, block, world, blockPos, player, data);
+            DefaultProbeInfoProvider.showStandardBlockInfo(probeConfig, mode, probeInfo, blockState, block, data);
         } catch (Exception e) {
             ThrowableIdentity.registerThrowable(e);
             probeInfo.text(ERROR + "Error (see log for details)!");

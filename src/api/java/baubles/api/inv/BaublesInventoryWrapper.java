@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 public class BaublesInventoryWrapper implements IInventory {
 	final IBaublesItemHandler handler;
 	final EntityPlayer player;
@@ -66,6 +68,7 @@ public class BaublesInventoryWrapper implements IInventory {
 	}
 
 	@Override
+	@ParametersAreNonnullByDefault
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		handler.setStackInSlot(index, stack);
 	}
@@ -79,17 +82,21 @@ public class BaublesInventoryWrapper implements IInventory {
 	public void markDirty() { }
 
 	@Override
+	@ParametersAreNonnullByDefault
 	public boolean isUsableByPlayer(EntityPlayer player) {
 		return true;
 	}
 
 	@Override
+	@ParametersAreNonnullByDefault
 	public void openInventory(EntityPlayer player) { }
 
 	@Override
+	@ParametersAreNonnullByDefault
 	public void closeInventory(EntityPlayer player) { }
 
 	@Override
+	@ParametersAreNonnullByDefault
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		return handler.isItemValidForSlot(index, stack, player);
 	}

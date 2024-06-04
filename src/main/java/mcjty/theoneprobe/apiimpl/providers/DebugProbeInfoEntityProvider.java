@@ -44,9 +44,6 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                         .text(LABEL + "Revenge Timer: " + INFO + revengeTimer);
             }
             if (entity instanceof EntityAgeable) {
-                if (vertical == null) {
-                    vertical = probeInfo.vertical(new LayoutStyle().borderColor(0xffff4444).spacing(2));
-                }
 
                 EntityAgeable entityAgeable = (EntityAgeable) entity;
                 int growingAge = entityAgeable.getGrowingAge();

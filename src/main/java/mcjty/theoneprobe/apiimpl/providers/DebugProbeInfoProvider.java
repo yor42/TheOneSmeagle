@@ -49,7 +49,7 @@ public class DebugProbeInfoProvider implements IProbeInfoProvider {
                 .text(LABEL + "Light: " + INFO + block.getLightValue(blockState, world, pos));
         TileEntity te = world.getTileEntity(pos);
         if (te != null) {
-            vertical.text(LABEL + "TE: " + INFO + te.getClass().getSimpleName());
+            vertical.text(LABEL + "TileEntity: " + INFO + te.getClass().getSimpleName());
         }
     }
 }

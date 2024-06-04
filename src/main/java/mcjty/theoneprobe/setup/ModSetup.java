@@ -80,7 +80,7 @@ public class ModSetup {
             if (ConfigSetup.supportBaubles) {
                 logger.log(Level.INFO, "The One Probe Detected Baubles: enabling support");
             } else {
-                logger.log(Level.INFO, "The One Probe Detected Baubles but support disabled in config");
+                logger.log(Level.INFO, "The One Probe Detected Baubles, but support is disabled in config");
                 baubles = false;
             }
         }
@@ -105,11 +105,11 @@ public class ModSetup {
     }
 
 
-    public void init(FMLInitializationEvent e) {
+    public void init(FMLInitializationEvent ignoredE) {
         NetworkRegistry.INSTANCE.registerGuiHandler(TheOneProbe.instance, new GuiProxy());
     }
 
-    public void postInit(FMLPostInitializationEvent e) {
+    public void postInit(FMLPostInitializationEvent ignoredE) {
         configureProviders();
         configureEntityProviders();
 

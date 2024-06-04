@@ -29,7 +29,9 @@ public class BaublesApi
 	public static IInventory getBaubles(EntityPlayer player)
 	{
 		IBaublesItemHandler handler = player.getCapability(BaublesCapabilities.CAPABILITY_BAUBLES, null);
-		handler.setPlayer(player);
+		if (handler != null) {
+			handler.setPlayer(player);
+		}
 		return new BaublesInventoryWrapper(handler, player);
 	}
 	

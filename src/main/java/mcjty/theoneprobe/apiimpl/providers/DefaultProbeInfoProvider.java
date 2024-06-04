@@ -53,7 +53,7 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
             }
         }
         if (!handled) {
-            showStandardBlockInfo(config, mode, probeInfo, blockState, block, world, pos, player, data);
+            showStandardBlockInfo(config, mode, probeInfo, blockState, block, data);
         }
 
         if (Tools.show(mode, config.getShowCropPercentage())) {
@@ -74,7 +74,7 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
             showRedstonePower(probeInfo, world, blockState, data, block, Tools.show(mode, config.getShowLeverSetting()));
         }
         if (Tools.show(mode, config.getShowLeverSetting())) {
-            showLeverSetting(probeInfo, world, blockState, data, block);
+            showLeverSetting(probeInfo, blockState, block);
         }
 
         ChestInfoTools.showChestInfo(mode, probeInfo, world, pos, config);
@@ -146,7 +146,7 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         }
     }
 
-    private void showLeverSetting(IProbeInfo probeInfo, World world, IBlockState blockState, IProbeHitData data, Block block) {
+    private void showLeverSetting(IProbeInfo probeInfo, IBlockState blockState, Block block) {
         if (block instanceof BlockLever) {
             Boolean powered = blockState.getValue(BlockLever.POWERED);
             probeInfo.horizontal().item(new ItemStack(Items.REDSTONE), probeInfo.defaultItemStyle().width(14).height(14))
@@ -252,8 +252,8 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         }
     }
 
-    public static void showStandardBlockInfo(IProbeConfig config, ProbeMode mode, IProbeInfo probeInfo, IBlockState blockState, Block block, World world,
-                                             BlockPos pos, EntityPlayer player, IProbeHitData data) {
+    public static void showStandardBlockInfo(IProbeConfig config, ProbeMode mode, IProbeInfo probeInfo, IBlockState blockState, Block block,
+                                             IProbeHitData data) {
         String modid = Tools.getModName(block);
 
         ItemStack pickBlock = data.getPickBlock();

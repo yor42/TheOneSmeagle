@@ -8,9 +8,9 @@ package mcjty.theoneprobe.api;
 public interface ITheOneProbe {
 
     /**
-     * Optionally register a provider for your probe information. You don't have to do this. You
+     * Optionally: register a provider for your probe information. You don't have to do this, as you
      * can also implement IProbeInfoAccessor in your block instead. If you register a provider
-     * with the same string ID as one that already exists it will replace that provider. This
+     * with the same string ID as one that already exists, it will replace that provider. This
      * is one way to replace the standard providers. TheOneProbe has the following standard
      * providers (registered in the given order):
      *
@@ -23,12 +23,12 @@ public interface ITheOneProbe {
      *     and then use that. i.e. this is the provider that takes care of making sure
      *     that IProbeInfoAccessor works.
      *
-     * @param provider
+     * @param provider The provider to register
      */
     void registerProvider(IProbeInfoProvider provider);
 
     /**
-     * Optionally register a provider for your probe information. You don't have to do this. You
+     * Optionally: register a provider for your probe information. You don't have to do this, as you
      * can also implement IProbeInfoAccessor in your block instead. If you register a provider
      * with the same string ID as one that already exists it will replace that provider. This
      * is one way to replace the standard providers. TheOneProbe has the following standard
@@ -42,7 +42,7 @@ public interface ITheOneProbe {
      *     and then use that. i.e. this is the provider that takes care of making sure
      *     that IProbeInfoEntityAccessor works.
      *
-     * @param provider
+     * @param provider The provider to register
      */
     void registerEntityProvider(IProbeInfoEntityProvider provider);
 

@@ -17,11 +17,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * A Bauble Item that implements this will be have hooks to render something on
+ * A Bauble Item that implements this will have hooks to render something on
  * the player while its equipped.
  * This class doesn't extend IBauble to make the API not depend on the Baubles
  * API, but the item in question still needs to implement IBauble.
  */
+@SuppressWarnings("unused")
 public interface IRenderBauble {
 
 	/**
@@ -30,7 +31,7 @@ public interface IRenderBauble {
 	 * the RenderType passed in. Make sure to check against the type parameter for
 	 * rendering. 
 	 */
-	public void onPlayerBaubleRender(ItemStack stack, EntityPlayer player, RenderType type, float partialTicks);
+	void onPlayerBaubleRender(ItemStack stack, EntityPlayer player, RenderType type, float partialTicks);
 
 	/**
 	 * A few helper methods for the render.
@@ -94,7 +95,7 @@ public interface IRenderBauble {
 		}
 	}
 
-	public enum RenderType {
+	enum RenderType {
 		/**
 		 * Render Type for the player's body, translations apply on the player's rotation.
 		 * Sneaking is not handled and should be done during the render.
@@ -107,6 +108,6 @@ public interface IRenderBauble {
 		 * Sneaking is not handled and should be done during the render.
 		 * @see IRenderBauble.Helper
 		 */
-		HEAD;
+		HEAD
 	}
 }

@@ -32,8 +32,7 @@ public class MinecartInfoProvider implements IProbeInfoEntityProvider {
 
     @Override
     public void addProbeEntityInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, Entity entity, IProbeHitEntityData data) {
-        // hopper and chest minecarts
-        if (entity instanceof EntityMinecartContainer) {
+        if (entity instanceof EntityMinecartContainer) { // hopper and chest minecarts
             int maxSlots;
             if (entity.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) {
                 IItemHandler capability = entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
