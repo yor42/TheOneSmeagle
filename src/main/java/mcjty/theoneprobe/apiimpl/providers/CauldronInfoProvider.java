@@ -29,10 +29,10 @@ public class CauldronInfoProvider implements IProbeInfoProvider {
 
                     if (fill > 0) {
                         probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
-                        .text(TextStyleClass.LABEL + ((fill == 1) ? "{*theoneprobe.probe.bottle_indicator*}" : "{*theoneprobe.probe.bottles_indicator*}"));
+                                .text(TextStyleClass.LABEL + ((fill == 1) ? fill + " {*theoneprobe.probe.bottle_indicator*}" : fill + " {*theoneprobe.probe.bottles_indicator*}"));
                     } else {
                         probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
-                        .text(TextStyleClass.LABEL + "{*theoneprobe.probe.empty_indicator*} ");
+                                .text(TextStyleClass.LABEL + "{*theoneprobe.probe.empty_indicator*}");
                     }
                     return;
                 }

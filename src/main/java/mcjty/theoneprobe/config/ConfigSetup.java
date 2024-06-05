@@ -112,7 +112,7 @@ public class ConfigSetup {
     public static boolean showCollarColor = true;
 
     private static IOverlayStyle defaultOverlayStyle;
-    private static ProbeConfig defaultConfig = new ProbeConfig();
+    private static final ProbeConfig defaultConfig = new ProbeConfig();
     private static IProbeConfig realConfig;
 
     public static ProbeConfig getDefaultConfig() {

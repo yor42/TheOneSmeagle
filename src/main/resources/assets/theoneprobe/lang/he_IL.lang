@@ -1,0 +1,60 @@
+key.toggleLiquids=הצג נוזלים
+key.toggleVisible=הצג נראות
+key.categories.theoneprobe=הבדיקה האחת
+item.theoneprobe.probe.name=הבדיקה האחת
+item.theoneprobe.probe_goggles.name=הבדיקה האחת (קישוט)
+item.theoneprobe.diamond_helmet_probe.name=קסדת יהלום עם בדיקה
+item.theoneprobe.gold_helmet_probe.name=קסדת זהב עם בדיקה
+item.theoneprobe.iron_helmet_probe.name=קסדת ברזל עם בדיקה
+item.theoneprobe.creativeprobe.name=הבדיקה היצירתית
+
+theoneprobe.probe.get_contents=מקבל את התוכן של
+theoneprobe.probe.harvestable_indicator=ניתן לקצירה
+theoneprobe.probe.not_harvestable_indicator=לא ניתן לקצירה
+theoneprobe.probe.notool_indicator=ללא כלי
+theoneprobe.probe.empty_indicator=ריק
+theoneprobe.probe.bottle_indicator=בקבוק
+theoneprobe.probe.bottles_indicator=בקבוקים
+theoneprobe.probe.enchanting_power_indicator=כוח הכישוף:
+theoneprobe.probe.tnt_fuse_indicator=פתיל TNT:
+theoneprobe.probe.fuel_indicator=דלק:
+theoneprobe.probe.power_indicator=כוח:
+theoneprobe.probe.time_indicator=זמן:
+theoneprobe.probe.error_indicator=שגיאה:
+theoneprobe.probe.tool_indicator=כלי:
+theoneprobe.probe.growing_time_indicator=זמן גידול:
+theoneprobe.probe.health_indicator=בריאות:
+theoneprobe.probe.rotation_indicator=סיבוב:
+theoneprobe.probe.unknown_owner_indicator=בעלים לא ידוע
+theoneprobe.probe.owned_by_indicator=בבעלות:
+theoneprobe.probe.jump_height_indicator=גובה קפיצה:
+theoneprobe.probe.speed_indicator=מהירות:
+theoneprobe.probe.playing_indicator=ניגון:
+theoneprobe.probe.collar_color_indicator=צבע קולר:
+
+config.theoneprobe.config.title=הגדרות הבדיקה האחת
+
+gui.theoneprobe.gui_note.title=דברים שצריך לדעת על §6הבדיקה האחת
+gui.theoneprobe.gui_note.body.1=§lמוד זה יכול להציג טולטיפ על המסך
+gui.theoneprobe.gui_note.body.2=§lכאשר אתה מביט על בלוק או ישות
+gui.theoneprobe.gui_note.needed.1=בחבילה זו הבדיקה מוגדרת כחיונית
+gui.theoneprobe.gui_note.needed.2=על מנת לראות את הטולטיפ
+gui.theoneprobe.gui_note.not_needed.1=בחבילה זו הבדיקה מוגדרת כלא חיונית
+gui.theoneprobe.gui_note.not_needed.2=על מנת לראות את הטולטיפ
+gui.theoneprobe.gui_note.needed_for_extended.1=בחבילה זו הבדיקה מוגדרת כחיונית
+gui.theoneprobe.gui_note.needed_for_extended.2=על מנת לראות מידע מורחב (כאשר
+gui.theoneprobe.gui_note.needed_for_extended.3=אתה מתגנב) אך לא למידע בסיסי
+gui.theoneprobe.gui_note.needed_hard.1=בחבילה זו הבדיקה מוגדרת כחיונית
+gui.theoneprobe.gui_note.needed_hard.2=על מנת לראות את הטולטיפ
+gui.theoneprobe.gui_note.needed_hard.3=הגדרה זו נקבעת בצד השרת
+gui.theoneprobe.gui_note.tail.1=בדוק את 'אפשרויות המוד...' עבור הגדרות
+gui.theoneprobe.gui_note.tail.2=לקוח רבות או לחץ ימני במצב התגנבות
+gui.theoneprobe.gui_note.tail.3=על פתק זה עבור הגדרות נוחות יותר
+gui.theoneprobe.gui_note.button.title=§l§aתוכל לשנות זאת כאן:
+gui.theoneprobe.gui_note.button.needed=נדרש
+gui.theoneprobe.gui_note.button.not_needed=לא נדרש
+gui.theoneprobe.gui_note.button.extended=מורחב
+
+item.theoneprobe.probenote.name=קרא אותי הבדיקה האחת
+
+itemGroup.Probe=הבדיקה האחת
