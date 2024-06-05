@@ -46,7 +46,7 @@ public class ElementEntityRender {
      * the given id
      * This does not work for modded entities.
      * @param id an old-style entity id as used in 1.10
-     * @return
+     * @return nbt of fixed id
      */
     public static String fixEntityId(String id) {
         NBTTagCompound nbt = new NBTTagCompound();

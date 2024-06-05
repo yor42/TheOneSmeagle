@@ -13,6 +13,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import static mcjty.theoneprobe.api.IProbeConfig.ConfigMode.EXTENDED;
 import static mcjty.theoneprobe.api.IProbeConfig.ConfigMode.NORMAL;
@@ -35,7 +36,7 @@ public class Tools {
             init();
         }
         ResourceLocation itemResourceLocation = block.getRegistryName();
-        String modId = itemResourceLocation.getResourceDomain();
+        String modId = Objects.requireNonNull(itemResourceLocation).getResourceDomain();
         String lowercaseModId = modId.toLowerCase(Locale.ENGLISH);
         String modName = modNamesForIds.get(lowercaseModId);
         if (modName == null) {

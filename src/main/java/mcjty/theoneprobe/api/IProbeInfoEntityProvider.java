@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 public interface IProbeInfoEntityProvider {
 
     /**
-     * Return a unique ID (usually combined with the modid) to identify this provider.
-     * @return
+     * Get a unique ID (usually combined with the modid) to identify this provider.
+     * @return The unique ID
      */
     String getID();
 

@@ -5,10 +5,13 @@ package mcjty.theoneprobe.api;
  */
 public interface IProbeConfig {
 
-    public static enum ConfigMode {
-        NOT,            // Don't show
-        NORMAL,         // Show
-        EXTENDED        // Show only when sneaking
+    enum ConfigMode {
+        /**Don't show*/
+        NOT,
+        /**Show*/
+        NORMAL,
+        /**Show only when sneaking*/
+        EXTENDED
     }
 
     /**
@@ -62,7 +65,10 @@ public interface IProbeConfig {
     IProbeConfig showChestContents(ConfigMode mode);
     ConfigMode getShowChestContents();
 
-    // This controls when detailed chest info is shown in case the amount of items is below showItemDetailThresshold
+    /**
+     * This controls when detailed chest info is shown in case
+     * the amount of items is below showItemDetailThresshold
+     */
     IProbeConfig showChestContentsDetailed(ConfigMode mode);
     ConfigMode getShowChestContentsDetailed();
 

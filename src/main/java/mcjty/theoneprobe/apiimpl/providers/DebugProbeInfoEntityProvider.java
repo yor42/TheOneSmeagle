@@ -37,7 +37,7 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 float aiMoveSpeed = entityLivingBase.getAIMoveSpeed();
                 int revengeTimer = entityLivingBase.getRevengeTimer();
                 vertical
-                        .text(LABEL + "Tot armor: " + INFO + totalArmorValue)
+                        .text(LABEL + "Total armor: " + INFO + totalArmorValue)
                         .text(LABEL + "Age: " + INFO + age)
                         .text(LABEL + "Absorption: " + INFO + absorptionAmount)
                         .text(LABEL + "AI Move Speed: " + INFO + aiMoveSpeed)

@@ -1,6 +1,7 @@
 package mcjty.theoneprobe.items;
 
 import mcjty.theoneprobe.TheOneProbe;
+import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.setup.GuiProxy;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +23,7 @@ public class ProbeNote extends Item {
         setUnlocalizedName(TheOneProbe.MODID + ".probenote");
         setRegistryName("probenote");
         setCreativeTab(TheOneProbe.tabProbe);
-        setMaxStackSize(1);
+        setMaxStackSize(ConfigSetup.probeNoteStackSize);
     }
 
     @SideOnly(Side.CLIENT)

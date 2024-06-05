@@ -28,7 +28,7 @@ public class ElementItemStackRender {
 
             if (!RenderHelper.renderItemStack(Minecraft.getMinecraft(), itemRender, itemStack, x + (style.getWidth() - 18) / 2, y + (style.getHeight() - 18) / 2, amount)) {
                 // There was a crash rendering this item
-                RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.RED + "ERROR: " + itemStack.getDisplayName());
+                RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.RED + "{*theoneprobe.probe.error_indicator*} " + itemStack.getDisplayName());
             }
         }
     }

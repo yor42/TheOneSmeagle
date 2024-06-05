@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Objects;
 
 public class NetworkTools {
 
@@ -53,7 +54,7 @@ public class NetworkTools {
         PacketBuffer buf = new PacketBuffer(dataIn);
         try {
             NBTTagCompound nbt = buf.readCompoundTag();
-            ItemStack stack = new ItemStack(nbt);
+            ItemStack stack = new ItemStack(Objects.requireNonNull(nbt));
             stack.setCount(buf.readInt());
             return stack;
         } catch (IOException e) {

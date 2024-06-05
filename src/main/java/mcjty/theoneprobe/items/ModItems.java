@@ -30,8 +30,8 @@ public class ModItems {
     public static Item probeGoggles;
     public static ProbeNote probeNote;
 
-    public static String PROBETAG = "theoneprobe";
-    public static String PROBETAG_HAND = "theoneprobe_hand";
+    public static final String PROBETAG = "theoneprobe";
+    private static final String PROBETAG_HAND = "theoneprobe_hand";
 
     public static void init() {
         probe = new Probe();
@@ -95,7 +95,7 @@ public class ModItems {
             BaubleTools.initProbeModel(probeGoggles);
         }
     }
-
+    @SideOnly(Side.CLIENT)
     public static boolean isProbeInHand(ItemStack stack) {
         if (stack.isEmpty()) {
             return false;
@@ -108,7 +108,7 @@ public class ModItems {
         }
         return stack.getTagCompound().hasKey(PROBETAG_HAND);
     }
-
+    @SideOnly(Side.CLIENT)
     private static boolean isProbeHelmet(ItemStack stack) {
         if (stack.isEmpty()) {
             return false;
@@ -118,23 +118,22 @@ public class ModItems {
         }
         return stack.getTagCompound().hasKey(PROBETAG);
     }
-
+    @SideOnly(Side.CLIENT)
     public static boolean hasAProbeSomewhere(EntityPlayer player) {
         return hasProbeInHand(player, EnumHand.MAIN_HAND) || hasProbeInHand(player, EnumHand.OFF_HAND) || hasProbeInHelmet(player)
                 || hasProbeInBauble(player);
     }
-
+    @SideOnly(Side.CLIENT)
     private static boolean hasProbeInHand(EntityPlayer player, EnumHand hand) {
         ItemStack item = player.getHeldItem(hand);
         return isProbeInHand(item);
     }
-
+    @SideOnly(Side.CLIENT)
     private static boolean hasProbeInHelmet(EntityPlayer player) {
         ItemStack helmet = player.inventory.getStackInSlot(36+3);
-//        ItemStack helmet = player.inventory.armorInventory.get(3);
         return isProbeHelmet(helmet);
     }
-
+    @SideOnly(Side.CLIENT)
     private static boolean hasProbeInBauble(EntityPlayer player) {
         if (ModSetup.baubles) {
             return BaubleTools.hasProbeGoggle(player);

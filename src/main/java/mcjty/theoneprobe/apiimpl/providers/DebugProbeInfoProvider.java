@@ -1,5 +1,7 @@
 package mcjty.theoneprobe.apiimpl.providers;
 
+import mcjty.lib.api.power.IBigPower;
+import mcjty.theoneprobe.compat.RedstoneFluxTools;
 import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.api.IProbeHitData;
@@ -45,11 +47,20 @@ public class DebugProbeInfoProvider implements IProbeInfoProvider {
                 .text(LABEL + "Class: " + INFO + simpleName)
                 .text(LABEL + "Hardness: " + INFO + block.getBlockHardness(blockState, world, pos))
                 .text(LABEL + "Power W: " + INFO + block.getWeakPower(blockState, world, pos, side.getOpposite())
-                        + LABEL + ", S: " + INFO + block.getStrongPower(blockState, world, pos, side.getOpposite()))
-                .text(LABEL + "Light: " + INFO + block.getLightValue(blockState, world, pos));
+                        + LABEL + ", S: " + INFO + block.getStrongPower(blockState, world, pos, side.getOpposite()));
+
+        int lightValue = block.getLightValue(blockState, world, pos);
+        if (lightValue > 0) {
+            vertical.text(LABEL + "Light: " + INFO + lightValue);
+        }
+
         TileEntity te = world.getTileEntity(pos);
         if (te != null) {
             vertical.text(LABEL + "TileEntity: " + INFO + te.getClass().getSimpleName());
+            if (te instanceof IBigPower) {
+                vertical.text(LABEL + "Energy: " + INFO + RedstoneFluxTools.getEnergy(te));
+                vertical.text(LABEL + "Max Energy: " + INFO + RedstoneFluxTools.getMaxEnergy(te));
+            }
         }
     }
 }

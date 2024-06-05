@@ -103,9 +103,9 @@ public class HarvestInfoTools {
             int harvestLevel = block.getHarvestLevel(blockState);
             if (harvestLevel < 0) {
                 // NOTE: When a block doesn't have an explicitly-set harvest tool, getHarvestLevel will return -1 for ANY tool. (Expected behavior)
-//                TheOneProbe.logger.info("HarvestLevel out of bounds (less than 0). Found " + harvestLevel);
+//                ModSetup.getLogger().info("HarvestLevel out of bounds (less than 0). Found " + harvestLevel);
             } else if (harvestLevel >= harvestLevels.length) {
-//                TheOneProbe.logger.info("HarvestLevel out of bounds (Max value " + harvestLevels.length + "). Found " + harvestLevel);
+//                ModSetup.getLogger().info("HarvestLevel out of bounds (Max value " + harvestLevels.length + "). Found " + harvestLevel);
             } else {
                 harvestName = harvestLevels[harvestLevel];
             }

@@ -123,7 +123,7 @@ public class PacketGetInfo implements IMessage {
                 }
             }
         } else if (ConfigSetup.needsProbe == PROBE_NEEDEDHARD && !ModItems.hasAProbeSomewhere(player)) {
-            // The server says we need a probe but we don't have one in our hands
+            // The server says we need a probe, but we don't have one in our hands
             return null;
         }
 

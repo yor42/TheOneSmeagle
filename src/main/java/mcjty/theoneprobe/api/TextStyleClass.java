@@ -6,16 +6,26 @@ package mcjty.theoneprobe.api;
  * probeInfo.text(TextStyleClass.ERROR + "Error! World will explode in 5 seconds!");
  */
 public enum TextStyleClass {
-    MODNAME("m", "ModName"),         // Name of the mod
-    NAME("n", "Name"),               // Name of the block or entity
-    INFO("i", "Info"),               // General info, neutral
-    INFOIMP("I", "InfoImportant"),   // General info, important
-    WARNING("w", "Warning"),         // Warning, something is not ready (not mature), or missing stuff
-    ERROR("e", "Error"),             // Error, bad situation, out of power, things like that
-    OBSOLETE("O", "Obsolete"),       // Obsolete, deprecated, old information
-    LABEL("l", "Label"),             // A label, use the 'context' code to set the same as the style that follows
-    OK("o", "Ok"),                   // Status ok
-    PROGRESS("p", "Progress");       // Progress rendering in case the bar is not used
+    /**Name of the mod*/
+    MODNAME("m", "ModName"),
+    /**Name of the block or entity*/
+    NAME("n", "Name"),
+    /**General info, neutral*/
+    INFO("i", "Info"),
+    /**General info, important*/
+    INFOIMP("I", "InfoImportant"),
+    /**Warning, something is not ready (not mature), or missing stuff*/
+    WARNING("w", "Warning"),
+    /**Error, bad situation, out of power, things like that*/
+    ERROR("e", "Error"),
+    /**Obsolete, deprecated, old information*/
+    OBSOLETE("O", "Obsolete"),
+    /**A label, use the 'context' code to set the same as the style that follows*/
+    LABEL("l", "Label"),
+    /**Status ok*/
+    OK("o", "Ok"),
+    /** Progress rendering in case the bar is not used*/
+    PROGRESS("p", "Progress");
 
     private final String code;
     private final String readableName;

@@ -89,6 +89,7 @@ public class ConfigSetup {
     public static int tankbarFilledColor = 0xff0000dd;
     public static int tankbarAlternateFilledColor = 0xff000043;
     public static int tankbarBorderColor = 0xff555555;
+    public static int probeNoteStackSize = 1;
 
     public static Map<TextStyleClass, String> defaultTextStyleClasses = new HashMap<>();
     public static Map<TextStyleClass, String> textStyleClasses;
@@ -154,7 +155,7 @@ public class ConfigSetup {
         tankbarFilledColor = parseColor(cfg.getString("tankbarFilledColor", CATEGORY_THEONEPROBE, Integer.toHexString(tankbarFilledColor), "Color for the tank bar"));
         tankbarAlternateFilledColor = parseColor(cfg.getString("tankbarAlternateFilledColor", CATEGORY_THEONEPROBE, Integer.toHexString(tankbarAlternateFilledColor), "Alternate color for the tank bar"));
         tankbarBorderColor = parseColor(cfg.getString("tankbarBorderColor", CATEGORY_THEONEPROBE, Integer.toHexString(tankbarBorderColor), "Color for the tank bar border"));
-
+        probeNoteStackSize = cfg.getInt("probeNoteStackSize", CATEGORY_THEONEPROBE, tankFormat.ordinal(), 1, 64, "Stack size of the Readme note");
         showItemDetailThresshold = cfg.getInt("showItemDetailThresshold", CATEGORY_THEONEPROBE, showItemDetailThresshold, 0, 20, "If the number of items in an inventory is lower or equal then this number then more info is shown");
         showSmallChestContentsWithoutSneaking = cfg.getInt("showSmallChestContentsWithoutSneaking", CATEGORY_THEONEPROBE, showSmallChestContentsWithoutSneaking, 0, 1000, "The maximum amount of slots (empty or not) to show without sneaking");
         showContentsWithoutSneaking = cfg.getStringList("showContentsWithoutSneaking", CATEGORY_THEONEPROBE, showContentsWithoutSneaking, "A list of blocks for which we automatically show chest contents even if not sneaking");

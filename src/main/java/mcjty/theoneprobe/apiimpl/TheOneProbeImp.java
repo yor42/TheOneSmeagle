@@ -125,8 +125,7 @@ public class TheOneProbeImp implements ITheOneProbe {
             }
         }
 
-        // Add all providers that are not in the list of sortedProviders and are also not
-        // excluded.
+        // Add all providers that are not in the list of sortedProviders and are also not excluded.
         for (IProbeInfoProvider provider : providers) {
             if ((!newProviders.contains(provider)) && !excludedProviders.contains(provider.getID())) {
                 newProviders.add(provider);
