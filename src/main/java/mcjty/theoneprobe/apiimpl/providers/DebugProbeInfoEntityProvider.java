@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.world.World;
 
 import static mcjty.theoneprobe.api.TextStyleClass.INFO;
@@ -49,6 +50,13 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 int growingAge = entityAgeable.getGrowingAge();
                 vertical
                         .text(LABEL + "Growing Age: " + INFO + growingAge);
+            }
+            if (entity instanceof EntityWaterMob) {
+
+                EntityWaterMob entityWaterMob = (EntityWaterMob) entity;
+                boolean canBreatheUnderwater = entityWaterMob.canBreatheUnderwater();
+                vertical
+                        .text(LABEL + "Can Breath Underwater: " + INFO + canBreatheUnderwater);
             }
         }
     }

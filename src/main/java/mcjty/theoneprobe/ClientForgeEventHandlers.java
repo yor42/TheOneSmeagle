@@ -17,9 +17,11 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static mcjty.theoneprobe.config.ConfigSetup.*;
-
+@SideOnly(Side.CLIENT)
 public class ClientForgeEventHandlers {
 
     public static boolean ignoreNextGuiClose = false;
