@@ -16,6 +16,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,9 +35,22 @@ public class ModItems {
     private static final String PROBETAG_HAND = "theoneprobe_hand";
 
     public static void init() {
+        int stepCount;
+        if (ModSetup.baubles) {
+             stepCount = 6;
+        }
+        else {
+             stepCount = 5;
+        }
+        final ProgressManager.ProgressBar bar = ProgressManager.push("Loading Mod Items", stepCount);
+
+        bar.step("Initializing Probe");
         probe = new Probe();
+
+        bar.step("Initializing Creative Probe");
         creativeProbe = new CreativeProbe();
 
+        bar.step("Creating Armor Materials");
         ItemArmor.ArmorMaterial materialDiamondHelmet = EnumHelper.addArmorMaterial("diamond_helmet_probe", TheOneProbe.MODID + ":probe_diamond",
                 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
         ItemArmor.ArmorMaterial materialGoldHelmet = EnumHelper.addArmorMaterial("gold_helmet_probe", TheOneProbe.MODID + ":probe_gold",
@@ -44,15 +58,20 @@ public class ModItems {
         ItemArmor.ArmorMaterial materialIronHelmet = EnumHelper.addArmorMaterial("iron_helmet_probe", TheOneProbe.MODID + ":probe_iron",
                 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
+        bar.step("Creating Armor Probes");
         diamondHelmetProbe = makeHelmet(materialDiamondHelmet, 3, "diamond_helmet_probe");
         goldHelmetProbe = makeHelmet(materialGoldHelmet, 4, "gold_helmet_probe");
         ironHelmetProbe = makeHelmet(materialIronHelmet, 2, "iron_helmet_probe");
 
+        bar.step("Initializing Probe Note");
         probeNote = new ProbeNote();
 
         if (ModSetup.baubles) {
+            bar.step("Initializing Probe Goggles");
             probeGoggles = BaubleTools.initProbeGoggle();
         }
+
+        ProgressManager.pop(bar);
     }
 
     private static Item makeHelmet(ItemArmor.ArmorMaterial material, int renderIndex, String name) {

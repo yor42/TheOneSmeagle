@@ -30,6 +30,7 @@ public class ForgeEventHandlers {
         }
     }
 
+    @SideOnly(Side.SERVER)
     @SubscribeEvent
     public void onEntityConstructing(AttachCapabilitiesEvent<Entity> event){
         if (event.getObject() instanceof EntityPlayer) {

@@ -15,6 +15,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -43,12 +44,15 @@ public class ModSetup {
 
         registerCapabilities();
         TheOneProbeImp.registerElements();
+        final ProgressManager.ProgressBar bar = ProgressManager.push("Loading Providers", 2);
+        bar.step("Loading Block Providers");
         TheOneProbe.theOneProbeImp.registerProvider(new DefaultProbeInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new DebugProbeInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new BlockProbeInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new EnchantingPowerInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new JukeboxProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new CauldronInfoProvider());
+        bar.step("Loading Entity Providers");
         TheOneProbe.theOneProbeImp.registerEntityProvider(new DefaultProbeInfoEntityProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new DebugProbeInfoEntityProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new EntityProbeInfoEntityProvider());
@@ -56,7 +60,7 @@ public class ModSetup {
         TheOneProbe.theOneProbeImp.registerEntityProvider(new MinecartInfoProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new TNTInfoProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new PaintingInfoProvider());
-
+        ProgressManager.pop(bar);
         modConfigDir = e.getModConfigurationDirectory();
         ConfigSetup.init();
 
