@@ -60,6 +60,7 @@ public class ConfigSetup {
 
     public static float probeDistance = 6;
     public static boolean showLiquids = false;
+    public static boolean showDebugUUID = false;
     public static boolean isVisible = true;
     public static boolean compactEqualStacks = true;
     public static boolean holdKeyToMakeVisible = false;
@@ -129,6 +130,7 @@ public class ConfigSetup {
     }
 
     public static void init(Configuration cfg) {
+        showDebugUUID = cfg.getBoolean("showDebugUUID", CATEGORY_THEONEPROBE, showDebugUUID,"Show a entities UUID in the debug probe menu");
         loggingThrowableTimeout = cfg.getInt("loggingThrowableTimeout", CATEGORY_THEONEPROBE, loggingThrowableTimeout, 1, 10000000, "How much time (in ms) to wait before reporting an exception again");
         needsProbe = cfg.getInt("needsProbe", CATEGORY_THEONEPROBE, needsProbe, 0, 3, "Is the probe needed to show the tooltip? 0 = no, 1 = yes, 2 = yes and clients cannot override, 3 = probe needed for extended info only");
         extendedInMain = cfg.getBoolean("extendedInMain", CATEGORY_THEONEPROBE, extendedInMain, "If true the probe will automatically show extended information if it is in your main hand (so not required to sneak)");
