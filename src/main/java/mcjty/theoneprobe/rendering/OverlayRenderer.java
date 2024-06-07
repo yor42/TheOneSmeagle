@@ -45,12 +45,11 @@ public class OverlayRenderer {
     private static Map<UUID, Pair<Long, ProbeInfo>> cachedEntityInfo = new HashMap<>();
     private static long lastCleanupTime = 0;
 
-    // For a short while we keep displaying the last pair if we have no new information
-    // to prevent flickering
+    /**For a short while we keep displaying the last pair if we have no new information to prevent flickering*/
     private static Pair<Long, ProbeInfo> lastPair;
     private static long lastPairTime = 0;
 
-    // When the server delays too long we also show some preliminary information already
+    /** When the server delays too long we also show some preliminary information already*/
     private static long lastRenderedTime = -1;
 
     public static void registerProbeInfo(int dim, BlockPos pos, ProbeInfo probeInfo) {
@@ -295,10 +294,10 @@ public class OverlayRenderer {
             DefaultProbeInfoProvider.showStandardBlockInfo(probeConfig, mode, probeInfo, blockState, block, data);
         } catch (Exception e) {
             ThrowableIdentity.registerThrowable(e);
-            probeInfo.text(ERROR + "Error (see log for details)!");
+            probeInfo.text(ERROR + "{*theoneprobe.probe.error_log_indicator*}");
         }
 
-        probeInfo.text(ERROR + "Waiting for server...");
+        probeInfo.text(ERROR + "{*theoneprobe.probe.waiting_server_indicator*}");
         return probeInfo;
     }
 
@@ -311,10 +310,10 @@ public class OverlayRenderer {
             DefaultProbeInfoEntityProvider.showStandardInfo(mode, probeInfo, entity, probeConfig);
         } catch (Exception e) {
             ThrowableIdentity.registerThrowable(e);
-            probeInfo.text(ERROR + "Error (see log for details)!");
+            probeInfo.text(ERROR + "{*theoneprobe.probe.error_log_indicator*}");
         }
 
-        probeInfo.text(ERROR + "Waiting for server...");
+        probeInfo.text(ERROR + "{*theoneprobe.probe.waiting_server_indicator*}");
         return probeInfo;
     }
 

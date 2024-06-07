@@ -32,17 +32,21 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 vertical = probeInfo.vertical(new LayoutStyle().borderColor(0xffff4444).spacing(2));
 
                 EntityLivingBase entityLivingBase = (EntityLivingBase) entity;
+                float stepHeight = entityLivingBase.stepHeight;
                 int totalArmorValue = entityLivingBase.getTotalArmorValue();
                 int age = entityLivingBase.getIdleTime();
                 float absorptionAmount = entityLivingBase.getAbsorptionAmount();
                 float aiMoveSpeed = entityLivingBase.getAIMoveSpeed();
                 int revengeTimer = entityLivingBase.getRevengeTimer();
+                boolean isOnFire = entityLivingBase.isBurning();
                 vertical
+                        .text(LABEL + "Step Height: " + INFO + stepHeight)
                         .text(LABEL + "Total armor: " + INFO + totalArmorValue)
                         .text(LABEL + "Age: " + INFO + age)
                         .text(LABEL + "Absorption: " + INFO + absorptionAmount)
                         .text(LABEL + "AI Move Speed: " + INFO + aiMoveSpeed)
-                        .text(LABEL + "Revenge Timer: " + INFO + revengeTimer);
+                        .text(LABEL + "Revenge Timer: " + INFO + revengeTimer)
+                        .text(LABEL + "On Fire: " + INFO + isOnFire);
             }
             if (entity instanceof EntityAgeable) {
 
@@ -56,7 +60,8 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 EntityWaterMob entityWaterMob = (EntityWaterMob) entity;
                 boolean canBreatheUnderwater = entityWaterMob.canBreatheUnderwater();
                 vertical
-                        .text(LABEL + "Can Breath Underwater: " + INFO + canBreatheUnderwater);
+                        .text(LABEL + "Can Breath Underwater: " + INFO + canBreatheUnderwater)
+                        .text(LABEL + "In Water: " + INFO + entityWaterMob.isInWater());
             }
         }
     }

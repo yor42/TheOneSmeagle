@@ -58,8 +58,8 @@ public class DebugProbeInfoProvider implements IProbeInfoProvider {
         if (te != null) {
             vertical.text(LABEL + "TileEntity: " + INFO + te.getClass().getSimpleName());
             if (te instanceof IBigPower) {
-                vertical.text(LABEL + "Energy: " + INFO + RedstoneFluxTools.getEnergy(te));
-                vertical.text(LABEL + "Max Energy: " + INFO + RedstoneFluxTools.getMaxEnergy(te));
+                vertical.text(LABEL + "Energy: " + INFO + RedstoneFluxTools.getEnergy(te))
+                        .text(LABEL + "Max Energy: " + INFO + RedstoneFluxTools.getMaxEnergy(te));
             }
         }
     }

@@ -118,7 +118,7 @@ public class DefaultProbeInfoEntityProvider implements IProbeInfoEntityProvider 
                     probeInfo.text(LABEL + "{*theoneprobe.probe.rotation_indicator*} " + INFO + itemFrame.getRotation());
                 }
             } else {
-                probeInfo.text(LABEL + "Empty");
+                probeInfo.text(LABEL + "{*theoneprobe.probe.empty_indicator*}");
             }
         }
 

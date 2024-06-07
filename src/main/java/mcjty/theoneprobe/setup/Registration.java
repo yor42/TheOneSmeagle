@@ -5,6 +5,7 @@ import mcjty.theoneprobe.items.ModItems;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
@@ -12,6 +13,8 @@ public class Registration {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+        final ProgressManager.ProgressBar bar = ProgressManager.push("Registering Items", 1);
+        bar.step("Registering Items");
         ModItems.init();
 
         event.getRegistry().register(ModItems.probe);
@@ -25,6 +28,7 @@ public class Registration {
         if (ModSetup.baubles) {
             event.getRegistry().register(ModItems.probeGoggles);
         }
+        ProgressManager.pop(bar);
     }
 
 }

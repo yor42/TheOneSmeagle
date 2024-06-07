@@ -7,6 +7,8 @@ import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.apiimpl.styles.DefaultOverlayStyle;
 import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.rendering.OverlayRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DefaultOverlayRenderer implements IOverlayRenderer {
 
@@ -21,6 +23,7 @@ public class DefaultOverlayRenderer implements IOverlayRenderer {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void render(IOverlayStyle style, IProbeInfo probeInfo) {
         OverlayRenderer.renderOverlay(style, probeInfo);
     }
