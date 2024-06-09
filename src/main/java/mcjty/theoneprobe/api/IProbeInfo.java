@@ -16,8 +16,11 @@ import net.minecraft.util.ResourceLocation;
  */
 public interface IProbeInfo {
 
-    /// Use STARTLOC/ENDLOC in your strings for localization on the client
+    /** Use for in your strings for localization on the client.
+     *  Start of a localized message*/
     String STARTLOC = "{*";
+    /** Use for in your strings for localization on the client.
+     *  End of a localized message*/
     String ENDLOC = "*}";
 
     /**
