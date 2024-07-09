@@ -400,8 +400,7 @@ public class OverlayRenderer {
             margin = offset + thick + 3;
         }
 
-        int x;
-        int y;
+        int x,y;
         if (style.getLeftX() != -1) {
             x = style.getLeftX();
         } else if (style.getRightX() != -1) {

@@ -43,7 +43,7 @@ public class RenderHelper {
             Minecraft.getMinecraft().getRenderManager().renderEntity(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
         } catch (Exception e) {
             TheOneProbe.setup.getLogger().error("Error rendering entity!", e);
-        };
+        }
         GlStateManager.popMatrix();
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 
@@ -119,7 +119,7 @@ public class RenderHelper {
             short short1 = 240;
             short short2 = 240;
             net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, short1 / 1.0F, short2 / 1.0F);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, short1, short2);
             itemRender.renderItemAndEffectIntoGUI(itm, x, y);
             itemRender.renderItemOverlayIntoGUI(mc.fontRenderer, itm, x, y, txt);
             GlStateManager.popMatrix();
@@ -282,7 +282,16 @@ public class RenderHelper {
     }
 
     /**
-     * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
+     * Draws a textured rectangle at the stored z-value.
+     *
+     * @param x       The x-coordinate of the rectangle's position.
+     * @param y       The y-coordinate of the rectangle's position.
+     * @param u       The x-coordinate of the texture's position.
+     * @param v       The y-coordinate of the texture's position.
+     * @param width   The width of the rectangle to draw.
+     * @param height  The height of the rectangle to draw.
+     * @param twidth  The width of the texture.
+     * @param theight The height of the texture.
      */
     public static void drawTexturedModalRect(int x, int y, int u, int v, int width, int height, int twidth, int theight) {
         float zLevel = 0.01f;
@@ -292,35 +301,40 @@ public class RenderHelper {
         BufferBuilder buffer = tessellator.getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 
-        buffer.pos((x + 0), (y + height), zLevel).tex(((u + 0) * f), ((v + height) * f1)).endVertex();
+        buffer.pos((x), (y + height), zLevel).tex(((u) * f), ((v + height) * f1)).endVertex();
         buffer.pos((x + width), (y + height), zLevel).tex(((u + width) * f), ((v + height) * f1)).endVertex();
-        buffer.pos((x + width), (y + 0), zLevel).tex(((u + width) * f), ((v + 0) * f1)).endVertex();
-        buffer.pos((x + 0), (y + 0), zLevel).tex(((u + 0) * f), ((v + 0) * f1)).endVertex();
+        buffer.pos((x + width), (y), zLevel).tex(((u + width) * f), ((v) * f1)).endVertex();
+        buffer.pos((x), (y), zLevel).tex(((u) * f), ((v) * f1)).endVertex();
         tessellator.draw();
     }
 
     /**
-     * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
+     * Draws a textured rectangle at the stored z-value.
+     *
+     * @param x      The x-coordinate of the rectangle's position.
+     * @param y      The y-coordinate of the rectangle's position.
+     * @param u      The x-coordinate of the texture's position.
+     * @param v      The y-coordinate of the texture's position.
+     * @param width  The width of the rectangle to draw.
+     * @param height The height of the rectangle to draw.
      */
     public static void drawTexturedModalRect(int x, int y, int u, int v, int width, int height) {
         float zLevel = 0.01f;
-        float f = (1/256.0f);
-        float f1 = (1/256.0f);
+        float textureScaleX = 1 / 256.0f;
+        float textureScaleY = 1 / 256.0f;
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 
-        buffer.pos((x + 0), (y + height), zLevel).tex(((u + 0) * f), ((v + height) * f1)).endVertex();
-        buffer.pos((x + width), (y + height), zLevel).tex(((u + width) * f), ((v + height) * f1)).endVertex();
-        buffer.pos((x + width), (y + 0), zLevel).tex(((u + width) * f), ((v + 0) * f1)).endVertex();
-        buffer.pos((x + 0), (y + 0), zLevel).tex(((u + 0) * f), ((v + 0) * f1)).endVertex();
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(x, y + height, zLevel).tex(u * textureScaleX, (v + height) * textureScaleY).endVertex();
+        buffer.pos(x + width, y + height, zLevel).tex((u + width) * textureScaleX, (v + height) * textureScaleY).endVertex();
+        buffer.pos(x + width, y, zLevel).tex((u + width) * textureScaleX, v * textureScaleY).endVertex();
+        buffer.pos(x, y, zLevel).tex(u * textureScaleX, v * textureScaleY).endVertex();
         tessellator.draw();
     }
 
     public static void drawTexturedModalRect(int x, int y, TextureAtlasSprite sprite, int width, int height) {
         float zLevel = 0.01f;
-        float f = (1/256.0f);
-        float f1 = (1/256.0f);
 
         float u1 = sprite.getMinU();
         float v1 = sprite.getMinV();
@@ -330,10 +344,10 @@ public class RenderHelper {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos((x + 0), (y + height), zLevel).tex(u1, v1).endVertex();
+        buffer.pos((x), (y + height), zLevel).tex(u1, v1).endVertex();
         buffer.pos((x + width), (y + height), zLevel).tex(u1, v2).endVertex();
-        buffer.pos((x + width), (y + 0), zLevel).tex(u2, v2).endVertex();
-        buffer.pos((x + 0), (y + 0), zLevel).tex(u2, v1).endVertex();
+        buffer.pos((x + width), (y), zLevel).tex(u2, v2).endVertex();
+        buffer.pos((x), (y), zLevel).tex(u2, v1).endVertex();
         tessellator.draw();
     }
 
@@ -400,12 +414,12 @@ public class RenderHelper {
     }
 
     /**
-     * Draw a beam with some thickness.
+     * Draws a beam with specified thickness between two points in 3D space.
      *
-     * @param S
-     * @param E
-     * @param P
-     * @param width
+     * @param S     The start point of the beam as a Vector.
+     * @param E     The end point of the beam as a Vector.
+     * @param P     A point to determine the normal vector for the beam's thickness.
+     * @param width The thickness of the beam.
      */
     public static void drawBeam(Vector S, Vector E, Vector P, float width) {
         Vector PS = Sub(S, P);
@@ -423,9 +437,10 @@ public class RenderHelper {
         drawQuad(Tessellator.getInstance(), p1, p3, p4, p2);
     }
 
+
     private static void drawQuad(Tessellator tessellator, Vector p1, Vector p2, Vector p3, Vector p4) {
         int brightness = 240;
-        int b1 = brightness >> 16 & 65535;
+        int b1 = 0;
         int b2 = brightness & 65535;
 
         BufferBuilder buffer = tessellator.getBuffer();
@@ -465,7 +480,14 @@ public class RenderHelper {
     }
 
     /**
-     * Renders the stack size and/or damage bar for the given ItemStack.
+     * Renders the stack size and/or damage bar for the given ItemStack in the GUI.
+     *
+     * @param fr         The FontRenderer instance used to render text.
+     * @param stack      The ItemStack for which the overlay is being rendered.
+     * @param xPosition  The x-coordinate of the item position in the GUI.
+     * @param yPosition  The y-coordinate of the item position in the GUI.
+     * @param text       An optional text to display instead of the item count.
+     * @param scaled     The scaling factor for rendering the text.
      */
     public static void renderItemOverlayIntoGUI(FontRenderer fr, ItemStack stack, int xPosition, int yPosition, @Nullable String text,
                                                 int scaled) {
@@ -538,7 +560,17 @@ public class RenderHelper {
     }
 
     /**
-     * Draw with the WorldRenderer
+     * Draws a colored rectangle using the provided BufferBuilder.
+     *
+     * @param renderer The BufferBuilder instance used to draw the rectangle.
+     * @param x        The x-coordinate of the top-left corner of the rectangle.
+     * @param y        The y-coordinate of the top-left corner of the rectangle.
+     * @param width    The width of the rectangle.
+     * @param height   The height of the rectangle.
+     * @param red      The red component of the rectangle's color (0-255).
+     * @param green    The green component of the rectangle's color (0-255).
+     * @param blue     The blue component of the rectangle's color (0-255).
+     * @param alpha    The alpha (transparency) component of the rectangle's color (0-255).
      */
     private static void draw(BufferBuilder renderer, int x, int y, int width, int height, int red, int green, int blue, int alpha) {
         renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
@@ -550,6 +582,16 @@ public class RenderHelper {
     }
 
 
+    /**
+     * Renders a text string on the screen at the specified coordinates.
+     *
+     * @param mc  The Minecraft instance.
+     * @param x   The x-coordinate where the text will be rendered.
+     * @param y   The y-coordinate where the text will be rendered.
+     * @param txt The text string to be rendered.
+     *
+     * @return The width of the rendered text.
+     */
     public static int renderText(Minecraft mc, int x, int y, String txt) {
         GlStateManager.color(1.0F, 1.0F, 1.0F);
 
@@ -571,7 +613,6 @@ public class RenderHelper {
         // TODO: check if enabled blending still screws things up down the line.
         GlStateManager.enableBlend();
 
-
         GlStateManager.popMatrix();
         GlStateManager.disableRescaleNormal();
         GlStateManager.disableLighting();
@@ -579,39 +620,81 @@ public class RenderHelper {
         return width;
     }
 
+    /**
+     * A simple 3D vector class with basic vector operations.
+     */
     public static class Vector {
         public final float x;
         public final float y;
         public final float z;
 
+        /**
+         * Constructs a new vector with the given x, y, and z components.
+         *
+         * @param x The x-component of the vector.
+         * @param y The y-component of the vector.
+         * @param z The z-component of the vector.
+         */
         public Vector(float x, float y, float z) {
             this.x = x;
             this.y = y;
             this.z = z;
         }
 
+        /**
+         * Returns the x-component of the vector.
+         *
+         * @return The x-component.
+         */
         public float getX() {
             return x;
         }
 
+        /**
+         * Returns the y-component of the vector.
+         *
+         * @return The y-component.
+         */
         public float getY() {
             return y;
         }
 
+        /**
+         * Returns the z-component of the vector.
+         *
+         * @return The z-component.
+         */
         public float getZ() {
             return z;
         }
 
+        /**
+         * Computes the Euclidean norm (length) of the vector.
+         *
+         * @return The norm of the vector.
+         */
         public float norm() {
             return (float) Math.sqrt(x * x + y * y + z * z);
         }
 
+        /**
+         * Returns a normalized (unit) vector in the same direction as this vector.
+         *
+         * @return A new vector that is the normalized version of this vector.
+         */
         public Vector normalize() {
             float n = norm();
             return new Vector(x / n, y / n, z / n);
         }
     }
 
+    /**
+     * Computes the cross product of two vectors.
+     *
+     * @param a The first vector.
+     * @param b The second vector.
+     * @return A new vector that is the cross product of vectors a and b.
+     */
     private static Vector Cross(Vector a, Vector b) {
         float x = a.y * b.z - a.z * b.y;
         float y = a.z * b.x - a.x * b.z;
@@ -619,14 +702,35 @@ public class RenderHelper {
         return new Vector(x, y, z);
     }
 
+    /**
+     * Subtracts vector b from vector a
+     *
+     * @param a The vector from which b is subtracted.
+     * @param b The vector to subtract from a
+     * @return A new vector that is the result of a - b.
+     */
     private static Vector Sub(Vector a, Vector b) {
         return new Vector(a.x - b.x, a.y - b.y, a.z - b.z);
     }
 
+    /**
+     * Adds two vectors together.
+     *
+     * @param a The first vector.
+     * @param b The second vector.
+     * @return A new vector that is the sum of vectors a and b.
+     */
     private static Vector Add(Vector a, Vector b) {
         return new Vector(a.x + b.x, a.y + b.y, a.z + b.z);
     }
 
+    /**
+     * Multiplies a vector by a scalar.
+     *
+     * @param a The vector to be multiplied.
+     * @param f The scalar by which to multiply the vector.
+     * @return A new vector that is the result of a multiplied by f.
+     */
     private static Vector Mul(Vector a, float f) {
         return new Vector(a.x * f, a.y * f, a.z * f);
     }

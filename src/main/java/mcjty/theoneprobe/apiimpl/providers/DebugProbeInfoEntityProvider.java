@@ -1,20 +1,19 @@
 package mcjty.theoneprobe.apiimpl.providers;
 
-import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.api.IProbeHitEntityData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoEntityProvider;
 import mcjty.theoneprobe.api.ProbeMode;
 import mcjty.theoneprobe.apiimpl.styles.LayoutStyle;
+import mcjty.theoneprobe.config.ConfigSetup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.passive.EntityWaterMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import java.util.Collection;
@@ -102,6 +101,14 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 EntityPlayer entityPlayer = (EntityPlayer) entity;
                 int foodLevel = entityPlayer.getFoodStats().getFoodLevel();
                 float saturationLevel = entityPlayer.getFoodStats().getSaturationLevel();
+                vertical
+                        .text(LABEL + "Food Level: " + INFO + foodLevel)
+                        .text(LABEL + "Saturation Level: " + INFO + saturationLevel);
+            }
+            if (entity instanceof EntityPlayerMP) {
+                EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entity;
+                int foodLevel = entityPlayerMP.getFoodStats().getFoodLevel();
+                float saturationLevel = entityPlayerMP.getFoodStats().getSaturationLevel();
                 vertical
                         .text(LABEL + "Food Level: " + INFO + foodLevel)
                         .text(LABEL + "Saturation Level: " + INFO + saturationLevel);

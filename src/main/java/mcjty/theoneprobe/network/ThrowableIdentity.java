@@ -10,7 +10,7 @@ import java.util.Objects;
 public class ThrowableIdentity {
     private final String identifier;
 
-    private static Map<ThrowableIdentity, Long> catchedThrowables = new HashMap<>();
+    private static final Map<ThrowableIdentity, Long> catchedThrowables = new HashMap<>();
 
     public static void registerThrowable(Throwable e) {
         ThrowableIdentity identity = new ThrowableIdentity(e);

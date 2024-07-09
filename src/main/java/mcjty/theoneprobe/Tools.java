@@ -31,6 +31,12 @@ public class Tools {
         }
     }
 
+    /**
+     * Retrieves the mod name for a given block.
+     *
+     * @param block the block for which to get the mod name
+     * @return the mod name associated with the block
+     */
     public static String getModName(Block block) {
         if (modNamesForIds.isEmpty()) {
             init();
@@ -46,6 +52,12 @@ public class Tools {
         return modName;
     }
 
+    /**
+     * Retrieves the mod name for a given entity.
+     *
+     * @param entity the entity for which to get the mod name
+     * @return the mod name associated with the entity or "Minecraft" if not found
+     */
     public static String getModName(Entity entity) {
         if (modNamesForIds.isEmpty()) {
             init();
@@ -63,6 +75,13 @@ public class Tools {
         return modNamesForIds.computeIfAbsent(lowercaseModId, key -> WordUtils.capitalize(modId));
     }
 
+    /**
+     * Determines if information should be displayed based on the probe mode and configuration mode.
+     *
+     * @param mode the current probe mode
+     * @param cfg  the IProbeConfig.ConfigMode
+     * @return true if information should be shown, false otherwise
+     */
     public static boolean show(ProbeMode mode, IProbeConfig.ConfigMode cfg) {
         return cfg == NORMAL || (cfg == EXTENDED && mode == ProbeMode.EXTENDED);
     }
