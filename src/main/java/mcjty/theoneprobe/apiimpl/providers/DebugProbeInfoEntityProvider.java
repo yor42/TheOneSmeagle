@@ -66,7 +66,7 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                         .text(LABEL + "On Fire: " + INFO + isOnFire)
                         .text(LABEL + "Position: " + INFO + String.format("X: %.2f, Y: %.2f, Z: %.2f", posX, posY, posZ))
                         .text(LABEL + "Motion: " + INFO + String.format("X: %.2f, Y: %.2f, Z: %.2f", motionX, motionY, motionZ))
-                        .text(LABEL + "Health: " + INFO + health + " / " + maxHealth);
+                        .text(LABEL + "{*theoneprobe.probe.health_indicator*} " + INFO + health + " / " + maxHealth);
 
                 if (ConfigSetup.showDebugUUID) {
                     vertical.text(LABEL + "UUID: " + INFO + uuid);

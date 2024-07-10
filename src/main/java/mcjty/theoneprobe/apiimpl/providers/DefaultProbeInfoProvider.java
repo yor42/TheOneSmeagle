@@ -148,9 +148,8 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
 
     private void showLeverSetting(IProbeInfo probeInfo, IBlockState blockState, Block block) {
         if (block instanceof BlockLever) {
-            Boolean powered = blockState.getValue(BlockLever.POWERED);
             probeInfo.horizontal().item(new ItemStack(Items.REDSTONE), probeInfo.defaultItemStyle().width(14).height(14))
-                    .text(LABEL + "State: " + INFO + (powered ? "On" : "Off"));
+                    .text(LABEL + "State: " + INFO + (blockState.getValue(BlockLever.POWERED) ? "On" : "Off"));
         } else if (block instanceof BlockRedstoneComparator) {
             BlockRedstoneComparator.Mode mode = blockState.getValue(BlockRedstoneComparator.MODE);
             probeInfo.text(LABEL + "Mode: " + INFO + mode.getName());

@@ -5,6 +5,8 @@ import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.rendering.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.EnumSet;
@@ -13,6 +15,7 @@ import java.util.Set;
 import static mcjty.theoneprobe.api.IProbeInfo.ENDLOC;
 import static mcjty.theoneprobe.api.IProbeInfo.STARTLOC;
 
+@SideOnly(Side.CLIENT)
 public class ElementTextRender {
 
     public static void render(String text, int x, int y) {
