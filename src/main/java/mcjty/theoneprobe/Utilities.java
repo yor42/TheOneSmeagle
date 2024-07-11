@@ -42,9 +42,9 @@ public class Utilities {
     /**
      * Adds an ItemStack to a list, merging it with existing stacks if possible.
      *
-     * @param stacks The list of ItemStacks to add to.
-     * @param foundItems A set of items already present in the stacks list.
-     * @param stack The ItemStack to add.
+     * @param stacks The list of {@link ItemStack}s to add to.
+     * @param foundItems A set of {@link Item}s already present in the stacks list.
+     * @param stack The {@link ItemStack} to add.
      */
     public static void addItemStack(@Nonnull List<ItemStack> stacks, @Nonnull Set<Item> foundItems, @Nonnull ItemStack stack) {
         if (stack.isEmpty()) return;
@@ -64,9 +64,9 @@ public class Utilities {
     /**
      * Displays the contents of a chest in the IProbeInfo.
      *
-     * @param probeInfo The IProbeInfo to display the chest contents in.
+     * @param probeInfo The {@link IProbeInfo} to display the chest contents in.
      * @param stacks The list of ItemStacks representing the chest contents.
-     * @param mode The mode of the probe.
+     * @param mode The current {@link ProbeMode}.
      */
     public static void showChestContents(@Nonnull IProbeInfo probeInfo, @Nonnull List<ItemStack> stacks, @Nonnull ProbeMode mode) {
         IProbeInfo vertical = probeInfo.vertical(probeInfo.defaultLayoutStyle().borderColor(ConfigSetup.chestContentsBorderColor).spacing(0));

@@ -114,6 +114,18 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         }
     }
 
+    /**
+     * Shows information specific to a mob spawner block in the probe info.
+     * This method checks if the block is a mob spawner and retrieves relevant information
+     * about the spawner's configured mob.
+     *
+     * @author Artemish
+     *
+     * @param probeInfo The {@link IProbeInfo} object where information about the mob spawner is added.
+     * @param world The {@link World} instance where the mob spawner exists.
+     * @param data Additional hit data related to the mob spawner probe.
+     * @param block The {@link Block} instance being probed, expected to be a mob spawner.
+     */
     private void showMobSpawnerInfo(IProbeInfo probeInfo, World world, IProbeHitData data, Block block) {
         if (block instanceof BlockMobSpawner) {
             TileEntity te = world.getTileEntity(data.getPos());
@@ -220,6 +232,18 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         }
     }
 
+    /**
+     * Adds information about Redstone Flux energy based on the given configuration.
+     * If the RF mode in the configuration is set to 1, a progress bar is displayed with specific styling.
+     * Otherwise, a text representation of the RF energy is shown.
+     *
+     * @author McJty
+     *
+     * @param probeInfo The {@link IProbeInfo} object to which the RF information will be added.
+     * @param config The {@link ProbeConfig} containing settings for displaying RF information.
+     * @param energy The current amount of RF energy.
+     * @param maxEnergy The maximum capacity of RF energy.
+     */
     private void addRFInfo(IProbeInfo probeInfo, ProbeConfig config, long energy, long maxEnergy) {
         if (config.getRFMode() == 1) {
             probeInfo.progress(energy, maxEnergy,
@@ -251,6 +275,19 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         }
     }
 
+    /**
+     * Shows standard information about a block based on the probe configuration and mode.
+     * This method handles different types of blocks and their display in the probe info.
+     *
+     * @author McJty, Joseph C. Sible
+     *
+     * @param config The {@link IProbeConfig}.
+     * @param mode The {@link ProbeMode} determining the level of detail to show.
+     * @param probeInfo The {@link IProbeInfo} object where block information is added.
+     * @param blockState The {@link IBlockState} of the block being probed.
+     * @param block The {@link Block} being probed.
+     * @param data Additional hit data related to the block probe.
+     */
     public static void showStandardBlockInfo(IProbeConfig config, ProbeMode mode, IProbeInfo probeInfo, IBlockState blockState, Block block,
                                              IProbeHitData data) {
         String modid = Tools.getModName(block);
@@ -301,6 +338,6 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
                 probeInfo.vertical()
                         .text(MODNAME + modid);
             }
-            }
         }
     }
+}

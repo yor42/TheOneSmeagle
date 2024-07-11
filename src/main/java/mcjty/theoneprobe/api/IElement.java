@@ -24,12 +24,12 @@ public interface IElement {
 
     /**
      * Persist this element to the given network buffer. This should be symmetrical to
-     * what IElementFactory.createElement() expects.
+     * what {@link IElementFactory}.createElement() expects.
      */
     void toBytes(ByteBuf buf);
 
     /**
-     * Get the identifier for this element (as returned by ITheOneProbe.registerElementFactory()
+     * Get the identifier for this element as returned by {@link ITheOneProbe}.registerElementFactory()
      */
     int getID();
 }

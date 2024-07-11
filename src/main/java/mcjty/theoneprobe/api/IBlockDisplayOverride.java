@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 /**
  * Implement this interface if you want a custom display for your own blocks instead of the standard
  * display. This can be useful if you (for example) have a multiblock and want to show a picture of the
- * entire multiblock instead of the itemstack that getPickBlock() would return.
+ * entire multiblock instead of just the itemstack that getPickBlock() would return.
  */
 public interface IBlockDisplayOverride {
 

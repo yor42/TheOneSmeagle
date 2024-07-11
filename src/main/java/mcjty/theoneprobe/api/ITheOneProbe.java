@@ -9,7 +9,7 @@ public interface ITheOneProbe {
 
     /**
      * Optionally: register a provider for your probe information. You don't have to do this, as you
-     * can also implement IProbeInfoAccessor in your block instead. If you register a provider
+     * can also implement {@link IProbeInfoAccessor} in your block instead. If you register a provider
      * with the same string ID as one that already exists, it will replace that provider. This
      * is one way to replace the standard providers. TheOneProbe has the following standard
      * providers (registered in the given order):
@@ -29,7 +29,7 @@ public interface ITheOneProbe {
 
     /**
      * Optionally: register a provider for your probe information. You don't have to do this, as you
-     * can also implement IProbeInfoAccessor in your block instead. If you register a provider
+     * can also implement {@link IProbeInfoAccessor} in your block instead. If you register a provider
      * with the same string ID as one that already exists it will replace that provider. This
      * is one way to replace the standard providers. TheOneProbe has the following standard
      * providers (registered in the given order):
@@ -47,7 +47,7 @@ public interface ITheOneProbe {
     void registerEntityProvider(IProbeInfoEntityProvider provider);
 
     /**
-     * Register an element factory.
+     * Register an {@link IElementFactory}.
      * @return an id to use when defining elements using this factory
      */
     int registerElementFactory(IElementFactory factory);

@@ -9,7 +9,7 @@ public interface IElementFactory {
 
     /**
      * Create an element from a network buffer. This should be
-     * symmetrical to what IElement.toBytes() creates.
+     * symmetrical to what {@link IElement}.toBytes() creates.
      */
     IElement createElement(ByteBuf buf);
 }

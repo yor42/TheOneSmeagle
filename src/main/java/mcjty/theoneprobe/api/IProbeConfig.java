@@ -1,7 +1,7 @@
 package mcjty.theoneprobe.api;
 
 /**
- * This inerface represents the default config for The One Probe.
+ * This interface represents the default config for The One Probe.
  */
 public interface IProbeConfig {
 

@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 /**
  * You can implement this in your entity implementation if you want to support
- * the probe. An alternative to this is to make an IProveInfoProvider.
+ * the probe. An alternative to this is to make an {@link IProbeInfoProvider}.
  * Note that if you implement this then it will be called last (after all the providers)
  */
 public interface IProbeInfoEntityAccessor {

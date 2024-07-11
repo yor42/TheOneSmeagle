@@ -113,9 +113,9 @@ public class RenderHelper {
      * This method checks the count of the item stack and, based on the count, calls {@link #renderItemStack(Minecraft, RenderItem, ItemStack, int, int, String, boolean)}
      * with the appropriate text to display.
      *
-     * @param mc The Minecraft instance.
-     * @param itemRender The RenderItem instance used to render the item.
-     * @param itm The ItemStack to be rendered.
+     * @param mc The {@link Minecraft} instance.
+     * @param itemRender The {@link RenderItem} instance used to render the item.
+     * @param itm The {@link ItemStack} to be rendered.
      * @param xo The x-coordinate where the item stack should be rendered.
      * @param yo The y-coordinate where the item stack should be rendered.
      * @param highlight A boolean indicating whether to highlight the item stack.
@@ -554,7 +554,7 @@ public class RenderHelper {
     /**
      * Draws a quadrilateral using the specified Tessellator and four corner points.
      *
-     * @param tessellator The Tessellator instance used for drawing.
+     * @param tessellator The {@link Tessellator} instance used for drawing.
      * @param p1 The first vertex of the quadrilateral.
      * @param p2 The second vertex of the quadrilateral.
      * @param p3 The third vertex of the quadrilateral.
@@ -575,9 +575,9 @@ public class RenderHelper {
     /**
      * Renders an ItemStack at a specified position with an optional overlay text.
      *
-     * @param mc The Minecraft instance.
-     * @param itemRender The RenderItem instance to be used to render the item.
-     * @param itm The ItemStack to be rendered.
+     * @param mc The {@link Minecraft} instance.
+     * @param itemRender The {@link RenderItem} instance to be used to render the item.
+     * @param itm The {@link ItemStack} to be rendered.
      * @param x The x-coordinate at which to render the item.
      * @param y The y-coordinate at which to render the item.
      * @param txt The overlay text to render on the item, can be null.
@@ -615,8 +615,8 @@ public class RenderHelper {
     /**
      * Renders the stack size and/or damage bar for the given ItemStack in the GUI.
      *
-     * @param fr         The FontRenderer instance to be used to render text.
-     * @param stack      The ItemStack for which the overlay is being rendered.
+     * @param fr         The {@link FontRenderer} instance to be used to render text.
+     * @param stack      The {@link ItemStack} for which the overlay is being rendered.
      * @param xPosition  The x-coordinate of the item position in the GUI.
      * @param yPosition  The y-coordinate of the item position in the GUI.
      * @param text       An optional text to display instead of the item count.
@@ -695,7 +695,7 @@ public class RenderHelper {
     /**
      * Draws a colored rectangle using the provided BufferBuilder.
      *
-     * @param renderer The BufferBuilder instance used to draw the rectangle.
+     * @param renderer The {@link BufferBuilder} instance used to draw the rectangle.
      * @param x        The x-coordinate of the top-left corner of the rectangle.
      * @param y        The y-coordinate of the top-left corner of the rectangle.
      * @param width    The width of the rectangle.
@@ -718,7 +718,7 @@ public class RenderHelper {
     /**
      * Renders a text string on the screen at the specified coordinates.
      *
-     * @param mc  The Minecraft instance.
+     * @param mc  The {@link Minecraft} instance.
      * @param x   The x-coordinate where the text will be rendered.
      * @param y   The y-coordinate where the text will be rendered.
      * @param txt The text string to be rendered.

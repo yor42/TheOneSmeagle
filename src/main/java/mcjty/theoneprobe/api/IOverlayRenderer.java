@@ -28,7 +28,7 @@ public interface IOverlayRenderer {
      * This has to be called client side and you have to call it every
      * frame for as long as you want this overlay to be visible.
      *
-     * Typically you might want to call this in a RenderGameOverlayEvent.
+     * Typically, you might want to call this in a RenderGameOverlayEvent.
      *
      * Note that calling this does not prevent the normal overlay from
      * rendering.
