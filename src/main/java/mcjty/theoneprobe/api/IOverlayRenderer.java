@@ -7,8 +7,8 @@ package mcjty.theoneprobe.api;
 public interface IOverlayRenderer {
 
     /**
-     * Return the default overlay style as configured in the The One Probe config.
-     * You can make modifications to this and use it for your own overlays. The
+     * Return the default overlay style as configured in The One Probe's config.
+     * You can make modifications to this and use it for your own overlays, but the
      * default style will not be modified. Note that if you call this client side
      * then this will also contain the settings as the player modified it locally.
      * If you call this server side then you will get the default settings from the
@@ -17,7 +17,7 @@ public interface IOverlayRenderer {
     IOverlayStyle createDefaultStyle();
 
     /**
-     * Create an empty default IProbeInfo (which actually represents the
+     * Create an empty default {@link IProbeInfo} (which actually represents the
      * default vertical element that is always used to start with). You can then
      * modify this as you wish and give it to render().
      */
@@ -25,13 +25,12 @@ public interface IOverlayRenderer {
 
     /**
      * Render an overlay with the given style and probe info.
-     * This has to be called client side and you have to call it every
+     * This has to be called client side, and you have to call it every
      * frame for as long as you want this overlay to be visible.
      *
-     * Typically, you might want to call this in a RenderGameOverlayEvent.
+     * Typically, you might want to call this in a {@link net.minecraftforge.client.event.RenderGameOverlayEvent}.
      *
-     * Note that calling this does not prevent the normal overlay from
-     * rendering.
+     * Note that calling this does <b>not</b> prevent the normal overlay from rendering.
      */
     void render(IOverlayStyle style, IProbeInfo probeInfo);
 }

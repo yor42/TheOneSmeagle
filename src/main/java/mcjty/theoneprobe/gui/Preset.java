@@ -6,6 +6,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.Map;
+
 @SideOnly(Side.CLIENT)
 class Preset {
     private final String name;
@@ -15,6 +16,16 @@ class Preset {
     private final int boxOffset;
     private final Map<TextStyleClass, String> textStyleClasses;
 
+    /**
+     * Constructs a Preset with specified parameters.
+     *
+     * @param name           The name of the preset.
+     * @param boxBorderColor The color of the border of the box.
+     * @param boxFillColor   The color to fill the box.
+     * @param boxThickness   The thickness of the box border.
+     * @param boxOffset      The offset of the box.
+     * @param styles         Pairs of TextStyleClass and their associated style names.
+     */
     @SafeVarargs
     public Preset(String name, int boxBorderColor, int boxFillColor, int boxThickness, int boxOffset, Pair<TextStyleClass, String>... styles) {
         this.name = name;
@@ -48,6 +59,11 @@ class Preset {
         return boxOffset;
     }
 
+    /**
+     * Gets the map of TextStyleClass to their associated style names.
+     *
+     * @return The map of TextStyleClass to their associated style names.
+     */
     public Map<TextStyleClass, String> getTextStyleClasses() {
         return textStyleClasses;
     }

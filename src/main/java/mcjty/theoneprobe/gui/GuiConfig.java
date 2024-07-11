@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -44,7 +45,7 @@ public class GuiConfig extends GuiScreen {
     static {
         presets.add(new Preset("Default style", 0xff999999, 0x55006699, 2, 0));
         presets.add(new Preset("WAILA style", 0xff4503d0, 0xff000000, 1, 1));
-        presets.add(new Preset("Full transparent style", 0x00000000, 0x00000000, 0, 0));
+        presets.add(new Preset("Fully transparent style", 0x00000000, 0x00000000, 0, 0));
         presets.add(new Preset("Black & White style", 0xffffffff, 0xff000000, 2, 0,
                 Pair.of(MODNAME, "white,italic"),
                 Pair.of(NAME, "white,bold"),
@@ -53,9 +54,36 @@ public class GuiConfig extends GuiScreen {
                 Pair.of(WARNING, "white"),
                 Pair.of(ERROR, "white,underline"),
                 Pair.of(OBSOLETE, "white,strikethrough"),
-                Pair.of(LABEL, "white,underline"),
+                Pair.of(LABEL, "white,bold"),
                 Pair.of(OK, "white"),
                 Pair.of(PROGRESS, "white")
+        ));
+        presets.add(new Preset("Crazy!", 0xff00ff00, 0x55ff0000, 2, 0,
+                Pair.of(MODNAME, "green"),
+                Pair.of(NAME, "yellow,bold"),
+                Pair.of(INFO, "cyan,bold"),
+                Pair.of(INFOIMP, "magenta,bold"),
+                Pair.of(WARNING, "orange,bold"),
+                Pair.of(ERROR, "red,bold"),
+                Pair.of(OBSOLETE, "gray,bold"),
+                Pair.of(LABEL, "blue,bold"),
+                Pair.of(OK, "green,bold"),
+                Pair.of(PROGRESS, "white,bold")
+        ));
+        presets.add(new Preset("Soft Pastels", 0xffe0bbff, 0x00000000, 1, 1,
+                Pair.of(MODNAME, "pink,bold,italic")
+        ));
+        presets.add(new Preset("Ocean Blue", 0xff003366, 0x556699cc, 2, 0,
+                Pair.of(MODNAME, "cyan"),
+                Pair.of(NAME, "light_blue,bold"),
+                Pair.of(INFO, "white"),
+                Pair.of(INFOIMP, "white,bold"),
+                Pair.of(WARNING, "yellow,bold"),
+                Pair.of(ERROR, "red,bold"),
+                Pair.of(OBSOLETE, "gray,bold,italic"),
+                Pair.of(LABEL, "aqua,bold"),
+                Pair.of(OK, "green,bold"),
+                Pair.of(PROGRESS, "white,bold")
         ));
     }
 
@@ -84,15 +112,15 @@ public class GuiConfig extends GuiScreen {
 
         int x = WIDTH + guiLeft + 10;
         int y = guiTop + 10;
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Placement:");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + I18n.format("gui.theoneprobe.gui_note_config.title.placement"));
         y += 12;
-        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, "Click a corner in the screenshot");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, I18n.format("gui.theoneprobe.gui_note_config.body.1"));
         y += 10;
-        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, "to move the tooltip there");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, I18n.format("gui.theoneprobe.gui_note_config.body.2"));
         y += 30;
 
         hitboxes = new ArrayList<>();
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Presets:");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + I18n.format("gui.theoneprobe.gui_note_config.title.presets"));
         y += 12;
         for (Preset preset : presets) {
             y = addPreset(x, y, preset);
@@ -100,7 +128,7 @@ public class GuiConfig extends GuiScreen {
 
         y += 20;
 
-        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + "Scale:");
+        RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + I18n.format("gui.theoneprobe.gui_note_config.title.scale"));
         y += 12;
         addButton(x+10, y, "--", () -> ConfigSetup.setScale(1.2f)); x += 36;
         addButton(x+10, y, "-", () -> ConfigSetup.setScale(1.1f)); x += 36;

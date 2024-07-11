@@ -8,6 +8,9 @@ import net.minecraft.util.math.Vec3d;
 
 import javax.annotation.Nullable;
 
+/**
+ * Represents data related to probing a block.
+ */
 public class ProbeHitData implements IProbeHitData {
 
     private final BlockPos pos;
@@ -15,6 +18,14 @@ public class ProbeHitData implements IProbeHitData {
     private final EnumFacing side;
     private final ItemStack pickBlock;
 
+    /**
+     * Constructs a new instance of ProbeHitData with the given parameters.
+     *
+     * @param pos The {@link BlockPos} position where the hit occurred.
+     * @param hitVec The {@link Vec3d} coordinates indicating where the hit occurred on the block.
+     * @param side The side of the block that was hit, or {@code null} if not applicable.
+     * @param pickBlock The {@link ItemStack} representing the block as an item, or {@code null} if not applicable.
+     */
     public ProbeHitData(BlockPos pos, Vec3d hitVec, EnumFacing side, ItemStack pickBlock) {
         this.pos = pos;
         this.hitVec = hitVec;

@@ -57,6 +57,12 @@ gui.theoneprobe.gui_note.button.needed=Needed
 gui.theoneprobe.gui_note.button.not_needed=Not needed
 gui.theoneprobe.gui_note.button.extended=Extended
 
+gui.theoneprobe.gui_note_config.title.placement=Placement:
+gui.theoneprobe.gui_note_config.title.presets=Presets:
+gui.theoneprobe.gui_note_config.title.scale=Scale:
+gui.theoneprobe.gui_note_config.body.1=Click on the image to move around
+gui.theoneprobe.gui_note_config.body.2=the tooltip
+
 item.theoneprobe.probenote.name=The One Probe Read Me
 
 itemGroup.Probe=The One Probe

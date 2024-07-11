@@ -6,8 +6,8 @@ import net.minecraft.world.World;
 
 /**
  * You can implement IProbeInfoEntityAccessor in your entities or else you can use
- * this and register that to the ITheOneProbe. Note that TheOneProbe already
- * adds default providers which gives basic entity information.
+ * this and register that to the {@link ITheOneProbe}. Note that TheOneProbe already
+ * adds default providers which will give basic entity information.
  */
 public interface IProbeInfoEntityProvider {
 

@@ -13,6 +13,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.io.IOException;
 
 import static mcjty.theoneprobe.config.ConfigSetup.*;
+
+/**
+ * GUI for The One Probe Read Me note
+ */
 @SideOnly(Side.CLIENT)
 public class GuiNote extends GuiScreen {
     private static final int WIDTH = 256;
