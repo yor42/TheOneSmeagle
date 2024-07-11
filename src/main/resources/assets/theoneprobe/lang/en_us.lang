@@ -62,6 +62,7 @@ gui.theoneprobe.gui_note_config.title.presets=Presets:
 gui.theoneprobe.gui_note_config.title.scale=Scale:
 gui.theoneprobe.gui_note_config.body.1=Click on the image to move around
 gui.theoneprobe.gui_note_config.body.2=the tooltip
+gui.theoneprobe.gui_note_config.body.3=The preview may get glitchy
 
 item.theoneprobe.probenote.name=The One Probe Read Me
 

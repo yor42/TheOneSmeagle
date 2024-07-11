@@ -27,6 +27,13 @@ import java.util.List;
 import java.util.Map;
 
 import static mcjty.theoneprobe.api.TextStyleClass.*;
+
+/**
+ * The GUI uses for the Probe Note's config screen
+ *
+ * @since 11/10/2016
+ * @author McJty, strubium
+ */
 @SideOnly(Side.CLIENT)
 public class GuiConfig extends GuiScreen {
     private static final int WIDTH = 230;
@@ -43,10 +50,10 @@ public class GuiConfig extends GuiScreen {
     private List<HitBox> hitboxes = Collections.emptyList();
 
     static {
-        presets.add(new Preset("Default style", 0xff999999, 0x55006699, 2, 0));
-        presets.add(new Preset("WAILA style", 0xff4503d0, 0xff000000, 1, 1));
-        presets.add(new Preset("Fully transparent style", 0x00000000, 0x00000000, 0, 0));
-        presets.add(new Preset("Black & White style", 0xffffffff, 0xff000000, 2, 0,
+        presets.add(new Preset("Default", 0xff999999, 0x55006699, 2, 0));
+        presets.add(new Preset("WAILA", 0xff4503d0, 0xff000000, 1, 1));
+        presets.add(new Preset("Fully transparent", 0x00000000, 0x00000000, 0, 0));
+        presets.add(new Preset("Black & White", 0xffffffff, 0xff000000, 2, 0,
                 Pair.of(MODNAME, "white,italic"),
                 Pair.of(NAME, "white,bold"),
                 Pair.of(INFO, "white"),
@@ -108,7 +115,7 @@ public class GuiConfig extends GuiScreen {
         mc.getTextureManager().bindTexture(scene);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
 
-        renderProbe();
+        renderProbe(Blocks.LOG);
 
         int x = WIDTH + guiLeft + 10;
         int y = guiTop + 10;
@@ -126,15 +133,17 @@ public class GuiConfig extends GuiScreen {
             y = addPreset(x, y, preset);
         }
 
-        y += 20;
+        y += 15;
 
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + I18n.format("gui.theoneprobe.gui_note_config.title.scale"));
         y += 12;
-        addButton(x+10, y, "--", () -> ConfigSetup.setScale(1.2f)); x += 36;
-        addButton(x+10, y, "-", () -> ConfigSetup.setScale(1.1f)); x += 36;
+        RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, I18n.format("gui.theoneprobe.gui_note_config.body.3"));
+        y += 12;
+        addButton(x+10, y, "--", () -> ConfigSetup.setScale(ConfigSetup.getScale() + 0.2F)); x += 36;
+        addButton(x+10, y, "-", () -> ConfigSetup.setScale(ConfigSetup.getScale() + 0.1F)); x += 36;
         addButton(x+10, y, "0", () -> ConfigSetup.setScale(1f)); x += 36;
-        addButton(x+10, y, "+", () -> ConfigSetup.setScale(0.9f)); x += 36;
-        addButton(x+10, y, "++", () -> ConfigSetup.setScale(0.8f));
+        addButton(x+10, y, "+", () -> ConfigSetup.setScale(ConfigSetup.getScale() - 0.1F)); x += 36;
+        addButton(x+10, y, "++", () -> ConfigSetup.setScale(ConfigSetup.getScale() - 0.2F));
 
         int margin = 90;
         hitboxes.add(new HitBox(0, 0, margin, margin, () -> ConfigSetup.setPos(5, 5, -1, -1)));
@@ -160,6 +169,11 @@ public class GuiConfig extends GuiScreen {
         }
     }
 
+    /**
+     * Applies the given preset configuration.
+     *
+     * @param preset The {@link Preset} object containing the configuration to apply.
+     */
     private void applyPreset(Preset preset) {
         ConfigSetup.setBoxStyle(preset.getBoxThickness(), preset.getBoxBorderColor(), preset.getBoxFillColor(), preset.getBoxOffset());
 
@@ -186,8 +200,14 @@ public class GuiConfig extends GuiScreen {
         hitboxes.add(new HitBox(x - guiLeft, y - guiTop, x + 30 -1 - guiLeft, y + 14 -1 - guiTop, runnable));
     }
 
-    private void renderProbe() {
-        Block block = Blocks.LOG;
+    /**
+     * Renders the fake TOP overlay in the GUI
+     *
+     * @param block The {@link Block} to use for the example
+     *
+     * @author McJty
+     */
+    private void renderProbe(Block block) {
         String modid = Tools.getModName(block);
         ProbeInfo probeInfo = TheOneProbe.theOneProbeImp.create();
         ItemStack pickBlock = new ItemStack(block);
@@ -202,10 +222,15 @@ public class GuiConfig extends GuiScreen {
         renderElements(probeInfo, ConfigSetup.getDefaultOverlayStyle());
     }
 
+    /**
+     * Renders elements of the probe information overlay with the given style.
+     *
+     * @param probeInfo The {@link ProbeInfo} object containing the information to be rendered.
+     * @param style     The {@link IOverlayStyle} object defining the style of the overlay.
+     */
     private void renderElements(ProbeInfo probeInfo, IOverlayStyle style) {
-
         GlStateManager.pushMatrix();
-        GlStateManager.scale(1/ ConfigSetup.tooltipScale, 1/ ConfigSetup.tooltipScale, 1/ ConfigSetup.tooltipScale);
+        GlStateManager.scale(1 / ConfigSetup.tooltipScale, 1 / ConfigSetup.tooltipScale, 1 / ConfigSetup.tooltipScale);
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
@@ -215,30 +240,15 @@ public class GuiConfig extends GuiScreen {
 
         int offset = style.getBorderOffset();
         int thick = style.getBorderThickness();
-        int margin = 0;
+        int margin = (thick > 0) ? offset + thick + 3 : 0;
+
         if (thick > 0) {
-            w += (offset + thick + 3) * 2;
-            h += (offset + thick + 3) * 2;
-            margin = offset + thick + 3;
+            w += (margin * 2);
+            h += (margin * 2);
         }
 
-        int x;
-        int y;
-        if (style.getLeftX() != -1) {
-            x = style.getLeftX();
-        } else if (style.getRightX() != -1) {
-            x = WIDTH - w - style.getRightX();
-        } else {
-            x = (WIDTH - w) / 2;
-        }
-        if (style.getTopY() != -1) {
-            y = style.getTopY();
-        } else if (style.getBottomY() != -1) {
-            y = HEIGHT - h - style.getBottomY();
-        } else {
-            y = (HEIGHT - h) / 2;
-        }
-
+        int x = calculateXPosition(style, w);
+        int y = calculateYPosition(style, h);
 
         x += guiLeft;
         y += guiTop;
@@ -253,7 +263,7 @@ public class GuiConfig extends GuiScreen {
             if (offset > 0) {
                 RenderHelper.drawThickBeveledBox(x, y, x2, y2, thick, style.getBoxColor(), style.getBoxColor(), style.getBoxColor());
             }
-            RenderHelper.drawThickBeveledBox(x+offset, y+offset, x2-offset, y2-offset, thick, style.getBorderColor(), style.getBorderColor(), style.getBoxColor());
+            RenderHelper.drawThickBeveledBox(x + offset, y + offset, x2 - offset, y2 - offset, thick, style.getBorderColor(), style.getBorderColor(), style.getBoxColor());
         }
 
         if (!Minecraft.getMinecraft().isGamePaused()) {
@@ -263,5 +273,39 @@ public class GuiConfig extends GuiScreen {
         probeInfo.render(x + margin, y + margin);
 
         GlStateManager.popMatrix();
+    }
+
+    /**
+     * Calculates the x position for the overlay based on the given style and width.
+     *
+     * @param style The {@link IOverlayStyle} object defining the style of the overlay.
+     * @param width The width of the overlay.
+     * @return The calculated x position.
+     */
+    private int calculateXPosition(IOverlayStyle style, int width) {
+        if (style.getLeftX() != -1) {
+            return style.getLeftX();
+        } else if (style.getRightX() != -1) {
+            return WIDTH - width - style.getRightX();
+        } else {
+            return (WIDTH - width) / 2;
+        }
+    }
+
+    /**
+     * Calculates the y position for the overlay based on the given style and height.
+     *
+     * @param style  The {@link IOverlayStyle} object defining the style of the overlay.
+     * @param height The height of the overlay.
+     * @return The calculated y position.
+     */
+    private int calculateYPosition(IOverlayStyle style, int height) {
+        if (style.getTopY() != -1) {
+            return style.getTopY();
+        } else if (style.getBottomY() != -1) {
+            return HEIGHT - height - style.getBottomY();
+        } else {
+            return (HEIGHT - height) / 2;
+        }
     }
 }

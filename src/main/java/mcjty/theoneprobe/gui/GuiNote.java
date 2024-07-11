@@ -16,6 +16,9 @@ import static mcjty.theoneprobe.config.ConfigSetup.*;
 
 /**
  * GUI for The One Probe Read Me note
+ *
+ * @since 11/9/2016
+ * @see GuiConfig
  */
 @SideOnly(Side.CLIENT)
 public class GuiNote extends GuiScreen {

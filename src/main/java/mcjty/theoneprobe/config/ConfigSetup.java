@@ -23,6 +23,10 @@ import java.util.Set;
 
 import static mcjty.theoneprobe.api.TextStyleClass.*;
 
+/**
+ * @since 5/14/2016
+ * @author McJty
+ */
 public class ConfigSetup {
 
     public static Configuration mainConfig;
@@ -281,6 +285,10 @@ public class ConfigSetup {
         cfg.get(CATEGORY_CLIENT, "tooltipScale", tooltipScale).set(tooltipScale);
         cfg.save();
         updateDefaultOverlayStyle();
+    }
+
+    public static float getScale() {
+        return tooltipScale;
     }
 
     public static void setBoxStyle(int thickness, int borderColor, int fillcolor, int offset) {

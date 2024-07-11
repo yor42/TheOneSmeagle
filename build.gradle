@@ -27,10 +27,6 @@ apply plugin: 'maven-publish'
 
 repositories {
     maven {
-        name = "Mobius Repo"
-        url = "https://tehnut.info/maven"
-    }
-    maven {
         url = "https://dvs1.progwml6.com/files/maven"
     }
     maven {
