@@ -46,6 +46,7 @@ public enum TextStyleClass {
     /**
      * Returns a string representation of the enum constant,
      * formatted as "{=code=}".
+     *
      * @return String representation of the enum constant.
      */
     @Override

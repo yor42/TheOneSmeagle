@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Objects;
@@ -126,14 +127,14 @@ public class NetworkTools {
      * @return The String read from the buffer, or null if the length was -1, or an empty string if the length was 0.
      */
     public static String readStringUTF8(ByteBuf dataIn) {
-        int s = dataIn.readInt();
-        if (s == -1) {
+        int length = dataIn.readInt();
+        if (length == -1) {
             return null;
         }
-        if (s == 0) {
+        if (length == 0) {
             return "";
         }
-        byte[] dst = new byte[s];
+        byte[] dst = new byte[length];
         dataIn.readBytes(dst);
         return new String(dst, java.nio.charset.StandardCharsets.UTF_8);
     }
@@ -210,7 +211,7 @@ public class NetworkTools {
      * Writes a collection of enum values to the given ByteBuf.
      *
      * @param buf The ByteBuf to write to.
-     * @param collection The collection of enum values to write.
+     * @param collection A {@link Collection} of enum values to write.
      * @param <T> The enum type.
      */
     public static <T extends Enum<T>> void writeEnumCollection(ByteBuf buf, Collection<T> collection) {
@@ -224,7 +225,7 @@ public class NetworkTools {
      * Reads a collection of enum values from the given ByteBuf.
      *
      * @param buf The ByteBuf to read from.
-     * @param collection The collection to populate with the enum values.
+     * @param collection A {@link Collection} to populate with the enum values.
      * @param values The array of possible enum values.
      * @param <T> The enum type.
      */
@@ -240,12 +241,12 @@ public class NetworkTools {
      * Writes a Float value to the given ByteBuf.
      *
      * @param buf The ByteBuf to write to.
-     * @param f The Float value to write, or null to indicate no value.
+     * @param value The Float value to write, or null to indicate no value.
      */
-    public static void writeFloat(ByteBuf buf, Float f) {
-        if (f != null) {
+    public static void writeFloat(ByteBuf buf, @Nullable Float value) {
+        if (value != null) {
             buf.writeBoolean(true);
-            buf.writeFloat(f);
+            buf.writeFloat(value);
         } else {
             buf.writeBoolean(false);
         }

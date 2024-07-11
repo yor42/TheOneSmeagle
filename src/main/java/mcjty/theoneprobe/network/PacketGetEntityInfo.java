@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import java.util.List;
 import java.util.UUID;
 
 import static mcjty.theoneprobe.api.TextStyleClass.ERROR;
@@ -50,18 +49,15 @@ public class PacketGetEntityInfo implements IMessage {
         buf.writeLong(uuid.getMostSignificantBits());
         buf.writeLong(uuid.getLeastSignificantBits());
         buf.writeByte(mode.ordinal());
-        if (hitVec == null) {
-            buf.writeBoolean(false);
-        } else {
-            buf.writeBoolean(true);
+        buf.writeBoolean(hitVec != null);
+        if (hitVec != null) {
             buf.writeDouble(hitVec.x);
             buf.writeDouble(hitVec.y);
             buf.writeDouble(hitVec.z);
         }
     }
 
-    public PacketGetEntityInfo() {
-    }
+    public PacketGetEntityInfo() {}
 
     public PacketGetEntityInfo(int dim, ProbeMode mode, RayTraceResult mouseOver, Entity entity) {
         this.dim = dim;
@@ -91,30 +87,23 @@ public class PacketGetEntityInfo implements IMessage {
 
     private static ProbeInfo getProbeInfo(EntityPlayer player, ProbeMode mode, World world, Entity entity, Vec3d hitVec) {
         if (ConfigSetup.needsProbe == PROBE_NEEDEDFOREXTENDED) {
-            // We need a probe only for extended information
-            if (!ModItems.hasAProbeSomewhere(player)) {
-                // No probe anywhere, switch EXTENDED to NORMAL
-                if (mode == ProbeMode.EXTENDED) {
-                    mode = ProbeMode.NORMAL;
-                }
+            if (!ModItems.hasAProbeSomewhere(player) && mode == ProbeMode.EXTENDED) {
+                mode = ProbeMode.NORMAL;
             }
         } else if (ConfigSetup.needsProbe == PROBE_NEEDEDHARD && !ModItems.hasAProbeSomewhere(player)) {
-            // The server says we need a probe, but we don't have one in our hands or on our head
             return null;
         }
 
         ProbeInfo probeInfo = TheOneProbe.theOneProbeImp.create();
         IProbeHitEntityData data = new ProbeHitEntityData(hitVec);
-
         IProbeConfig probeConfig = TheOneProbe.theOneProbeImp.createProbeConfig();
-        List<IProbeConfigProvider> configProviders = TheOneProbe.theOneProbeImp.getConfigProviders();
-        for (IProbeConfigProvider configProvider : configProviders) {
+
+        for (IProbeConfigProvider configProvider : TheOneProbe.theOneProbeImp.getConfigProviders()) {
             configProvider.getProbeConfig(probeConfig, player, world, entity, data);
         }
         ConfigSetup.setRealConfig(probeConfig);
 
-        List<IProbeInfoEntityProvider> entityProviders = TheOneProbe.theOneProbeImp.getEntityProviders();
-        for (IProbeInfoEntityProvider provider : entityProviders) {
+        for (IProbeInfoEntityProvider provider : TheOneProbe.theOneProbeImp.getEntityProviders()) {
             try {
                 provider.addProbeEntityInfo(mode, probeInfo, player, world, entity, data);
             } catch (Throwable e) {
@@ -124,5 +113,4 @@ public class PacketGetEntityInfo implements IMessage {
         }
         return probeInfo;
     }
-
 }
