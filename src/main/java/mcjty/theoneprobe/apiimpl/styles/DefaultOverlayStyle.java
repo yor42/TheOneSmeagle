@@ -2,6 +2,10 @@ package mcjty.theoneprobe.apiimpl.styles;
 
 import mcjty.theoneprobe.api.IOverlayStyle;
 
+/**
+ * @since 5/31/2016
+ * @author McJty
+ */
 public class DefaultOverlayStyle implements IOverlayStyle {
 
     private int borderThickness;

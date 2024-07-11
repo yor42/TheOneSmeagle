@@ -12,6 +12,10 @@ import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @since 5/23/2016
+ * @author McJty
+ */
 public abstract class AbstractElementPanel implements IElement, IProbeInfo {
 
     protected List<IElement> children = new ArrayList<>();

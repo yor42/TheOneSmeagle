@@ -31,6 +31,10 @@ import static mcjty.theoneprobe.api.TextStyleClass.LABEL;
 import static mcjty.theoneprobe.config.ConfigSetup.PROBE_NEEDEDFOREXTENDED;
 import static mcjty.theoneprobe.config.ConfigSetup.PROBE_NEEDEDHARD;
 
+/**
+ * @since 5/16/2016
+ * @author McJty
+ */
 public class PacketGetInfo implements IMessage {
 
     private int dim;

@@ -19,9 +19,23 @@ import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 
+/**
+ * Helper class for rendering operations.
+ *
+ * @since 5/16/2016
+ * @author McJty
+ */
 public class RenderHelper {
     public static float rot = 0.0f;
 
+    /**
+     * Renders an entity at the specified screen coordinates with a given scale.
+     *
+     * @param entity The {@link Entity} to be rendered.
+     * @param xPos The x-coordinate on the screen where the entity should be rendered.
+     * @param yPos The y-coordinate on the screen where the entity should be rendered.
+     * @param scale The scale factor for rendering the entity.
+     */
     public static void renderEntity(Entity entity, int xPos, int yPos, float scale) {
         GlStateManager.pushMatrix();
         GlStateManager.color(1f, 1f, 1f);
@@ -93,6 +107,20 @@ public class RenderHelper {
         return true;
     }
 
+    /**
+     * Renders an item stack at the specified coordinates, including its count if greater than one.
+     *
+     * This method checks the count of the item stack and, based on the count, calls {@link #renderItemStack(Minecraft, RenderItem, ItemStack, int, int, String, boolean)}
+     * with the appropriate text to display.
+     *
+     * @param mc The Minecraft instance.
+     * @param itemRender The RenderItem instance used to render the item.
+     * @param itm The ItemStack to be rendered.
+     * @param xo The x-coordinate where the item stack should be rendered.
+     * @param yo The y-coordinate where the item stack should be rendered.
+     * @param highlight A boolean indicating whether to highlight the item stack.
+     * @return true if the item stack was rendered successfully, false otherwise.
+     */
     public static boolean renderItemStackWithCount(Minecraft mc, RenderItem itemRender, ItemStack itm, int xo, int yo, boolean highlight) {
         if (itm.getCount() <= 1) {
             return renderItemStack(mc, itemRender, itm, xo, yo, "", highlight);
@@ -201,36 +229,76 @@ public class RenderHelper {
         GlStateManager.enableTexture2D();
     }
 
+    /**
+     * Draws a horizontal line on the screen.
+     *
+     * @param x1 The starting x-coordinate of the line.
+     * @param y1 The y-coordinate of the line.
+     * @param x2 The ending x-coordinate of the line.
+     * @param color The color of the line.
+     */
     public static void drawHorizontalLine(int x1, int y1, int x2, int color) {
         Gui.drawRect(x1, y1, x2, y1 + 1, color);
     }
 
+    /**
+     * Draws a vertical line on the screen.
+     *
+     * @param x1 The x-coordinate of the line.
+     * @param y1 The starting y-coordinate of the line.
+     * @param y2 The ending y-coordinate of the line.
+     * @param color The color of the line.
+     */
     public static void drawVerticalLine(int x1, int y1, int y2, int color) {
         Gui.drawRect(x1, y1, x1 + 1, y2, color);
     }
 
-    // Draw a small triangle. x,y is the coordinate of the left point
+    /**
+     * Draws a small triangle pointing to the left. The specified coordinates represent the left point of the triangle.
+     *
+     * @param x The x-coordinate of the left point of the triangle.
+     * @param y The y-coordinate of the left point of the triangle.
+     * @param color The color of the triangle.
+     */
     public static void drawLeftTriangle(int x, int y, int color) {
         drawVerticalLine(x, y, y, color);
         drawVerticalLine(x + 1, y - 1, y + 1, color);
         drawVerticalLine(x + 2, y - 2, y + 2, color);
     }
 
-    // Draw a small triangle. x,y is the coordinate of the right point
+    /**
+     * Draws a small triangle pointing to the right. The specified coordinates represent the right point of the triangle.
+     *
+     * @param x The x-coordinate of the right point of the triangle.
+     * @param y The y-coordinate of the right point of the triangle.
+     * @param color The color of the triangle.
+     */
     public static void drawRightTriangle(int x, int y, int color) {
         drawVerticalLine(x, y, y, color);
         drawVerticalLine(x - 1, y - 1, y + 1, color);
         drawVerticalLine(x - 2, y - 2, y + 2, color);
     }
 
-    // Draw a small triangle. x,y is the coordinate of the top point
+    /**
+     * Draws a small triangle pointing upwards. The specified coordinates represent the top point of the triangle.
+     *
+     * @param x The x-coordinate of the top point of the triangle.
+     * @param y The y-coordinate of the top point of the triangle.
+     * @param color The color of the triangle.
+     */
     public static void drawUpTriangle(int x, int y, int color) {
         drawHorizontalLine(x, y, x, color);
         drawHorizontalLine(x - 1, y + 1, x + 1, color);
         drawHorizontalLine(x - 2, y + 2, x + 2, color);
     }
 
-    // Draw a small triangle. x,y is the coordinate of the bottom point
+    /**
+     * Draws a small triangle pointing downwards. The specified coordinates represent the bottom point of the triangle.
+     *
+     * @param x The x-coordinate of the bottom point of the triangle.
+     * @param y The y-coordinate of the bottom point of the triangle.
+     * @param color The color of the triangle.
+     */
     public static void drawDownTriangle(int x, int y, int color) {
         drawHorizontalLine(x, y, x, color);
         drawHorizontalLine(x - 1, y - 1, x + 1, color);
@@ -333,6 +401,15 @@ public class RenderHelper {
         tessellator.draw();
     }
 
+    /**
+     * Draws a textured rectangle on the screen using a specified texture sprite.
+     *
+     * @param x The x-coordinate on the screen where the rectangle starts.
+     * @param y The y-coordinate on the screen where the rectangle starts.
+     * @param sprite The {@link TextureAtlasSprite} containing the texture to be drawn.
+     * @param width The width of the rectangle.
+     * @param height The height of the rectangle.
+     */
     public static void drawTexturedModalRect(int x, int y, TextureAtlasSprite sprite, int width, int height) {
         float zLevel = 0.01f;
 
@@ -351,6 +428,18 @@ public class RenderHelper {
         tessellator.draw();
     }
 
+    /**
+     * Renders a <b>bright</b> textured quad (billboard) that always faces the player with a specified scale.
+     *
+     * This method performs the following steps:
+     * 1. Calculates the brightness values for the quad.
+     * 2. Pushes the current OpenGL matrix to preserve transformations.
+     * 3. Rotates the quad to face the player's view direction using {@link #rotateToPlayer()}.
+     * 4. Renders a bright quad using the specified scale and light map values for increased brightness.
+     * 5. Pops the OpenGL matrix to restore previous transformations.
+     *
+     * @param scale The scale factor for the size of the quad.
+     */
     public static void renderBillboardQuadBright(double scale) {
         int brightness = 240;
         int b1 = brightness >> 16 & 65535;
@@ -368,6 +457,17 @@ public class RenderHelper {
         GlStateManager.popMatrix();
     }
 
+    /**
+     * Renders a textured quad (billboard) that always faces the player with a specified scale.
+     *
+     * This method performs the following steps:
+     * 1. Pushes the current OpenGL matrix to preserve transformations.
+     * 2. Rotates the quad to face the player's view direction using {@link #rotateToPlayer()}.
+     * 3. Renders a quad using the specified scale.
+     * 4. Pops the OpenGL matrix to restore previous transformations.
+     *
+     * @param scale The scale factor for the size of the quad.
+     */
     public static void renderBillboardQuad(double scale) {
         GlStateManager.pushMatrix();
 
@@ -387,6 +487,19 @@ public class RenderHelper {
         GlStateManager.popMatrix();
     }
 
+    /**
+     * Renders a textured quad (billboard) that always faces the player with a specified rotation and scale.
+     *
+     * This method performs the following steps:
+     * 1. Pushes the current OpenGL matrix to preserve transformations.
+     * 2. Rotates the quad to face the player's view direction using {@link #rotateToPlayer()}.
+     * 3. Applies an additional rotation around the Z-axis.
+     * 4. Renders a quad using the specified scale.
+     * 5. Pops the OpenGL matrix to restore previous transformations.
+     *
+     * @param rot The rotation angle in degrees to apply around the Z-axis.
+     * @param scale The scale factor for the size of the quad.
+     */
     public static void renderBillboardQuadWithRotation(float rot, double scale) {
         GlStateManager.pushMatrix();
 
@@ -438,6 +551,15 @@ public class RenderHelper {
     }
 
 
+    /**
+     * Draws a quadrilateral using the specified Tessellator and four corner points.
+     *
+     * @param tessellator The Tessellator instance used for drawing.
+     * @param p1 The first vertex of the quadrilateral.
+     * @param p2 The second vertex of the quadrilateral.
+     * @param p3 The third vertex of the quadrilateral.
+     * @param p4 The fourth vertex of the quadrilateral.
+     */
     private static void drawQuad(Tessellator tessellator, Vector p1, Vector p2, Vector p3, Vector p4) {
         int brightness = 240;
         int b1 = 0;
@@ -450,6 +572,17 @@ public class RenderHelper {
         buffer.pos(p4.getX(), p4.getY(), p4.getZ()).tex(0.0D, 1.0D).lightmap(b1, b2).color(255, 255, 255, 128).endVertex();
     }
 
+    /**
+     * Renders an ItemStack at a specified position with an optional overlay text.
+     *
+     * @param mc The Minecraft instance.
+     * @param itemRender The RenderItem instance to be used to render the item.
+     * @param itm The ItemStack to be rendered.
+     * @param x The x-coordinate at which to render the item.
+     * @param y The y-coordinate at which to render the item.
+     * @param txt The overlay text to render on the item, can be null.
+     * @return {@code true} if the item was successfully rendered, {@code false} if an error occurred during rendering.
+     */
     public static boolean renderItemStack(Minecraft mc, RenderItem itemRender, ItemStack itm, int x, int y, String txt) {
         GlStateManager.color(1.0F, 1.0F, 1.0F);
 
@@ -482,7 +615,7 @@ public class RenderHelper {
     /**
      * Renders the stack size and/or damage bar for the given ItemStack in the GUI.
      *
-     * @param fr         The FontRenderer instance used to render text.
+     * @param fr         The FontRenderer instance to be used to render text.
      * @param stack      The ItemStack for which the overlay is being rendered.
      * @param xPosition  The x-coordinate of the item position in the GUI.
      * @param yPosition  The y-coordinate of the item position in the GUI.
