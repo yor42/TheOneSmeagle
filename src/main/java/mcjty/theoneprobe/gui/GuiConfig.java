@@ -52,6 +52,7 @@ public class GuiConfig extends GuiScreen {
     static {
         presets.add(new Preset("Default", 0xff999999, 0x55006699, 2, 0));
         presets.add(new Preset("WAILA", 0xff4503d0, 0xff000000, 1, 1));
+        presets.add(new Preset("Jade", 0xff323331, 0xff20261a, 1, 1));
         presets.add(new Preset("Fully transparent", 0x00000000, 0x00000000, 0, 0));
         presets.add(new Preset("Black & White", 0xffffffff, 0xff000000, 2, 0,
                 Pair.of(MODNAME, "white,italic"),
@@ -124,7 +125,7 @@ public class GuiConfig extends GuiScreen {
         RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, I18n.format("gui.theoneprobe.gui_note_config.body.1"));
         y += 10;
         RenderHelper.renderText(Minecraft.getMinecraft(), x+10, y, I18n.format("gui.theoneprobe.gui_note_config.body.2"));
-        y += 30;
+        y += 20;
 
         hitboxes = new ArrayList<>();
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + I18n.format("gui.theoneprobe.gui_note_config.title.presets"));
@@ -133,7 +134,7 @@ public class GuiConfig extends GuiScreen {
             y = addPreset(x, y, preset);
         }
 
-        y += 15;
+        y += 5;
 
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + I18n.format("gui.theoneprobe.gui_note_config.title.scale"));
         y += 12;
