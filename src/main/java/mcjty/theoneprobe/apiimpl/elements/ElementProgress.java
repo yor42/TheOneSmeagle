@@ -8,6 +8,8 @@ import mcjty.theoneprobe.apiimpl.TheOneProbeImp;
 import mcjty.theoneprobe.apiimpl.client.ElementProgressRender;
 import mcjty.theoneprobe.apiimpl.styles.ProgressStyle;
 import mcjty.theoneprobe.network.NetworkTools;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.text.DecimalFormat;
 
@@ -79,6 +81,7 @@ public class ElementProgress implements IElement {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void render(int x, int y) {
         ElementProgressRender.render(style, current, max, x, y, getWidth(), getHeight());
     }

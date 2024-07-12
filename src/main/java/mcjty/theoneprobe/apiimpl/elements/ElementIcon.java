@@ -8,6 +8,8 @@ import mcjty.theoneprobe.apiimpl.client.ElementIconRender;
 import mcjty.theoneprobe.apiimpl.styles.IconStyle;
 import mcjty.theoneprobe.network.NetworkTools;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Objects;
 
@@ -43,6 +45,7 @@ public class ElementIcon implements IElement {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void render(int x, int y) {
         ElementIconRender.render(icon, x, y, w, h, u, v, style.getTextureWidth(), style.getTextureHeight());
     }

@@ -51,7 +51,6 @@ public class ModSetup {
         TheOneProbe.theOneProbeImp.registerProvider(new BlockProbeInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new EnchantingPowerInfoProvider());
         TheOneProbe.theOneProbeImp.registerProvider(new JukeboxProvider());
-        TheOneProbe.theOneProbeImp.registerProvider(new CauldronInfoProvider());
         bar.step("Loading Entity Providers");
         TheOneProbe.theOneProbeImp.registerEntityProvider(new DefaultProbeInfoEntityProvider());
         TheOneProbe.theOneProbeImp.registerEntityProvider(new DebugProbeInfoEntityProvider());

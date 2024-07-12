@@ -24,7 +24,7 @@ class Preset {
      * @param boxFillColor   The color to fill the box.
      * @param boxThickness   The thickness of the box border.
      * @param boxOffset      The offset of the box.
-     * @param styles         Pairs of TextStyleClass and their associated style names.
+     * @param styles         Pairs of {@link TextStyleClass} and their associated style names.
      */
     @SafeVarargs
     public Preset(String name, int boxBorderColor, int boxFillColor, int boxThickness, int boxOffset, Pair<TextStyleClass, String>... styles) {

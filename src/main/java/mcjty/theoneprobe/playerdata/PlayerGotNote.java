@@ -9,6 +9,7 @@ public class PlayerGotNote {
     public PlayerGotNote() {
     }
 
+
     public boolean isPlayerGotNote() {
         return playerGotNote;
     }

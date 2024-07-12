@@ -65,7 +65,7 @@ public interface ITheOneProbe {
 
     /**
      * Get a copy of the default configuration as it is given to the probe providers. This is
-     * only useful for checking what options are enabled. It is not useful to make changes here
+     * only useful for checking what options are enabled. You cannot make changes here
      * as this is a copy and changes will not have any effect
      */
     IProbeConfig createProbeConfig();

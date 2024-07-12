@@ -5,6 +5,8 @@ import mcjty.theoneprobe.api.IElement;
 import mcjty.theoneprobe.apiimpl.TheOneProbeImp;
 import mcjty.theoneprobe.apiimpl.client.ElementTextRender;
 import mcjty.theoneprobe.network.NetworkTools;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ElementText implements IElement {
 
@@ -19,6 +21,7 @@ public class ElementText implements IElement {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void render(int x, int y) {
         ElementTextRender.render(text, x, y);
     }

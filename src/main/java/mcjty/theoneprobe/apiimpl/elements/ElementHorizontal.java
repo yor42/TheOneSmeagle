@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf;
 import mcjty.theoneprobe.api.ElementAlignment;
 import mcjty.theoneprobe.api.IElement;
 import mcjty.theoneprobe.apiimpl.TheOneProbeImp;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ElementHorizontal extends AbstractElementPanel {
 
@@ -16,6 +18,7 @@ public class ElementHorizontal extends AbstractElementPanel {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void render(int x, int y) {
         super.render(x, y);
         if (borderColor != null) {

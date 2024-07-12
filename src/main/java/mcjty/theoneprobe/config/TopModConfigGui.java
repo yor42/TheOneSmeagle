@@ -8,6 +8,11 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * Config GUI for The One Probe
+ *
+ * @author McJty
+ */
 @SideOnly(Side.CLIENT)
 public class TopModConfigGui extends GuiConfig {
 

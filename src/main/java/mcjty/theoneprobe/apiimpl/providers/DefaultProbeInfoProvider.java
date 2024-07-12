@@ -95,6 +95,25 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         if (Tools.show(mode, config.getShowMobSpawnerSetting())) {
             showMobSpawnerInfo(probeInfo, world, data, block);
         }
+        if (blockState.getBlock() instanceof BlockCauldron) {
+            for (IProperty<?> property : blockState.getProperties().keySet()) {
+                if (!"level".equals(property.getName())) continue;
+                if (property.getValueClass() == Integer.class) {
+                    //noinspection unchecked
+                    IProperty<Integer> integerProperty = (IProperty<Integer>) property;
+                    int fill = blockState.getValue(integerProperty);
+
+                    if (fill > 0) {
+                        probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
+                                .text(TextStyleClass.LABEL + ((fill == 1) ? fill + " {*theoneprobe.probe.bottle_indicator*}" : fill + " {*theoneprobe.probe.bottles_indicator*}"));
+                    } else {
+                        probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
+                                .text(TextStyleClass.LABEL + "{*theoneprobe.probe.empty_indicator*}");
+                    }
+                    return;
+                }
+            }
+        }
     }
 
     private void showBrewingStandInfo(IProbeInfo probeInfo, World world, IProbeHitData data, Block block) {

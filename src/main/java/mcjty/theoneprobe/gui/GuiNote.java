@@ -32,8 +32,6 @@ public class GuiNote extends GuiScreen {
     private int guiLeft;
     private int guiTop;
 
-    private static final ResourceLocation background = new ResourceLocation(TheOneProbe.MODID, "textures/gui/note.png");
-
     @Override
     public boolean doesGuiPauseGame() {
         return false;
@@ -49,7 +47,7 @@ public class GuiNote extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
-        mc.getTextureManager().bindTexture(background);
+        mc.getTextureManager().bindTexture(new ResourceLocation(TheOneProbe.MODID, "textures/gui/note.png"));
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
         int x = guiLeft + 5;
         int y = guiTop + 8;
@@ -67,8 +65,7 @@ public class GuiNote extends GuiScreen {
                 RenderHelper.renderText(Minecraft.getMinecraft(), x, y, I18n.format("gui.theoneprobe.gui_note.body.1"));
                 y += 10;
                 RenderHelper.renderText(Minecraft.getMinecraft(), x, y, I18n.format("gui.theoneprobe.gui_note.body.2"));
-                y += 10;
-                y += 16;
+                y += 26;
                 y = setInConfig(x, y);
                 break;
             case PROBE_NOTNEEDED:

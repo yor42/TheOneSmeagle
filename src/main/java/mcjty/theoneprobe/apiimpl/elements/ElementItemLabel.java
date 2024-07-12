@@ -6,6 +6,8 @@ import mcjty.theoneprobe.apiimpl.TheOneProbeImp;
 import mcjty.theoneprobe.apiimpl.client.ElementTextRender;
 import mcjty.theoneprobe.network.NetworkTools;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ElementItemLabel implements IElement {
 
@@ -24,6 +26,7 @@ public class ElementItemLabel implements IElement {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void render(int x, int y) {
         if (!itemStack.isEmpty()) {
             String text = itemStack.getDisplayName();

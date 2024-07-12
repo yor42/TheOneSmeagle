@@ -11,6 +11,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * Represents the Probe Goggles item, which implements {@link IBauble} for compatibility with baubles.
+ */
 public class ProbeGoggles extends Item implements IBauble {
 
     public ProbeGoggles() {

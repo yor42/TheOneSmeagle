@@ -8,6 +8,8 @@ import mcjty.theoneprobe.rendering.RenderHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,7 @@ public abstract class AbstractElementPanel implements IElement, IProbeInfo {
     protected ElementAlignment alignment;
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void render(int x, int y) {
         if (borderColor != null) {
             int w = getWidth();

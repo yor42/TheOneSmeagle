@@ -16,6 +16,18 @@ public class GuiProxy implements IGuiHandler {
         return null;
     }
 
+    /**
+     * Returns the client-side GUI element based on the provided GUI ID.
+     *
+     * @param guiid The ID of the GUI to be displayed.
+     * @param entityPlayer The player entity.
+     * @param world The world in which the GUI is being requested.
+     * @param x The x-coordinate for the GUI (if applicable).
+     * @param y The y-coordinate for the GUI (if applicable).
+     * @param z The z-coordinate for the GUI (if applicable).
+     *
+     * @return The client-side GUI element, or null if the GUI ID does not match any known GUIs.
+     */
     @Override
     public Object getClientGuiElement(int guiid, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         if (guiid == GUI_NOTE) {

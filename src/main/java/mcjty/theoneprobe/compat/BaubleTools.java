@@ -9,8 +9,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * Utility class for handling operations related to baubles.
+ */
 public class BaubleTools {
 
+    /**
+     * Checks if the given player is wearing Probe Goggles.
+     *
+     * @param player The {@link EntityPlayer} to check.
+     * @return True if the player is wearing Probe Goggles, false otherwise.
+     */
     public static boolean hasProbeGoggle(EntityPlayer player) {
         IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
         if (handler == null) {
@@ -20,6 +29,11 @@ public class BaubleTools {
         return !stackInSlot.isEmpty() && stackInSlot.getItem() == ModItems.probeGoggles;
     }
 
+    /**
+     * Initializes and returns a new instance of Probe Goggles.
+     *
+     * @return A new {@link ProbeGoggles} instance.
+     */
     public static Item initProbeGoggle() {
         return new ProbeGoggles();
     }

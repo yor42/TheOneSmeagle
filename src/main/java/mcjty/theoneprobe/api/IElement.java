@@ -29,7 +29,7 @@ public interface IElement {
     void toBytes(ByteBuf buf);
 
     /**
-     * Get the identifier for this element as returned by {@link ITheOneProbe}.registerElementFactory()
+     * Get the identifier for this element as returned by {@link ITheOneProbe#registerElementFactory}
      */
     int getID();
 }
