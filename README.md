@@ -19,17 +19,17 @@ This mod also has a flexible API that other mods can use to add more information
     * View how much water is in a Cauldron
     * View what disk is playing in a Jukebox
     * View a paintings name             
-* Updated gradle version from 2.7 to 4.1
-* View more infomation with the Creative Probe
+* Updated gradle version from 2.7 to 4.5
+* View more information with the Creative Probe
 * New theme presets
    * Jade: based on the [mod](https://www.curseforge.com/minecraft/mc-mods/jade) of the same name
    * Crazy: please don't use this, your eyeballs will thank me.
    * Soft Pastels: WIP
    * Ocean Blue: colors of the ocean will relax you
 * New config options:
-   * showDebugUUID (Defualt: False) If you want to see the UUID of a NPC with the Creative Probe
-   * probeNoteStackSize (Defualt: 1) Change the stack size of the One Probe Read Me. 
-* Replaced the hardcoded strings with lanugague translatable versions
+   * showDebugUUID (Default: False) If you want to see the UUID of a NPC with the Creative Probe
+   * probeNoteStackSize (Default: 1) Change the stack size of the One Probe Read Me. 
+* Replaced the hardcoded strings with language translatable versions
 * Updated ru_ru.lang (By: @bigenergy)
 * New en_ud.lang
 * New uk_ua.lang (By: @SKZGx)
@@ -41,7 +41,7 @@ Note: Languages other than english many not be fully translated, feel free to su
 
 ***
 
-Mods that built have compatabily for TOP will also have built in compatabily for TOS
+Mods that built have compatibility for TOP will also have built in compatabily for TOS
 ## Maven
 
     repositories {

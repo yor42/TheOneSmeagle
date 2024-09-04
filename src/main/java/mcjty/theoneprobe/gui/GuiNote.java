@@ -53,7 +53,6 @@ public class GuiNote extends GuiScreen {
         int y = guiTop + 8;
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, I18n.format("gui.theoneprobe.gui_note.title"));
         y += 10;
-
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, I18n.format("gui.theoneprobe.gui_note.body.1"));
         y += 10;
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, I18n.format("gui.theoneprobe.gui_note.body.2"));
