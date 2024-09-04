@@ -9,6 +9,7 @@ import mcjty.theoneprobe.apiimpl.styles.LayoutStyle;
 import mcjty.theoneprobe.config.ConfigSetup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -82,6 +83,18 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 }
             }
 
+
+            if (entity instanceof EntityLiving) {
+                EntityLiving entityLiving = (EntityLiving) entity;
+                boolean isLeftHanded = entityLiving.isLeftHanded();
+                int maxFallHeight = entityLiving.getMaxFallHeight();
+                int maxInChunk = entityLiving.getMaxSpawnedInChunk();
+                vertical
+                        .text(LABEL + "Is Left Handed: " + INFO + isLeftHanded)
+                        .text(LABEL + "Max Fall Height: " + INFO + maxFallHeight)
+                        .text(LABEL + "Max Spawning in Chunk: " + INFO + maxInChunk);
+            }
+
             if (entity instanceof EntityAgeable) {
                 EntityAgeable entityAgeable = (EntityAgeable) entity;
                 int growingAge = entityAgeable.getGrowingAge();
@@ -101,14 +114,7 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 EntityPlayer entityPlayer = (EntityPlayer) entity;
                 int foodLevel = entityPlayer.getFoodStats().getFoodLevel();
                 float saturationLevel = entityPlayer.getFoodStats().getSaturationLevel();
-                vertical
-                        .text(LABEL + "Food Level: " + INFO + foodLevel)
-                        .text(LABEL + "Saturation Level: " + INFO + saturationLevel);
-            }
-            if (entity instanceof EntityPlayerMP) {
-                EntityPlayerMP entityPlayerMP = (EntityPlayerMP) entity;
-                int foodLevel = entityPlayerMP.getFoodStats().getFoodLevel();
-                float saturationLevel = entityPlayerMP.getFoodStats().getSaturationLevel();
+
                 vertical
                         .text(LABEL + "Food Level: " + INFO + foodLevel)
                         .text(LABEL + "Saturation Level: " + INFO + saturationLevel);

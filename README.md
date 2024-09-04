@@ -13,8 +13,8 @@ This mod also has a flexible API that other mods can use to add more information
 
 ## Changes from The One Probe
 * Features from TOP Extras
-    * View Enchantment power of Bookshelfs
-    * View Inventorys of Minecarts and Mules
+    * View Enchantment power of Bookshelf's
+    * View Inventory's of Minecarts and Mules
     * View how long the fuse of lit TNT has left
     * View how much water is in a Cauldron
     * View what disk is playing in a Jukebox
