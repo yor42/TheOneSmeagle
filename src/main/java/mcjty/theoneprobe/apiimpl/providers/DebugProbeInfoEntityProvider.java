@@ -15,6 +15,7 @@ import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Collection;
@@ -92,7 +93,7 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 vertical
                         .text(LABEL + "Is Left Handed: " + INFO + isLeftHanded)
                         .text(LABEL + "Max Fall Height: " + INFO + maxFallHeight)
-                        .text(LABEL + "Max Spawning in Chunk: " + INFO + maxInChunk);
+                        .text(LABEL + "Max Spawnable in Chunk: " + INFO + maxInChunk);
             }
 
             if (entity instanceof EntityAgeable) {
@@ -114,10 +115,14 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 EntityPlayer entityPlayer = (EntityPlayer) entity;
                 int foodLevel = entityPlayer.getFoodStats().getFoodLevel();
                 float saturationLevel = entityPlayer.getFoodStats().getSaturationLevel();
+                float luck = entityPlayer.getLuck();
+                BlockPos bedLocation = entityPlayer.getBedLocation();
 
                 vertical
                         .text(LABEL + "Food Level: " + INFO + foodLevel)
-                        .text(LABEL + "Saturation Level: " + INFO + saturationLevel);
+                        .text(LABEL + "Saturation Level: " + INFO + saturationLevel)
+                        .text(LABEL + "Luck: " + INFO + luck)
+                        .text(LABEL + "Bed Location: "+ INFO + bedLocation);
             }
         }
     }
