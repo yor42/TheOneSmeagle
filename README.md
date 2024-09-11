@@ -14,11 +14,14 @@ This mod also has a flexible API that other mods can use to add more information
 ## Changes from The One Probe
 * Features from TOP Extras
     * View Enchantment power of Bookshelf's
-    * View Inventory's of Minecarts and Mules
+    * View Inventory of Minecarts and Mules
     * View how long the fuse of lit TNT has left
     * View how much water is in a Cauldron
     * View what disk is playing in a Jukebox
-    * View a paintings name             
+    * View a paintings name
+* Fixes from TopFix
+   * Show fluid local name when playing on a server
+   * Fixed chests not displaying the local names of GregTechCE items when playing on a server               
 * Updated gradle version from 2.7 to 4.5
 * View more information with the Creative Probe
 * New theme presets
@@ -41,24 +44,13 @@ Note: Languages other than english many not be fully translated, feel free to su
 
 ***
 
-Mods that built have compatibility for TOP will also have built in compatabily for TOS
-## Maven
-
-    repositories {
-        maven { // TOP
-            name 'tterrag maven'
-            url "https://maven.tterrag.com/"
-        }
-
-    dependencies {
-        deobfCompile "mcjty.theoneprobe:TheOneProbe-${top_version}"
-    }
+Mods that have compatibility for TOP will also have built-in compatibility for TOS
 
 ## Licence
 
 #### MIT
 
-This mod is licenced under the MIT licence. To see the full terms of the licence click [here](https://github.com/McJty/TheOneProbe/blob/1.10/LICENCE).
+This mod is licensed under the MIT license. To see the full terms of the license click [here](https://github.com/McJty/TheOneProbe/blob/1.10/LICENCE).
 
 #### Modpack Permission
 
@@ -68,10 +60,10 @@ You're free to use the mod in your modpack.
 
 ## Credits
 
-- [McJty](https://twitter.com/McJty) - Project Owner
+**Copyright © 2016 [McJty](https://twitter.com/McJty)**
 
-**Copyright © 2016 McJty**
+**Copyright © 2022 [TechLord22](https://github.com/TechLord22)**
 
-**Copyright © 2022 TechLord22**
+**Copyright © 2022 [vfyjxf](https://github.com/vfyjxf)**
 
 **Copyright © 2024 Strubium**
