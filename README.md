@@ -37,6 +37,7 @@ This mod also has a flexible API that other mods can use to add more information
 * New en_ud.lang
 * New uk_ua.lang (By: @SKZGx)
 * New zh_tw.lang (By: @HJ-zhtw)
+* New de_de.lang (By: @TheScienceDemon)
 * Javadoc's for the random methods lying around to make working easier
 * Many Progress Bars for slower computers (Almost impossible to see if you have a mid-teir computer)
 
