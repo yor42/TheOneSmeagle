@@ -89,7 +89,7 @@ public class ChestInfoTools {
             for (ItemStack stackInSlot : stacks) {
                 horizontal = vertical.horizontal(new LayoutStyle().spacing(10).alignment(ElementAlignment.ALIGN_CENTER));
                 horizontal.item(stackInSlot, new ItemStyle().width(16).height(16))
-                    .text(INFO + stackInSlot.getDisplayName());
+                        .itemLabel(stackInSlot); //TOPFIX: Chest info doesn't show gregtechCE item local name when player on server.
             }
         } else {
             for (ItemStack stackInSlot : stacks) {
