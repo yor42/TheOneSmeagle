@@ -31,7 +31,10 @@ public class HarvestInfoTools {
             "iron",
             "diamond",
             "obsidian",
-            "cobalt"
+            "cobalt",
+            "duranite",
+            "valyrium",
+            "vibranium"
     };
 
     private static final HashMap<String, ItemStack> testTools = new HashMap<>();
@@ -46,13 +49,15 @@ public class HarvestInfoTools {
         if (harvestTool != null) {
             int harvestLevel = block.getHarvestLevel(blockState);
             String harvestName;
-            if (harvestLevel >= harvestLevels.length) {
-                harvestName = Integer.toString(harvestLevel);
-            } else if (harvestLevel < 0) {
+
+            // Handle out-of-bounds or negative harvest levels by converting to string
+            if (harvestLevel < 0 || harvestLevel >= harvestLevels.length) {
                 harvestName = Integer.toString(harvestLevel);
             } else {
                 harvestName = harvestLevels[harvestLevel];
             }
+
+            // Add text information to the probe
             probeInfo.text(LABEL + "{*theoneprobe.probe.tool_indicator*} " + INFO + harvestTool + " (level " + harvestName + ")");
         }
     }
@@ -105,9 +110,10 @@ public class HarvestInfoTools {
                 // NOTE: When a block doesn't have an explicitly-set harvest tool, getHarvestLevel will return -1 for ANY tool. (Expected behavior)
 //                ModSetup.getLogger().info("HarvestLevel out of bounds (less than 0). Found " + harvestLevel);
             } else if (harvestLevel >= harvestLevels.length) {
+                harvestName = StringUtils.capitalize(harvestLevels[harvestLevels.length - 1]);
 //                ModSetup.getLogger().info("HarvestLevel out of bounds (Max value " + harvestLevels.length + "). Found " + harvestLevel);
             } else {
-                harvestName = harvestLevels[harvestLevel];
+                harvestName = StringUtils.capitalize(harvestLevels[harvestLevel]);
             }
             harvestTool = StringUtils.capitalize(harvestTool);
         }
