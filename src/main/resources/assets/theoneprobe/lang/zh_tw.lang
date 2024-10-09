@@ -1,12 +1,78 @@
-key.toggleLiquids=切換：顯示液體資訊
-key.toggleVisible=切換：顯示資訊介面
+key.toggleLiquids=切換液體視圖
+key.toggleVisible=可見性切換
 key.categories.theoneprobe=The One Probe
 item.theoneprobe.probe.name=The One Probe
-item.theoneprobe.probe_goggles.name=The One Probe (Bauble)
-item.theoneprobe.diamond_helmet_probe.name=附探針的鑽石頭盔
-item.theoneprobe.gold_helmet_probe.name=附探針的黃金頭盔
-item.theoneprobe.iron_helmet_probe.name=附探針的鐵製頭盔
-item.theoneprobe.creativeprobe.name=創造模式探針
-item.theoneprobe.probenote.name=The One Probe 說明書
+item.theoneprobe.probe_goggles.name=The One Probe（飾品）
+item.theoneprobe.diamond_helmet_probe.name=帶探測器的鑽石頭盔
+item.theoneprobe.gold_helmet_probe.name=帶探測器的金頭盔
+item.theoneprobe.iron_helmet_probe.name=帶探測器的鐵頭盔
+item.theoneprobe.creativeprobe.name=創造模式探測器
 
-itemGroup.Probe=The One Probe"
+harvestlevel.stone=石頭
+harvestlevel.iron=鐵
+harvestlevel.diamond=鑽石
+harvestlevel.obsidian=黑曜石
+harvestlevel.cobalt=鈷
+harvestlevel.duranite=杜蘭特
+harvestlevel.valyrium=瓦雷利亞
+harvestlevel.vibranium=振金
+
+theoneprobe.probe.get_contents=獲取內容
+theoneprobe.probe.harvestable_indicator=可收穫
+theoneprobe.probe.not_harvestable_indicator=不可收穫
+theoneprobe.probe.notool_indicator=無工具
+theoneprobe.probe.empty_indicator=空的
+theoneprobe.probe.bottle_indicator=瓶子
+theoneprobe.probe.bottles_indicator=多個瓶子
+theoneprobe.probe.enchanting_power_indicator=附魔能量：
+theoneprobe.probe.fuse_indicator=引爆倒數計時：
+theoneprobe.probe.fuel_indicator=燃料：
+theoneprobe.probe.power_indicator=能量：
+theoneprobe.probe.time_indicator=時間：
+theoneprobe.probe.error_indicator=錯誤：
+theoneprobe.probe.tool_indicator=工具：
+theoneprobe.probe.growing_time_indicator=生長時間：
+theoneprobe.probe.health_indicator=生命值：
+theoneprobe.probe.rotation_indicator=旋轉：
+theoneprobe.probe.unknown_owner_indicator=未知所有者
+theoneprobe.probe.owned_by_indicator=擁有者：
+theoneprobe.probe.jump_height_indicator=跳躍高度：
+theoneprobe.probe.speed_indicator=速度：
+theoneprobe.probe.playing_indicator=正在播放：
+theoneprobe.probe.collar_color_indicator=項圈顏色：
+theoneprobe.probe.waiting_server_indicator=等待伺服器...
+theoneprobe.probe.error_log_indicator=錯誤（詳見日誌）！
+
+config.theoneprobe.config.title=The One Probe 配置
+
+gui.theoneprobe.gui_note.title=你應該了解的關於 §6The One Probe 的事
+gui.theoneprobe.gui_note.body.1=§l這個模組可以在螢幕上顯示工具提示
+gui.theoneprobe.gui_note.body.2=§l當你看著一個方塊或實體時
+gui.theoneprobe.gui_note.needed.1=在這個包中，探測器被設置為
+gui.theoneprobe.gui_note.needed.2=需要以顯示工具提示
+gui.theoneprobe.gui_note.not_needed.1=在這個包中，探測器被設置為不需要
+gui.theoneprobe.gui_note.not_needed.2=以顯示工具提示
+gui.theoneprobe.gui_note.needed_for_extended.1=在這個包中，探測器被設置為
+gui.theoneprobe.gui_note.needed_for_extended.2=需要以顯示擴展信息（蹲下時）
+gui.theoneprobe.gui_note.needed_for_extended.3=但不需要顯示基本信息
+gui.theoneprobe.gui_note.needed_hard.1=在這個包中，探測器被設置為
+gui.theoneprobe.gui_note.needed_hard.2=需要以顯示工具提示
+gui.theoneprobe.gui_note.needed_hard.3=這是伺服器端設置
+gui.theoneprobe.gui_note.tail.1=查看 '模組選項... 有許多客戶端'
+gui.theoneprobe.gui_note.tail.2=配置設置，或潛行右鍵點擊
+gui.theoneprobe.gui_note.tail.3=此備註以進行更友好的設置
+gui.theoneprobe.gui_note.button.title=§l§a你可以在此處更改：
+gui.theoneprobe.gui_note.button.needed=需要
+gui.theoneprobe.gui_note.button.not_needed=不需要
+gui.theoneprobe.gui_note.button.extended=擴展
+
+gui.theoneprobe.gui_note_config.title.placement=位置：
+gui.theoneprobe.gui_note_config.title.presets=預設：
+gui.theoneprobe.gui_note_config.title.scale=縮放：
+gui.theoneprobe.gui_note_config.body.1=點擊圖像可移動
+gui.theoneprobe.gui_note_config.body.2=工具提示
+gui.theoneprobe.gui_note_config.body.3=預覽可能會出現故障
+
+item.theoneprobe.probenote.name=The One Probe 說明
+
+itemGroup.Probe=The One Probe

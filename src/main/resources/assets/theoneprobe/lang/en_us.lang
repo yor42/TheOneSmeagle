@@ -8,6 +8,15 @@ item.theoneprobe.gold_helmet_probe.name=Gold Helmet with Probe
 item.theoneprobe.iron_helmet_probe.name=Iron Helmet with Probe
 item.theoneprobe.creativeprobe.name=The Creative Probe
 
+harvestlevel.stone=Stone
+harvestlevel.iron=Iron
+harvestlevel.diamond=Diamond
+harvestlevel.obsidian=Obsidian
+harvestlevel.cobalt=Cobalt
+harvestlevel.duranite=Duranite
+harvestlevel.valyrium=Valyrium
+harvestlevel.vibranium=Vibranium
+
 theoneprobe.probe.get_contents=Getting the contents of a
 theoneprobe.probe.harvestable_indicator=Harvestable
 theoneprobe.probe.not_harvestable_indicator=Not Harvestable
