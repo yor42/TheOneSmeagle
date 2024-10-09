@@ -73,6 +73,7 @@ jar {
     manifest {
         attributes 'FMLAT': 'top_at.cfg'
     }
+    finalizedBy 'reobfJar' // This ensures reobfuscation runs after the jar is created
 }
 
 processResources {
