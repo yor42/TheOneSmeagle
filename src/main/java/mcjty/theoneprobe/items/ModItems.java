@@ -59,9 +59,9 @@ public class ModItems {
                 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
         bar.step("Creating Armor Probes");
-        diamondHelmetProbe = makeHelmet(materialDiamondHelmet, 3, "diamond_helmet_probe");
-        goldHelmetProbe = makeHelmet(materialGoldHelmet, 4, "gold_helmet_probe");
-        ironHelmetProbe = makeHelmet(materialIronHelmet, 2, "iron_helmet_probe");
+        diamondHelmetProbe = makeHelmet(materialDiamondHelmet, 3, "diamond_helmet_probe", 1);
+        goldHelmetProbe = makeHelmet(materialGoldHelmet, 4, "gold_helmet_probe", 2);
+        ironHelmetProbe = makeHelmet(materialIronHelmet, 2, "iron_helmet_probe", 3);
 
         bar.step("Initializing Probe Note");
         probeNote = new ProbeNote();
@@ -74,8 +74,8 @@ public class ModItems {
         ProgressManager.pop(bar);
     }
 
-    private static Item makeHelmet(ItemArmor.ArmorMaterial material, int renderIndex, String name) {
-        Item item = new ItemArmor(material, renderIndex, EntityEquipmentSlot.HEAD) {
+    private static Item makeHelmet(ItemArmor.ArmorMaterial material, int renderIndex, String name, int type) {
+        Item item = new ProbeArmor(material, renderIndex, EntityEquipmentSlot.HEAD, type) {
             @Override
             public boolean getHasSubtypes() {
                 return true;
