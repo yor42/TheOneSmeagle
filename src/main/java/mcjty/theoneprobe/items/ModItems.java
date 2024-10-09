@@ -59,9 +59,9 @@ public class ModItems {
                 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
         bar.step("Creating Armor Probes");
-        diamondHelmetProbe = makeHelmet(materialDiamondHelmet, 3, "diamond_helmet_probe", 1);
-        goldHelmetProbe = makeHelmet(materialGoldHelmet, 4, "gold_helmet_probe", 2);
-        ironHelmetProbe = makeHelmet(materialIronHelmet, 2, "iron_helmet_probe", 3);
+        diamondHelmetProbe = makeHelmet(materialDiamondHelmet, 3, "diamond_helmet_probe", "minecraft:textures/models/armor/diamond_layer_1.png");
+        goldHelmetProbe = makeHelmet(materialGoldHelmet, 4, "gold_helmet_probe", "minecraft:textures/models/armor/gold_layer_1.png");
+        ironHelmetProbe = makeHelmet(materialIronHelmet, 2, "iron_helmet_probe", "minecraft:textures/models/armor/iron_layer_1.png");
 
         bar.step("Initializing Probe Note");
         probeNote = new ProbeNote();
@@ -74,8 +74,8 @@ public class ModItems {
         ProgressManager.pop(bar);
     }
 
-    private static Item makeHelmet(ItemArmor.ArmorMaterial material, int renderIndex, String name, int type) {
-        Item item = new ProbeArmor(material, renderIndex, EntityEquipmentSlot.HEAD, type) {
+    private static Item makeHelmet(ItemArmor.ArmorMaterial material, int renderIndex, String name, String baseTexture) {
+        Item item = new ProbeArmor(material, renderIndex, EntityEquipmentSlot.HEAD, baseTexture) {
             @Override
             public boolean getHasSubtypes() {
                 return true;

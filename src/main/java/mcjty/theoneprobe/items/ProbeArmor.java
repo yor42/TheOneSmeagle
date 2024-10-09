@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 
 public class ProbeArmor extends ItemArmor {
 
-    private int armorType;
+    private String baseTexture;
 
-    public ProbeArmor(ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot, int armorType) {
+    public ProbeArmor(ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot, String baseTexture) {
         super(material, renderIndex, equipmentSlot);
-        this.armorType = armorType;
+        this.baseTexture = baseTexture;
     }
 
     @Override
@@ -28,23 +28,10 @@ public class ProbeArmor extends ItemArmor {
         }
 
         if (slot == EntityEquipmentSlot.HEAD) {
-            return getArmorTexture(this.armorType);
+            return this.baseTexture;
         }
 
         // Call the parent method for layer0
         return super.getArmorTexture(stack, entity, slot, type);
-    }
-
-    public String getArmorTexture(int type){
-        switch (type){
-            case 1:
-                return "minecraft:textures/models/armor/diamond_layer_1.png";
-            case 2:
-                return "minecraft:textures/models/armor/gold_layer_1.png";
-            case 3:
-                return "minecraft:textures/models/armor/iron_layer_1.png";
-            default:
-                return "minecraft:textures/models/armor/diamond_layer_1.png";
-        }
     }
 }
