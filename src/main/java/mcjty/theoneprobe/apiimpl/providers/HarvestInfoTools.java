@@ -27,16 +27,7 @@ import static mcjty.theoneprobe.api.TextStyleClass.*;
 public class HarvestInfoTools {
 
     private static final ResourceLocation ICONS = new ResourceLocation(TheOneProbe.MODID, "textures/gui/icons.png");
-    private static final String[] harvestLevels = new String[]{
-            "harvestlevel.stone",
-            "harvestlevel.iron",
-            "harvestlevel.diamond",
-            "harvestlevel.obsidian",
-            "harvestlevel.cobalt",
-            "harvestlevel.duranite",
-            "harvestlevel.valyrium",
-            "harvestlevel.vibranium"
-    };
+
 
     private static final HashMap<String, ItemStack> testTools = new HashMap<>();
     static {
@@ -52,11 +43,11 @@ public class HarvestInfoTools {
             String harvestName;
 
             // Handle out-of-bounds or negative harvest levels by converting to string
-            if (harvestLevel < 0 || harvestLevel >= harvestLevels.length) {
+            if (harvestLevel < 0 || harvestLevel >= ConfigSetup.getHarvestLevels().length) {
                 harvestName = Integer.toString(harvestLevel);
             } else {
                 // Use I18n to translate the harvest level
-                harvestName = I18n.format(harvestLevels[harvestLevel]);
+                harvestName = I18n.format(ConfigSetup.getHarvestLevels()[harvestLevel]);
             }
 
             // Add text information to the probe with translated tool and level
@@ -105,10 +96,10 @@ public class HarvestInfoTools {
             int harvestLevel = block.getHarvestLevel(blockState);
             if (harvestLevel < 0) {
                 // If harvest level is out of bounds, set the name manually
-            } else if (harvestLevel >= harvestLevels.length) {
-                harvestName = I18n.format(harvestLevels[harvestLevels.length - 1]);
+            } else if (harvestLevel >= ConfigSetup.getHarvestLevels().length) {
+                harvestName = I18n.format(ConfigSetup.getHarvestLevels()[ConfigSetup.getHarvestLevels().length - 1]);
             } else {
-                harvestName = I18n.format(harvestLevels[harvestLevel]);
+                harvestName = I18n.format(ConfigSetup.getHarvestLevels()[harvestLevel]);
             }
         }
 

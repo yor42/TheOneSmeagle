@@ -285,9 +285,9 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
                 int age = blockState.getValue(integerProperty);
                 int maxAge = Collections.max(integerProperty.getAllowedValues());
                 if (age == maxAge) {
-                    probeInfo.text(OK + "Fully grown");
+                    probeInfo.text(OK + "{*theoneprobe.probe.fully_grown_indicator*}");
                 } else {
-                    probeInfo.text(LABEL + "Growth: " + WARNING + (age * 100) / maxAge + "%");
+                    probeInfo.text(LABEL + "{*theoneprobe.probe.growth_indicator*} " + WARNING + (age * 100) / maxAge + "%");
                 }
             }
             return;

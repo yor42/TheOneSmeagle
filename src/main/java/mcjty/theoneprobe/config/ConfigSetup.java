@@ -96,6 +96,17 @@ public class ConfigSetup {
     public static int tankbarBorderColor = 0xff555555;
     public static int probeNoteStackSize = 1;
 
+    private static String[] harvestLevels = new String[]{
+            "theoneprobe.harvestlevel.stone",
+            "theoneprobe.harvestlevel.iron",
+            "theoneprobe.harvestlevel.diamond",
+            "theoneprobe.harvestlevel.obsidian",
+            "theoneprobe.harvestlevel.cobalt",
+            "theoneprobe.harvestlevel.duranite",
+            "theoneprobe.harvestlevel.valyrium",
+            "theoneprobe.harvestlevel.vibranium"
+    };
+
     public static Map<TextStyleClass, String> defaultTextStyleClasses = new HashMap<>();
     public static Map<TextStyleClass, String> textStyleClasses;
 
@@ -217,6 +228,7 @@ public class ConfigSetup {
         chestContentsBorderColor = parseColor(cfg.getString("chestContentsBorderColor", CATEGORY_CLIENT, Integer.toHexString(chestContentsBorderColor), "Color of the border of the chest contents box (0 to disable)"));
         showBreakProgress = cfg.getInt("showBreakProgress", CATEGORY_CLIENT, showBreakProgress, 0, 2, "0 means don't show break progress, 1 is show as bar, 2 is show as text");
         harvestStyleVanilla = cfg.getBoolean("harvestStyleVanilla", CATEGORY_CLIENT, harvestStyleVanilla, "true means shows harvestability with vanilla style icons");
+        harvestLevels = cfg.getStringList("harvestLevels", CATEGORY_CLIENT, harvestLevels, "The language translation keys to use when showing harvest levels");
 
         Map<TextStyleClass, String> newformat = new HashMap<>();
         for (TextStyleClass styleClass : textStyleClasses.keySet()) {
@@ -285,6 +297,10 @@ public class ConfigSetup {
         cfg.get(CATEGORY_CLIENT, "tooltipScale", tooltipScale).set(tooltipScale);
         cfg.save();
         updateDefaultOverlayStyle();
+    }
+
+    public static String[] getHarvestLevels(){
+        return harvestLevels;
     }
 
     public static float getScale() {
@@ -383,7 +399,7 @@ public class ConfigSetup {
     }
 
     public static void init() {
-        mainConfig = new Configuration(new File(ModSetup.modConfigDir.getPath(), "theoneprobe.cfg"));
+        mainConfig = new Configuration(new File(ModSetup.modConfigDir.getPath(), TheOneProbe.MODID + ".cfg"));
         Configuration cfg = mainConfig;
         try {
             cfg.load();
