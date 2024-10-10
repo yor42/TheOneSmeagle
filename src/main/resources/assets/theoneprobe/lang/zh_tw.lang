@@ -17,6 +17,10 @@ theoneprobe.harvestlevel.duranite=杜蘭特
 theoneprobe.harvestlevel.valyrium=瓦雷利亞
 theoneprobe.harvestlevel.vibranium=振金
 
+theoneprobe.probe.shovel=鏟子
+theoneprobe.probe.axe=斧子
+theoneprobe.probe.pickaxe=鎬
+
 theoneprobe.probe.get_contents=獲取內容
 theoneprobe.probe.harvestable_indicator=可收穫
 theoneprobe.probe.not_harvestable_indicator=不可收穫
@@ -31,6 +35,7 @@ theoneprobe.probe.power_indicator=能量：
 theoneprobe.probe.time_indicator=時間：
 theoneprobe.probe.error_indicator=錯誤：
 theoneprobe.probe.tool_indicator=工具：
+theoneprobe.probe.level_indicator=等級:
 theoneprobe.probe.growing_time_indicator=生長時間：
 theoneprobe.probe.growth_indicator=生長:
 theoneprobe.probe.fully_grown_indicator=已完全生長

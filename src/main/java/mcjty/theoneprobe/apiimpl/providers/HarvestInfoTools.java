@@ -17,7 +17,6 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,9 +30,9 @@ public class HarvestInfoTools {
 
     private static final HashMap<String, ItemStack> testTools = new HashMap<>();
     static {
-        testTools.put("Shovel", new ItemStack(Items.WOODEN_SHOVEL));
-        testTools.put("Axe", new ItemStack(Items.WOODEN_AXE));
-        testTools.put("Pickaxe", new ItemStack(Items.WOODEN_PICKAXE));
+        testTools.put("theoneprobe.probe.shovel", new ItemStack(Items.WOODEN_SHOVEL));
+        testTools.put("theoneprobe.probe.axe", new ItemStack(Items.WOODEN_AXE));
+        testTools.put("theoneprobe.probe.pickaxe", new ItemStack(Items.WOODEN_PICKAXE));
     }
 
     static void showHarvestLevel(IProbeInfo probeInfo, IBlockState blockState, Block block) {
@@ -51,7 +50,7 @@ public class HarvestInfoTools {
             }
 
             // Add text information to the probe with translated tool and level
-            probeInfo.text(LABEL + I18n.format("theoneprobe.probe.tool_indicator") + " " + INFO + harvestTool + " (level " + harvestName + ")");
+            probeInfo.text(LABEL + I18n.format("theoneprobe.probe.tool_indicator") + " " + INFO + I18n.format(harvestTool) + " (" + I18n.format("theoneprobe.probe.level_indicator") + " " + harvestName + ")");
         }
     }
 
@@ -84,7 +83,8 @@ public class HarvestInfoTools {
                     if (testTool != null && testTool.getItem() instanceof ItemTool) {
                         ItemTool toolItem = (ItemTool) testTool.getItem();
                         if (testTool.getDestroySpeed(blockState) >= toolItem.toolMaterial.getEfficiency()) {
-                            harvestTool = testToolEntry.getKey();
+                            // Use lang key for tool name
+                            harvestTool = I18n.format(testToolEntry.getKey());
                             break;
                         }
                     }
@@ -119,7 +119,7 @@ public class HarvestInfoTools {
                         .text(WARNING + ((harvestTool != null) ? harvestTool : I18n.format("theoneprobe.probe.notool_indicator")));
             } else {
                 horizontal.icon(ICONS, 16, offs, dim, dim, iconStyle)
-                        .text(WARNING + ((harvestTool != null) ? harvestTool : I18n.format("theoneprobe.probe.notool_indicator")) + " (level " + harvestName + ")");
+                        .text(WARNING + ((harvestTool != null) ? harvestTool : I18n.format("theoneprobe.probe.notool_indicator")) + " (" + I18n.format("theoneprobe.probe.level_indicator") + " " + harvestName + ")");
             }
         }
     }

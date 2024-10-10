@@ -17,6 +17,10 @@ theoneprobe.harvestlevel.duranite=Duranite
 theoneprobe.harvestlevel.valyrium=Valyrium
 theoneprobe.harvestlevel.vibranium=Vibranium
 
+theoneprobe.probe.shovel=Shovel
+theoneprobe.probe.axe=Axe
+theoneprobe.probe.pickaxe=Pickaxe
+
 theoneprobe.probe.get_contents=Getting the contents of a
 theoneprobe.probe.harvestable_indicator=Harvestable
 theoneprobe.probe.not_harvestable_indicator=Not Harvestable
@@ -31,6 +35,7 @@ theoneprobe.probe.power_indicator=Power:
 theoneprobe.probe.time_indicator=Time:
 theoneprobe.probe.error_indicator=Error:
 theoneprobe.probe.tool_indicator=Tool:
+theoneprobe.probe.level_indicator=Level:
 theoneprobe.probe.growing_time_indicator=Growing Time:
 theoneprobe.probe.growth_indicator=Growth:
 theoneprobe.probe.fully_grown_indicator=Fully Grown
