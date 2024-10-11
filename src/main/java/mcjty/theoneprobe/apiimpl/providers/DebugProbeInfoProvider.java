@@ -41,25 +41,25 @@ public class DebugProbeInfoProvider implements IProbeInfoProvider {
     private void showDebugInfo(IProbeInfo probeInfo, World world, IBlockState blockState, BlockPos pos, Block block, EnumFacing side) {
         String simpleName = block.getClass().getSimpleName();
         IProbeInfo vertical = probeInfo.vertical(new LayoutStyle().borderColor(0xffff4444).spacing(2))
-                .text(LABEL + "Reg Name: " + INFO + Objects.requireNonNull(block.getRegistryName()))
-                .text(LABEL + "Unlocname: " + INFO + block.getUnlocalizedName())
-                .text(LABEL + "Meta: " + INFO + blockState.getBlock().getMetaFromState(blockState))
-                .text(LABEL + "Class: " + INFO + simpleName)
-                .text(LABEL + "Hardness: " + INFO + block.getBlockHardness(blockState, world, pos))
-                .text(LABEL + "Power W: " + INFO + block.getWeakPower(blockState, world, pos, side.getOpposite())
-                        + LABEL + ", S: " + INFO + block.getStrongPower(blockState, world, pos, side.getOpposite()));
+                .text(LABEL + "{*theoneprobe.debug_block.reg_name_indicator*} " + INFO + Objects.requireNonNull(block.getRegistryName()))
+                .text(LABEL + "{*theoneprobe.debug_block.unlocalized_name_indicator*} " + INFO + block.getUnlocalizedName())
+                .text(LABEL + "{*theoneprobe.debug_block.meta_indicator*} " + INFO + blockState.getBlock().getMetaFromState(blockState))
+                .text(LABEL + "{*theoneprobe.debug_block.class_indicator*} " + INFO + simpleName)
+                .text(LABEL + "{*theoneprobe.debug_block.hardness_indicator*} " + INFO + block.getBlockHardness(blockState, world, pos))
+                .text(LABEL + "{*theoneprobe.debug_block.power_w_indicator*} " + INFO + block.getWeakPower(blockState, world, pos, side.getOpposite())
+                        + LABEL + ", " + "{*theoneprobe.debug_block.power_s_indicator*} " + INFO + block.getStrongPower(blockState, world, pos, side.getOpposite()));
 
         int lightValue = block.getLightValue(blockState, world, pos);
         if (lightValue > 0) {
-            vertical.text(LABEL + "Light: " + INFO + lightValue);
+            vertical.text(LABEL + "{*theoneprobe.debug_block.light_indicator*} " + INFO + lightValue);
         }
 
         TileEntity te = world.getTileEntity(pos);
         if (te != null) {
-            vertical.text(LABEL + "TileEntity: " + INFO + te.getClass().getSimpleName());
+            vertical.text(LABEL + "{*theoneprobe.debug_block.tile_entity_indicator*} " + INFO + te.getClass().getSimpleName());
             if (te instanceof IBigPower) {
-                vertical.text(LABEL + "Energy: " + INFO + RedstoneFluxTools.getEnergy(te))
-                        .text(LABEL + "Max Energy: " + INFO + RedstoneFluxTools.getMaxEnergy(te));
+                vertical.text(LABEL + "{*theoneprobe.debug_block.energy_indicator*} " + INFO + RedstoneFluxTools.getEnergy(te))
+                        .text(LABEL + "{*theoneprobe.debug_block.max_energy_indicator*} " + INFO + RedstoneFluxTools.getMaxEnergy(te));
             }
         }
     }

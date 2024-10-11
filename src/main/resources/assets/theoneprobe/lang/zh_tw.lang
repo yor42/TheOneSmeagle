@@ -51,6 +51,43 @@ theoneprobe.probe.collar_color_indicator=項圈顏色：
 theoneprobe.probe.waiting_server_indicator=等待伺服器...
 theoneprobe.probe.error_log_indicator=錯誤（詳見日誌）！
 
+theoneprobe.debug_probe.step_height_indicator=步高：
+theoneprobe.debug_probe.total_armor_indicator=總護甲：
+theoneprobe.debug_probe.age_indicator=年齡：
+theoneprobe.debug_probe.absorption_indicator=吸收：
+theoneprobe.debug_probe.ai_move_speed_indicator=AI移動速度：
+theoneprobe.debug_probe.revenge_timer_indicator=復仇計時器：
+theoneprobe.debug_probe.on_fire_indicator=著火：
+theoneprobe.debug_probe.position_indicator=位置：
+theoneprobe.debug_probe.motion_indicator=運動：
+theoneprobe.debug_probe.uuid_indicator=UUID：
+theoneprobe.debug_probe.custom_name_indicator=自定義名稱：
+theoneprobe.debug_probe.active_effects_indicator=啟用效果：
+theoneprobe.debug_probe.is_left_handed_indicator=是否左撇子：
+theoneprobe.debug_probe.max_fall_height_indicator=最大墜落高度：
+theoneprobe.debug_probe.max_spawnable_in_chunk_indicator=區塊中最大生成：
+theoneprobe.debug_probe.growing_age_indicator=成長年齡：
+theoneprobe.debug_probe.can_breathe_underwater_indicator=能在水下呼吸：
+theoneprobe.debug_probe.in_water_indicator=在水中：
+theoneprobe.debug_probe.next_egg_in_indicator=下一個蛋在：
+theoneprobe.debug_probe.food_level_indicator=食物等級：
+theoneprobe.debug_probe.saturation_level_indicator=飽和度：
+theoneprobe.debug_probe.luck_indicator=運氣：
+theoneprobe.debug_probe.bed_location_indicator=床位置：
+
+theoneprobe.debug_block.reg_name_indicator=註冊名稱：
+theoneprobe.debug_block.unlocalized_name_indicator=未本地化名稱：
+theoneprobe.debug_block.meta_indicator=元數據：
+theoneprobe.debug_block.class_indicator=類別：
+theoneprobe.debug_block.hardness_indicator=硬度：
+theoneprobe.debug_block.power_w_indicator=功率W：
+theoneprobe.debug_block.power_s_indicator=功率S：
+theoneprobe.debug_block.light_indicator=光照：
+theoneprobe.debug_block.tile_entity_indicator=方塊實體：
+theoneprobe.debug_block.energy_indicator=能量：
+theoneprobe.debug_block.max_energy_indicator=最大能量：
+
+
 config.theoneprobe.config.title=The One Probe 配置
 
 gui.theoneprobe.gui_note.title=你應該了解的關於 §6The One Probe 的事

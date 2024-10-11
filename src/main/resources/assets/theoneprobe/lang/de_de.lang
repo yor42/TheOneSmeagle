@@ -32,6 +32,43 @@ theoneprobe.probe.speed_indicator=Geschwindigkeit:
 theoneprobe.probe.playing_indicator=Spielt:
 theoneprobe.probe.collar_color_indicator=Halsbandfarbe:
 
+theoneprobe.debug_probe.step_height_indicator=Schritt Höhe:
+theoneprobe.debug_probe.total_armor_indicator=Gesamt Rüstung:
+theoneprobe.debug_probe.age_indicator=Alter:
+theoneprobe.debug_probe.absorption_indicator=Absorption:
+theoneprobe.debug_probe.ai_move_speed_indicator=KI Bewegungs Geschwindigkeit:
+theoneprobe.debug_probe.revenge_timer_indicator=Rache Timer:
+theoneprobe.debug_probe.on_fire_indicator=In Brand:
+theoneprobe.debug_probe.position_indicator=Position:
+theoneprobe.debug_probe.motion_indicator=Bewegung:
+theoneprobe.debug_probe.uuid_indicator=UUID:
+theoneprobe.debug_probe.custom_name_indicator=Benutzerdefinierter Name:
+theoneprobe.debug_probe.active_effects_indicator=Aktive Effekte:
+theoneprobe.debug_probe.is_left_handed_indicator=Ist Linkshänder:
+theoneprobe.debug_probe.max_fall_height_indicator=Maximale Fallhöhe:
+theoneprobe.debug_probe.max_spawnable_in_chunk_indicator=Maximal spawnbar in Chunk:
+theoneprobe.debug_probe.growing_age_indicator=Wachstums Alter:
+theoneprobe.debug_probe.can_breathe_underwater_indicator=Kann Unter Wasser Atmen:
+theoneprobe.debug_probe.in_water_indicator=Im Wasser:
+theoneprobe.debug_probe.next_egg_in_indicator=Nächstes Ei in:
+theoneprobe.debug_probe.food_level_indicator=Nahrungs Niveau:
+theoneprobe.debug_probe.saturation_level_indicator=Sättigungs Niveau:
+theoneprobe.debug_probe.luck_indicator=Glück:
+theoneprobe.debug_probe.bed_location_indicator=Bett Standort:
+
+theoneprobe.debug_block.reg_name_indicator=Reg Name:
+theoneprobe.debug_block.unlocalized_name_indicator=Unlokalisiert Name:
+theoneprobe.debug_block.meta_indicator=Meta:
+theoneprobe.debug_block.class_indicator=Klasse:
+theoneprobe.debug_block.hardness_indicator=Härte:
+theoneprobe.debug_block.power_w_indicator=Leistung W:
+theoneprobe.debug_block.power_s_indicator=Leistung S:
+theoneprobe.debug_block.light_indicator=Licht:
+theoneprobe.debug_block.tile_entity_indicator=TileEntity:
+theoneprobe.debug_block.energy_indicator=Energie:
+theoneprobe.debug_block.max_energy_indicator=Max Energie:
+
+
 config.theoneprobe.config.title=Die Eine Sonde-Konfig
 
 gui.theoneprobe.gui_note.title=Dinge, die du über §6Die Eine Sonde§r wissen solltest

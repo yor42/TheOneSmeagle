@@ -60,31 +60,30 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 String entityName = entityLivingBase.getCustomNameTag();
 
                 vertical
-                        .text(LABEL + "Step Height: " + INFO + stepHeight)
-                        .text(LABEL + "Total Armor: " + INFO + totalArmorValue)
-                        .text(LABEL + "Age: " + INFO + age)
-                        .text(LABEL + "Absorption: " + INFO + absorptionAmount)
-                        .text(LABEL + "AI Move Speed: " + INFO + aiMoveSpeed)
-                        .text(LABEL + "Revenge Timer: " + INFO + revengeTimer)
-                        .text(LABEL + "On Fire: " + INFO + isOnFire)
-                        .text(LABEL + "Position: " + INFO + String.format("X: %.2f, Y: %.2f, Z: %.2f", posX, posY, posZ))
-                        .text(LABEL + "Motion: " + INFO + String.format("X: %.2f, Y: %.2f, Z: %.2f", motionX, motionY, motionZ))
+                        .text(LABEL + "{*theoneprobe.debug_probe.step_height_indicator*} " + INFO + stepHeight)
+                        .text(LABEL + "{*theoneprobe.debug_probe.total_armor_indicator*} " + INFO + totalArmorValue)
+                        .text(LABEL + "{*theoneprobe.debug_probe.age_indicator*} " + INFO + age)
+                        .text(LABEL + "{*theoneprobe.debug_probe.absorption_indicator*} " + INFO + absorptionAmount)
+                        .text(LABEL + "{*theoneprobe.debug_probe.ai_move_speed_indicator*} " + INFO + aiMoveSpeed)
+                        .text(LABEL + "{*theoneprobe.debug_probe.revenge_timer_indicator*} " + INFO + revengeTimer)
+                        .text(LABEL + "{*theoneprobe.debug_probe.on_fire_indicator*} " + INFO + isOnFire)
+                        .text(LABEL + "{*theoneprobe.debug_probe.position_indicator*} " + INFO + String.format("X: %.2f, Y: %.2f, Z: %.2f", posX, posY, posZ))
+                        .text(LABEL + "{*theoneprobe.debug_probe.motion_indicator*} " + INFO + String.format("X: %.2f, Y: %.2f, Z: %.2f", motionX, motionY, motionZ))
                         .text(LABEL + "{*theoneprobe.probe.health_indicator*} " + INFO + health + " / " + maxHealth);
 
                 if (ConfigSetup.showDebugUUID) {
-                    vertical.text(LABEL + "UUID: " + INFO + uuid);
+                    vertical.text(LABEL + "{*theoneprobe.debug_probe.uuid_indicator*} " + INFO + uuid);
                 }
                 if (entityLivingBase.hasCustomName()) {
-                    vertical.text(LABEL + "Custom Name: " + INFO + entityName);
+                    vertical.text(LABEL + "{*theoneprobe.debug_probe.custom_name_indicator*} " + INFO + entityName);
                 }
                 if (!activeEffects.isEmpty()) {
-                    vertical.text(LABEL + "Active Effects: ");
+                    vertical.text(LABEL + "{*theoneprobe.debug_probe.active_effects_indicator*} ");
                     for (PotionEffect effect : activeEffects) {
                         vertical.text(INFO + effect.getEffectName() + " (" + effect.getAmplifier() + ") - " + effect.getDuration() + " ticks");
                     }
                 }
             }
-
 
             if (entity instanceof EntityLiving) {
                 EntityLiving entityLiving = (EntityLiving) entity;
@@ -92,29 +91,29 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 int maxFallHeight = entityLiving.getMaxFallHeight();
                 int maxInChunk = entityLiving.getMaxSpawnedInChunk();
                 vertical
-                        .text(LABEL + "Is Left Handed: " + INFO + isLeftHanded)
-                        .text(LABEL + "Max Fall Height: " + INFO + maxFallHeight)
-                        .text(LABEL + "Max Spawnable in Chunk: " + INFO + maxInChunk);
+                        .text(LABEL + "{*theoneprobe.debug_probe.is_left_handed_indicator*} " + INFO + isLeftHanded)
+                        .text(LABEL + "{*theoneprobe.debug_probe.max_fall_height_indicator*} " + INFO + maxFallHeight)
+                        .text(LABEL + "{*theoneprobe.debug_probe.max_spawnable_in_chunk_indicator*} " + INFO + maxInChunk);
             }
 
             if (entity instanceof EntityAgeable) {
                 EntityAgeable entityAgeable = (EntityAgeable) entity;
                 int growingAge = entityAgeable.getGrowingAge();
                 vertical
-                        .text(LABEL + "Growing Age: " + INFO + growingAge);
+                        .text(LABEL + "{*theoneprobe.debug_probe.growing_age_indicator*} " + INFO + growingAge);
             }
 
             if (entity instanceof EntityWaterMob) {
                 EntityWaterMob entityWaterMob = (EntityWaterMob) entity;
                 boolean canBreatheUnderwater = entityWaterMob.canBreatheUnderwater();
                 vertical
-                        .text(LABEL + "Can Breathe Underwater: " + INFO + canBreatheUnderwater)
-                        .text(LABEL + "In Water: " + INFO + entityWaterMob.isInWater());
+                        .text(LABEL + "{*theoneprobe.debug_probe.can_breathe_underwater_indicator*} " + INFO + canBreatheUnderwater)
+                        .text(LABEL + "{*theoneprobe.debug_probe.in_water_indicator*} " + INFO + entityWaterMob.isInWater());
             }
             if (entity instanceof EntityChicken) {
                 EntityChicken entityChicken = (EntityChicken) entity;
                 vertical
-                        .text(LABEL + "Next Egg In: " + INFO + entityChicken.timeUntilNextEgg);
+                        .text(LABEL + "{*theoneprobe.debug_probe.next_egg_in_indicator*} " + INFO + entityChicken.timeUntilNextEgg);
             }
 
             if (entity instanceof EntityPlayer) {
@@ -125,10 +124,10 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 BlockPos bedLocation = entityPlayer.getBedLocation();
 
                 vertical
-                        .text(LABEL + "Food Level: " + INFO + foodLevel)
-                        .text(LABEL + "Saturation Level: " + INFO + saturationLevel)
-                        .text(LABEL + "Luck: " + INFO + luck)
-                        .text(LABEL + "Bed Location: "+ INFO + bedLocation);
+                        .text(LABEL + "{*theoneprobe.debug_probe.food_level_indicator*} " + INFO + foodLevel)
+                        .text(LABEL + "{*theoneprobe.debug_probe.saturation_level_indicator*} " + INFO + saturationLevel)
+                        .text(LABEL + "{*theoneprobe.debug_probe.luck_indicator*} " + INFO + luck)
+                        .text(LABEL + "{*theoneprobe.debug_probe.bed_location_indicator*} " + INFO + bedLocation);
             }
         }
     }

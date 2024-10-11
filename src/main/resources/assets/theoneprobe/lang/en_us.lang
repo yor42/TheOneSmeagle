@@ -51,6 +51,43 @@ theoneprobe.probe.collar_color_indicator=Collar Color:
 theoneprobe.probe.waiting_server_indicator=Waiting for server...
 theoneprobe.probe.error_log_indicator=Error (see log for details)!
 
+theoneprobe.debug_probe.step_height_indicator=Step Height:
+theoneprobe.debug_probe.total_armor_indicator=Total Armor:
+theoneprobe.debug_probe.age_indicator=Age:
+theoneprobe.debug_probe.absorption_indicator=Absorption:
+theoneprobe.debug_probe.ai_move_speed_indicator=AI Move Speed:
+theoneprobe.debug_probe.revenge_timer_indicator=Revenge Timer:
+theoneprobe.debug_probe.on_fire_indicator=On Fire:
+theoneprobe.debug_probe.position_indicator=Position:
+theoneprobe.debug_probe.motion_indicator=Motion:
+theoneprobe.debug_probe.uuid_indicator=UUID:
+theoneprobe.debug_probe.custom_name_indicator=Custom Name:
+theoneprobe.debug_probe.active_effects_indicator=Active Effects:
+theoneprobe.debug_probe.is_left_handed_indicator=Is Left Handed:
+theoneprobe.debug_probe.max_fall_height_indicator=Max Fall Height:
+theoneprobe.debug_probe.max_spawnable_in_chunk_indicator=Max Spawnable in Chunk:
+theoneprobe.debug_probe.growing_age_indicator=Growing Age:
+theoneprobe.debug_probe.can_breathe_underwater_indicator=Can Breathe Underwater:
+theoneprobe.debug_probe.in_water_indicator=In Water:
+theoneprobe.debug_probe.next_egg_in_indicator=Next Egg In:
+theoneprobe.debug_probe.food_level_indicator=Food Level:
+theoneprobe.debug_probe.saturation_level_indicator=Saturation Level:
+theoneprobe.debug_probe.luck_indicator=Luck:
+theoneprobe.debug_probe.bed_location_indicator=Bed Location:
+
+theoneprobe.debug_block.reg_name_indicator=Reg Name:
+theoneprobe.debug_block.unlocalized_name_indicator=Unlocalized Name:
+theoneprobe.debug_block.meta_indicator=Meta:
+theoneprobe.debug_block.class_indicator=Class:
+theoneprobe.debug_block.hardness_indicator=Hardness:
+theoneprobe.debug_block.power_w_indicator=Power W:
+theoneprobe.debug_block.power_s_indicator=Power S:
+theoneprobe.debug_block.light_indicator=Light:
+theoneprobe.debug_block.tile_entity_indicator=TileEntity:
+theoneprobe.debug_block.energy_indicator=Energy:
+theoneprobe.debug_block.max_energy_indicator=Max Energy:
+
+
 config.theoneprobe.config.title=The One Probe Config
 
 gui.theoneprobe.gui_note.title=Things you should know about §6The One Probe
