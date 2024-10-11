@@ -39,8 +39,11 @@ public class TopModConfigGui extends GuiConfig {
                 ConfigSetup.CATEGORY_PROVIDERS
         };
 
-        // Create and return a list of configuration elements
-        return Arrays.stream(categories)
-                .map(category -> new ConfigElement(ConfigSetup.mainConfig.getCategory(category))).collect(Collectors.toList());
+        // Create configuration elements for the main categories
+        List<IConfigElement> configElements = Arrays.stream(categories)
+                .map(category -> new ConfigElement(ConfigSetup.mainConfig.getCategory(category)))
+                .collect(Collectors.toList());
+
+        return configElements;
     }
 }

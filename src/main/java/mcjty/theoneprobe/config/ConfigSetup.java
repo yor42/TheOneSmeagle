@@ -34,6 +34,7 @@ public class ConfigSetup {
     public static String CATEGORY_THEONEPROBE = "theoneprobe";
     public static String CATEGORY_PROVIDERS = "providers";
     public static String CATEGORY_CLIENT = "client";
+    public static String SUBCATEGORY_OFFSETS = "client_offsets";
 
     public static final int PROBE_NOTNEEDED = 0;
     public static final int PROBE_NEEDED = 1;
@@ -211,10 +212,10 @@ public class ConfigSetup {
 
 
     public static void setupStyleConfig(Configuration cfg) {
-        leftX = cfg.getInt("boxLeftXOffset", CATEGORY_CLIENT, leftX, -1, 10000, "The left offset for the probe");
-        rightX = cfg.getInt("boxRightXOffset", CATEGORY_CLIENT, rightX, -1, 10000, "The right offset for the probe");
-        topY = cfg.getInt("boxTopYOffset", CATEGORY_CLIENT, topY, -1, 10000, "The top offset for the probe");
-        bottomY = cfg.getInt("boxBottomYOffset", CATEGORY_CLIENT, bottomY, -1, 10000, "The bottom offset for the probe");
+        leftX = cfg.getInt("boxLeftXOffset", CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, leftX, -1, 10000, "The left offset for the probe");
+        rightX = cfg.getInt("boxRightXOffset", CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, rightX, -1, 10000, "The right offset for the probe");
+        topY = cfg.getInt("boxTopYOffset", CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, topY, -1, 10000, "The top offset for the probe");
+        bottomY = cfg.getInt("boxBottomYOffset", CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, bottomY, -1, 10000, "The bottom offset for the probe");
         boxBorderColor = parseColor(cfg.getString("boxBorderColor", CATEGORY_CLIENT, Integer.toHexString(boxBorderColor), "Color of the border of the box (0 to disable)"));
         boxFillColor = parseColor(cfg.getString("boxFillColor", CATEGORY_CLIENT, Integer.toHexString(boxFillColor), "Color of the box (0 to disable)"));
         boxThickness = cfg.getInt("boxThickness", CATEGORY_CLIENT, boxThickness, 0, 20, "Thickness of the border of the box (0 to disable)");
