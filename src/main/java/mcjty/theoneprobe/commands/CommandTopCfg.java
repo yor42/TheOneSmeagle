@@ -51,10 +51,10 @@ public class CommandTopCfg implements ICommand {
         SUBCOMMANDS.put("bottomright", s -> ConfigSetup.setPos(-1, -1, 5, 20));
         SUBCOMMANDS.put("centerleft", s -> ConfigSetup.setPos(5, -1, -1, -1));
         SUBCOMMANDS.put("centerright", s -> ConfigSetup.setPos(-1, -1, 5, -1));
-        SUBCOMMANDS.put("transparent", s -> ConfigSetup.setBoxStyle(0, 0, 0, 0));
+        SUBCOMMANDS.put("transparent", s -> ConfigSetup.setBoxStyle(0, 0, 0));
         SUBCOMMANDS.put("setpos", CommandTopCfg::setPos);
-        SUBCOMMANDS.put("opaque", s -> ConfigSetup.setBoxStyle(2, 0xff999999, 0xff003366, 0));
-        SUBCOMMANDS.put("default", s -> ConfigSetup.setBoxStyle(2, 0xff999999, 0x55006699, 0));
+        SUBCOMMANDS.put("opaque", s -> ConfigSetup.setBoxStyle(2, 0xff999999, 0xff003366));
+        SUBCOMMANDS.put("default", s -> ConfigSetup.setBoxStyle(2, 0xff999999, 0x55006699));
         SUBCOMMANDS.put("liquids", s -> ConfigSetup.setLiquids(true));
         SUBCOMMANDS.put("noliquids", s -> ConfigSetup.setLiquids(false));
         SUBCOMMANDS.put("compactequalstacks", s -> ConfigSetup.setCompactEqualStacks(true));

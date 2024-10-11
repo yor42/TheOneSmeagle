@@ -176,7 +176,7 @@ public class GuiConfig extends GuiScreen {
      * @param preset The {@link Preset} object containing the configuration to apply.
      */
     private void applyPreset(Preset preset) {
-        ConfigSetup.setBoxStyle(preset.getBoxThickness(), preset.getBoxBorderColor(), preset.getBoxFillColor(), preset.getBoxOffset());
+        ConfigSetup.setBoxStyle(preset.getBoxThickness(), preset.getBoxBorderColor(), preset.getBoxFillColor());
 
         for (Map.Entry<TextStyleClass, String> entry : ConfigSetup.defaultTextStyleClasses.entrySet()) {
             ConfigSetup.setTextStyle(entry.getKey(), entry.getValue());

@@ -305,7 +305,7 @@ public class OverlayRenderer {
     public static void renderOverlay(IOverlayStyle style, IProbeInfo probeInfo) {
         GlStateManager.pushMatrix();
 
-        double scale = ConfigSetup.tooltipScale;
+        double scale = ConfigSetup.getScale();
 
         Minecraft minecraft = Minecraft.getMinecraft();
         ScaledResolution scaledresolution = new ScaledResolution(minecraft);
@@ -342,8 +342,7 @@ public class OverlayRenderer {
         cachedEntityInfo = newCachedInfo;
     }
 
-    public static void renderElements(ProbeInfo probeInfo, IOverlayStyle style, double sw, double sh,
-                                       @Nullable IElement extra) {
+    public static void renderElements(ProbeInfo probeInfo, IOverlayStyle style, double sw, double sh, @Nullable IElement extra) {
         if (extra != null) {
             probeInfo.element(extra);
         }
@@ -351,9 +350,6 @@ public class OverlayRenderer {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
 
-//        final ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft());
-//        final int scaledWidth = scaledresolution.getScaledWidth();
-//        final int scaledHeight = scaledresolution.getScaledHeight();
         int scaledWidth = (int) sw;
         int scaledHeight = (int) sh;
 
@@ -369,34 +365,47 @@ public class OverlayRenderer {
             margin = offset + thick + 3;
         }
 
-        int x,y;
+        int x, y;
+
+        // Horizontal positioning (X-axis)
         if (style.getLeftX() != -1) {
-            x = style.getLeftX();
+            // Interpret LeftX as percentage
+            x = (int) (scaledWidth * (style.getLeftX() / 100.0));
         } else if (style.getRightX() != -1) {
-            x = scaledWidth - w - style.getRightX();
+            // Interpret RightX as percentage
+            x = (int) (scaledWidth - w - (scaledWidth * (style.getRightX() / 100.0)));
         } else {
+            // Centered by default
             x = (scaledWidth - w) / 2;
         }
+
+        // Vertical positioning (Y-axis)
         if (style.getTopY() != -1) {
-            y = style.getTopY();
+            // Interpret TopY as percentage
+            y = (int) (scaledHeight * (style.getTopY() / 100.0));
         } else if (style.getBottomY() != -1) {
-            y = scaledHeight - h - style.getBottomY();
+            // Interpret BottomY as percentage
+            y = (int) (scaledHeight - h - (scaledHeight * (style.getBottomY() / 100.0)));
         } else {
+            // Centered by default
             y = (scaledHeight - h) / 2;
         }
 
+        // Draw borders and the box
         if (thick > 0) {
             if (offset > 0) {
-                RenderHelper.drawThickBeveledBox(x, y, x + w-1, y + h-1, thick, style.getBoxColor(), style.getBoxColor(), style.getBoxColor());
+                RenderHelper.drawThickBeveledBox(x, y, x + w - 1, y + h - 1, thick, style.getBoxColor(), style.getBoxColor(), style.getBoxColor());
             }
-            RenderHelper.drawThickBeveledBox(x+offset, y+offset, x + w-1-offset, y + h-1-offset, thick, style.getBorderColor(), style.getBorderColor(), style.getBoxColor());
+            RenderHelper.drawThickBeveledBox(x + offset, y + offset, x + w - 1 - offset, y + h - 1 - offset, thick, style.getBorderColor(), style.getBorderColor(), style.getBoxColor());
         }
 
         if (!Minecraft.getMinecraft().isGamePaused()) {
             RenderHelper.rot += .5f;
         }
 
+        // Render the ProbeInfo elements
         probeInfo.render(x + margin, y + margin);
+
         if (extra != null) {
             probeInfo.removeElement(extra);
         }

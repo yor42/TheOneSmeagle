@@ -71,8 +71,8 @@ public class ConfigSetup {
 
     public static boolean showDebugInfo = true;
 
-    private static int leftX = 5;
-    private static int topY = 5;
+    private static int leftX = 0;
+    private static int topY = 0;
     private static int rightX = -1;
     private static int bottomY = -1;
 
@@ -83,7 +83,6 @@ public class ConfigSetup {
     private static int boxBorderColor = 0xff999999;
     private static int boxFillColor = 0x55006699;
     private static int boxThickness = 2;
-    private static int boxOffset = 0;
 
     public static float tooltipScale = 1.0f;
 
@@ -212,14 +211,13 @@ public class ConfigSetup {
 
 
     public static void setupStyleConfig(Configuration cfg) {
-        leftX = cfg.getInt("boxLeftX", CATEGORY_CLIENT, leftX, -1, 10000, "The distance to the left side of the screen.  (-1 to disable)");
-        rightX = cfg.getInt("boxRightX", CATEGORY_CLIENT, rightX, -1, 10000, "The distance to the right side of the screen.  (-1 to disable)");
-        topY = cfg.getInt("boxTopY", CATEGORY_CLIENT, topY, -1, 10000, "The distance to the top side of the screen. (-1 to disable)");
-        bottomY = cfg.getInt("boxBottomY", CATEGORY_CLIENT, bottomY, -1, 10000, "The distance to the bottom side of the screen.  (-1 to disable)");
+        leftX = cfg.getInt("boxLeftXOffset", CATEGORY_CLIENT, leftX, -1, 10000, "The left offset for the probe");
+        rightX = cfg.getInt("boxRightXOffset", CATEGORY_CLIENT, rightX, -1, 10000, "The right offset for the probe");
+        topY = cfg.getInt("boxTopYOffset", CATEGORY_CLIENT, topY, -1, 10000, "The top offset for the probe");
+        bottomY = cfg.getInt("boxBottomYOffset", CATEGORY_CLIENT, bottomY, -1, 10000, "The bottom offset for the probe");
         boxBorderColor = parseColor(cfg.getString("boxBorderColor", CATEGORY_CLIENT, Integer.toHexString(boxBorderColor), "Color of the border of the box (0 to disable)"));
         boxFillColor = parseColor(cfg.getString("boxFillColor", CATEGORY_CLIENT, Integer.toHexString(boxFillColor), "Color of the box (0 to disable)"));
         boxThickness = cfg.getInt("boxThickness", CATEGORY_CLIENT, boxThickness, 0, 20, "Thickness of the border of the box (0 to disable)");
-        boxOffset = cfg.getInt("boxOffset", CATEGORY_CLIENT, boxOffset, 0, 20, "How much the border should be offset (i.e. to create an 'outer' border)");
         showLiquids = cfg.getBoolean("showLiquids", CATEGORY_CLIENT, showLiquids, "If true show liquid information when the probe hits liquid first");
         isVisible = cfg.getBoolean("isVisible", CATEGORY_CLIENT, isVisible, "Toggle default probe visibility (client can override)");
         holdKeyToMakeVisible = cfg.getBoolean("holdKeyToMakeVisible", CATEGORY_CLIENT, holdKeyToMakeVisible, "If true, the probe hotkey must be held down to show the tooltip");
@@ -307,16 +305,14 @@ public class ConfigSetup {
         return tooltipScale;
     }
 
-    public static void setBoxStyle(int thickness, int borderColor, int fillcolor, int offset) {
+    public static void setBoxStyle(int thickness, int borderColor, int fillcolor) {
         Configuration cfg = mainConfig;
         boxThickness = thickness;
         boxBorderColor = borderColor;
         boxFillColor = fillcolor;
-        boxOffset = offset;
         cfg.get(CATEGORY_CLIENT, "boxThickness", thickness).set(thickness);
         cfg.get(CATEGORY_CLIENT, "boxBorderColor", Integer.toHexString(borderColor)).set(Integer.toHexString(borderColor));
         cfg.get(CATEGORY_CLIENT, "boxFillColor", Integer.toHexString(fillcolor)).set(Integer.toHexString(fillcolor));
-        cfg.get(CATEGORY_CLIENT, "boxOffset", offset).set(offset);
         cfg.save();
         updateDefaultOverlayStyle();
     }
@@ -357,7 +353,6 @@ public class ConfigSetup {
                 .borderThickness(boxThickness)
                 .borderColor(boxBorderColor)
                 .boxColor(boxFillColor)
-                .borderOffset(boxOffset)
                 .location(leftX, rightX, topY, bottomY);
     }
 
