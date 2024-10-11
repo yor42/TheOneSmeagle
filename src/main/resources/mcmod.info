@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["McJty", "smeagle"],
   "credits": "bigenergy, SKZGx, and HJ-zhtw for language translations",
-  "logoFile": "",
+  "logoFile": "assets/theoneprobe/textures/modlogo.png",
   "screenshots": [],
   "dependencies": []
 }
