@@ -1,5 +1,5 @@
 {
   "recipes": {
-    "probe_helmet": "mcjty.theoneprobe.items.ProbeHelmetRecipeFactory"
+    "probe_helmet": "mcjty.theoneprobe.probe.ProbeHelmetRecipeFactory"
   }
 }

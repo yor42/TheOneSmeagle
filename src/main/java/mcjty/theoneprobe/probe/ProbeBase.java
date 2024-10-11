@@ -1,4 +1,4 @@
-package mcjty.theoneprobe.items;
+package mcjty.theoneprobe.probe;
 
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.setup.GuiProxy;

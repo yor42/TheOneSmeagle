@@ -147,15 +147,15 @@ public class GuiConfig extends GuiScreen {
         addButton(x+10, y, "++", () -> ConfigSetup.setScale(ConfigSetup.getScale() - 0.2F));
 
         int margin = 90;
-        hitboxes.add(new HitBox(0, 0, margin, margin, () -> ConfigSetup.setPos(5, 5, -1, -1)));
-        hitboxes.add(new HitBox(margin, 0, WIDTH - margin, margin, () -> ConfigSetup.setPos(-1, 5, -1, -1)));
-        hitboxes.add(new HitBox(WIDTH - margin, 0, WIDTH, margin, () -> ConfigSetup.setPos(-1, 5, 5, -1)));
-        hitboxes.add(new HitBox(0, margin, margin, HEIGHT - margin, () -> ConfigSetup.setPos(5, -1, -1, -1)));
+        hitboxes.add(new HitBox(0, 0, margin, margin, () -> ConfigSetup.setPos(2, 2, -1, -1)));
+        hitboxes.add(new HitBox(margin, 0, WIDTH - margin, margin, () -> ConfigSetup.setPos(-1, 2, -1, -1)));
+        hitboxes.add(new HitBox(WIDTH - margin, 0, WIDTH, margin, () -> ConfigSetup.setPos(-1, 2, 2, -1)));
+        hitboxes.add(new HitBox(0, margin, margin, HEIGHT - margin, () -> ConfigSetup.setPos(2, -1, -1, -1)));
         hitboxes.add(new HitBox(margin, margin, WIDTH - margin, HEIGHT - margin, () -> ConfigSetup.setPos(-1, -1, -1, -1)));
         hitboxes.add(new HitBox(WIDTH - margin, margin, WIDTH, HEIGHT - margin, () -> ConfigSetup.setPos(-1, -1, 5, -1)));
-        hitboxes.add(new HitBox(0, HEIGHT - margin, margin, HEIGHT, () -> ConfigSetup.setPos(5, -1, -1, 5)));
+        hitboxes.add(new HitBox(0, HEIGHT - margin, margin, HEIGHT, () -> ConfigSetup.setPos(2, -1, -1, 5)));
         hitboxes.add(new HitBox(margin, HEIGHT - margin, WIDTH - margin, HEIGHT, () -> ConfigSetup.setPos(-1, -1, -1, 20)));
-        hitboxes.add(new HitBox(WIDTH - margin, HEIGHT - margin, WIDTH, HEIGHT, () -> ConfigSetup.setPos(-1, -1, 5, 5)));
+        hitboxes.add(new HitBox(WIDTH - margin, HEIGHT - margin, WIDTH, HEIGHT, () -> ConfigSetup.setPos(-1, -1, 5, 2)));
     }
 
     @Override

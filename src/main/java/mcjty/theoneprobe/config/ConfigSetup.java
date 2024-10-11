@@ -285,10 +285,10 @@ public class ConfigSetup {
         ConfigSetup.topY = topy;
         ConfigSetup.rightX = rightx;
         ConfigSetup.bottomY = bottomy;
-        cfg.get(CATEGORY_CLIENT, "boxLeftX", leftx).set(leftx);
-        cfg.get(CATEGORY_CLIENT, "boxRightX", rightx).set(rightx);
-        cfg.get(CATEGORY_CLIENT, "boxTopY", topy).set(topy);
-        cfg.get(CATEGORY_CLIENT, "boxBottomY", bottomy).set(bottomy);
+        cfg.get(CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, "boxLeftXOffset", leftx).set(leftx);
+        cfg.get(CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, "boxRightXOffset", rightx).set(rightx);
+        cfg.get(CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, "boxTopYOffset", topy).set(topy);
+        cfg.get(CATEGORY_CLIENT + "." + SUBCATEGORY_OFFSETS, "boxBottomYOffset", bottomy).set(bottomy);
         cfg.save();
         updateDefaultOverlayStyle();
     }

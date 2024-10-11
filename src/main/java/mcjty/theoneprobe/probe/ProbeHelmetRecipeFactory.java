@@ -1,6 +1,7 @@
-package mcjty.theoneprobe.items;
+package mcjty.theoneprobe.probe;
 
 import com.google.gson.JsonObject;
+import mcjty.theoneprobe.items.ModItems;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

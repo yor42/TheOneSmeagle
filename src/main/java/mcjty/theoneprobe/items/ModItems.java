@@ -2,6 +2,7 @@ package mcjty.theoneprobe.items;
 
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.compat.BaubleTools;
+import mcjty.theoneprobe.probe.ProbeArmor;
 import mcjty.theoneprobe.setup.ModSetup;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
