@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -109,6 +110,11 @@ public class DebugProbeInfoEntityProvider implements IProbeInfoEntityProvider {
                 vertical
                         .text(LABEL + "Can Breathe Underwater: " + INFO + canBreatheUnderwater)
                         .text(LABEL + "In Water: " + INFO + entityWaterMob.isInWater());
+            }
+            if (entity instanceof EntityChicken) {
+                EntityChicken entityChicken = (EntityChicken) entity;
+                vertical
+                        .text(LABEL + "Next Egg In: " + INFO + entityChicken.timeUntilNextEgg);
             }
 
             if (entity instanceof EntityPlayer) {

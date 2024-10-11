@@ -6,9 +6,16 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+
+/**
+ * A custom form of {@link ItemArmor} with an overlay for the probe
+ *
+ * @since 10/8/2024
+ * @author strubium
+ */
 public class ProbeArmor extends ItemArmor {
 
-    private String baseTexture;
+    private final String baseTexture;
 
     public ProbeArmor(ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot, String baseTexture) {
         super(material, renderIndex, equipmentSlot);
