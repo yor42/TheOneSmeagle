@@ -42,7 +42,7 @@ import java.util.UUID;
 import static mcjty.theoneprobe.api.TextStyleClass.ERROR;
 public class OverlayRenderer {
 
-    private static Map<Pair<Integer,BlockPos>, Pair<Long, ProbeInfo>> cachedInfo = new HashMap<>();
+    private static Map<Pair<Integer, BlockPos>, Pair<Long, ProbeInfo>> cachedInfo = new HashMap<>();
     private static Map<UUID, Pair<Long, ProbeInfo>> cachedEntityInfo = new HashMap<>();
     private static long lastCleanupTime = 0;
 
@@ -141,71 +141,74 @@ public class OverlayRenderer {
         }
     }
 
+    private static void requestEntityInfo(ProbeMode mode, RayTraceResult mouseOver, Entity entity, EntityPlayerSP player) {
+        PacketHandler.INSTANCE.sendToServer(new PacketGetEntityInfo(player.getEntityWorld().provider.getDimension(), mode, mouseOver, entity));
+    }
+
+    private static boolean handleCacheAndRender(Pair cacheEntry, long time, double sw, double sh, IElement extraElement, UUID entityUUID, BlockPos blockPos, ProbeMode mode, RayTraceResult mouseOver, EntityPlayerSP player, int dimension) {
+        if (cacheEntry == null || cacheEntry.getValue() == null) {
+            // To make sure we don't ask it too many times before the server got a chance to send the answer
+            if (cacheEntry == null || time >= ((Pair<Long, ProbeInfo>) cacheEntry).getLeft()) {
+                if (entityUUID != null) {
+                    cachedEntityInfo.put(entityUUID, Pair.of(time + 500, null));
+                    requestEntityInfo(mode, mouseOver, (Entity) mouseOver.entityHit, player);
+                } else if (blockPos != null) {
+                    cachedInfo.put(Pair.of(dimension, blockPos), Pair.of(time + 500, null));
+                    requestBlockInfo(mode, mouseOver, blockPos, player);
+                }
+            }
+
+            if (lastPair != null && time < lastPairTime + ConfigSetup.timeout) {
+                renderElements(lastPair.getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, extraElement);
+                lastRenderedTime = time;
+            } else if (ConfigSetup.waitingForServerTimeout > 0 && lastRenderedTime != -1 && time > lastRenderedTime + ConfigSetup.waitingForServerTimeout) {
+                ProbeInfo info;
+                if (entityUUID != null) {
+                    info = getWaitingEntityInfo(mode, mouseOver, (Entity) mouseOver.entityHit, player);
+                    registerProbeInfo(entityUUID, info);
+                } else {
+                    info = getWaitingInfo(mode, mouseOver, blockPos, player);
+                    registerProbeInfo(dimension, blockPos, info);
+                }
+                lastPair = Pair.of(time, info);
+                lastPairTime = time;
+                renderElements(info, ConfigSetup.getDefaultOverlayStyle(), sw, sh, extraElement);
+                lastRenderedTime = time;
+            }
+            return false;
+        } else {
+            // Cached info is valid or needs refreshing
+            if (time > ((Pair<Long, ProbeInfo>) cacheEntry).getLeft() + ConfigSetup.timeout) {
+                if (entityUUID != null) {
+                    cachedInfo.put(Pair.of(dimension, blockPos), Pair.of(time + 500, (ProbeInfo) cacheEntry.getRight()));
+                    requestEntityInfo(mode, mouseOver, (Entity) mouseOver.entityHit, player);
+                } else {
+                    cachedInfo.put(Pair.of(dimension, blockPos), Pair.of(time + 500, (ProbeInfo) cacheEntry.getRight()));
+                    requestBlockInfo(mode, mouseOver, blockPos, player);
+                }
+            }
+            renderElements(((Pair<Long, ProbeInfo>) cacheEntry).getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, extraElement);
+            lastRenderedTime = time;
+            lastPair = cacheEntry;
+            lastPairTime = time;
+            return true;
+        }
+    }
+
     private static void renderHUDEntity(ProbeMode mode, RayTraceResult mouseOver, double sw, double sh) {
         Entity entity = mouseOver.entityHit;
         if (entity == null) {
             return;
         }
-//@todo
-//        if (entity instanceof EntityDragonPart) {
-//            EntityDragonPart part = (EntityDragonPart) entity;
-//            if (part.entityDragonObj instanceof Entity) {
-//                entity = (Entity) part.entityDragonObj;
-//            }
-//        }
-
-        String entityString = EntityList.getEntityString(entity);
-        if (entityString == null && !(entity instanceof EntityPlayer)) {
-            // We can't show info for this entity
-            return;
-        }
 
         UUID uuid = entity.getPersistentID();
-
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         long time = System.currentTimeMillis();
 
         Pair<Long, ProbeInfo> cacheEntry = cachedEntityInfo.get(uuid);
-        if (cacheEntry == null || cacheEntry.getValue() == null) {
 
-            // To make sure we don't ask it too many times before the server got a chance to send the answer
-            // we insert a dummy entry here for a while
-            if (cacheEntry == null || time >= cacheEntry.getLeft()) {
-                cachedEntityInfo.put(uuid, Pair.of(time + 500, null));
-                requestEntityInfo(mode, mouseOver, entity, player);
-            }
-
-            if (lastPair != null && time < lastPairTime + ConfigSetup.timeout) {
-                renderElements(lastPair.getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, null);
-                lastRenderedTime = time;
-            } else if (ConfigSetup.waitingForServerTimeout > 0 && lastRenderedTime != -1 && time > lastRenderedTime + ConfigSetup.waitingForServerTimeout) {
-                // It has been a while. Show some info on client that we are
-                // waiting for server information
-                ProbeInfo info = getWaitingEntityInfo(mode, mouseOver, entity, player);
-                registerProbeInfo(uuid, info);
-                lastPair = Pair.of(time, info);
-                lastPairTime = time;
-                renderElements(lastPair.getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, null);
-                lastRenderedTime = time;
-            }
-        } else {
-            if (time > cacheEntry.getLeft() + ConfigSetup.timeout) {
-                // This info is slightly old. Update it
-
-                // To make sure we don't ask it too many times before the server got a chance to send the answer
-                // we increase the time a bit here
-                cachedEntityInfo.put(uuid, Pair.of(time + 500, cacheEntry.getRight()));
-                requestEntityInfo(mode, mouseOver, entity, player);
-            }
-            renderElements(cacheEntry.getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, null);
-            lastRenderedTime = time;
-            lastPair = cacheEntry;
-            lastPairTime = time;
-        }
-    }
-
-    private static void requestEntityInfo(ProbeMode mode, RayTraceResult mouseOver, Entity entity, EntityPlayerSP player) {
-        PacketHandler.INSTANCE.sendToServer(new PacketGetEntityInfo(player.getEntityWorld().provider.getDimension(), mode, mouseOver, entity));
+        // Delegate common cache handling logic
+        handleCacheAndRender(cacheEntry, time, sw, sh, null, uuid, null, mode, mouseOver, player, -1);
     }
 
     private static void renderHUDBlock(ProbeMode mode, RayTraceResult mouseOver, double sw, double sh) {
@@ -213,6 +216,7 @@ public class OverlayRenderer {
         if (blockPos == null) {
             return;
         }
+
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player.getEntityWorld().isAirBlock(blockPos)) {
             return;
@@ -224,60 +228,24 @@ public class OverlayRenderer {
         if (ConfigSetup.showBreakProgress > 0) {
             float damage = Minecraft.getMinecraft().playerController.curBlockDamageMP;
             if (damage > 0) {
-                if (ConfigSetup.showBreakProgress == 2) {
-                    damageElement = new ElementText("" + TextFormatting.RED + I18n.format("theoneprobe.probe.progress_indicator") + " " + (int) (damage * 100) + "%");
-                } else {
-                    damageElement = new ElementProgress((long) (damage * 100), 100, new ProgressStyle()
-                            .prefix(I18n.format("theoneprobe.probe.progress_indicator") + " ")
-                            .suffix("%")
-                            .width(85)
-                            .borderColor(0)
-                            .filledColor(0)
-                            .filledColor(0xff990000)
-                            .alternateFilledColor(0xff550000));
-                }
+                damageElement = ConfigSetup.showBreakProgress == 2
+                        ? new ElementText("" + TextFormatting.RED + I18n.format("theoneprobe.probe.progress_indicator") + " " + (int) (damage * 100) + "%")
+                        : new ElementProgress((long) (damage * 100), 100, new ProgressStyle()
+                        .prefix(I18n.format("theoneprobe.probe.progress_indicator") + " ")
+                        .suffix("%")
+                        .width(85)
+                        .borderColor(0)
+                        .filledColor(0xff990000)
+                        .alternateFilledColor(0xff550000));
             }
         }
 
         int dimension = player.getEntityWorld().provider.getDimension();
         Pair<Integer, BlockPos> key = Pair.of(dimension, blockPos);
         Pair<Long, ProbeInfo> cacheEntry = cachedInfo.get(key);
-        if (cacheEntry == null || cacheEntry.getValue() == null) {
 
-            // To make sure we don't ask it too many times before the server got a chance to send the answer
-            // we insert a dummy entry here for a while
-            if (cacheEntry == null || time >= cacheEntry.getLeft()) {
-                cachedInfo.put(key, Pair.of(time + 500, null));
-                requestBlockInfo(mode, mouseOver, blockPos, player);
-            }
-
-            if (lastPair != null && time < lastPairTime + ConfigSetup.timeout) {
-                renderElements(lastPair.getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, damageElement);
-                lastRenderedTime = time;
-            } else if (ConfigSetup.waitingForServerTimeout > 0 && lastRenderedTime != -1 && time > lastRenderedTime + ConfigSetup.waitingForServerTimeout) {
-                // It has been a while. Show some info on client that we are
-                // waiting for server information
-                ProbeInfo info = getWaitingInfo(mode, mouseOver, blockPos, player);
-                registerProbeInfo(dimension, blockPos, info);
-                lastPair = Pair.of(time, info);
-                lastPairTime = time;
-                renderElements(lastPair.getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, damageElement);
-                lastRenderedTime = time;
-            }
-        } else {
-            if (time > cacheEntry.getLeft() + ConfigSetup.timeout) {
-                // This info is slightly old. Update it
-
-                // To make sure we don't ask it too many times before the server got a chance to send the answer
-                // we increase the time a bit here
-                cachedInfo.put(key, Pair.of(time + 500, cacheEntry.getRight()));
-                requestBlockInfo(mode, mouseOver, blockPos, player);
-            }
-            renderElements(cacheEntry.getRight(), ConfigSetup.getDefaultOverlayStyle(), sw, sh, damageElement);
-            lastRenderedTime = time;
-            lastPair = cacheEntry;
-            lastPairTime = time;
-        }
+        // Delegate common cache handling logic
+        handleCacheAndRender(cacheEntry, time, sw, sh, damageElement, null, blockPos, mode, mouseOver, player, dimension);
     }
 
     // Information for when the server is laggy

@@ -4,7 +4,6 @@ import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import mcjty.theoneprobe.TheOneProbe;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
@@ -32,33 +31,4 @@ public class ProbeGoggles extends Item implements IBauble {
         return BaubleType.HEAD;
     }
 
-    @Override
-    public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-
-    }
-
-    @Override
-    public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-
-    }
-
-    @Override
-    public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-
-    }
-
-    @Override
-    public boolean canEquip(ItemStack itemstack, EntityLivingBase player) {
-        return true;
-    }
-
-    @Override
-    public boolean canUnequip(ItemStack itemstack, EntityLivingBase player) {
-        return true;
-    }
-
-    @Override
-    public boolean willAutoSync(ItemStack itemstack, EntityLivingBase player) {
-        return false;
-    }
 }

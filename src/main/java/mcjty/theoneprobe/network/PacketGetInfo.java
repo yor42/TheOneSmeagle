@@ -148,7 +148,7 @@ public class PacketGetInfo implements IMessage {
                 provider.addProbeInfo(mode, probeInfo, player, world, state, data);
             } catch (Throwable e) {
                 ThrowableIdentity.registerThrowable(e);
-                probeInfo.text(LABEL + "Error: " + ERROR + provider.getID());
+                probeInfo.text(LABEL + "{*theoneprobe.probe.error_indicator*} " + ERROR + provider.getID());
             }
         }
         return probeInfo;
