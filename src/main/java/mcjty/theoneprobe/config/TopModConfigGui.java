@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 /**
  * Config GUI for The One Probe
  *
- * @author McJty
+ * @author McJty, strubium
  */
 @SideOnly(Side.CLIENT)
 public class TopModConfigGui extends GuiConfig {

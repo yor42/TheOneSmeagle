@@ -247,7 +247,7 @@ public class ConfigSetup {
     public static void setTextStyle(TextStyleClass styleClass, String style) {
         Configuration cfg = mainConfig;
         ConfigSetup.textStyleClasses.put(styleClass, style);
-        cfg.get(CATEGORY_CLIENT, "textStyle" + styleClass.getReadableName(), style).set(style);
+        cfg.get(CATEGORY_CLIENT + "." + SUBCATEGORY_TEXT, "textStyle" + styleClass.getReadableName(), style).set(style);
         cfg.save();
     }
 
@@ -303,6 +303,10 @@ public class ConfigSetup {
 
     public static String[] getHarvestLevels(){
         return harvestLevels;
+    }
+
+    public static boolean getHarvestStyleVanilla(){
+        return harvestStyleVanilla;
     }
 
     public static float getScale() {

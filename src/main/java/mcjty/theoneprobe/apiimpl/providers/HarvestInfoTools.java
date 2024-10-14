@@ -103,12 +103,12 @@ public class HarvestInfoTools {
             }
         }
 
-        boolean v = ConfigSetup.harvestStyleVanilla;
-        int offs = v ? 16 : 0;
-        int dim = v ? 13 : 16;
+        boolean harvestStyleVanilla = ConfigSetup.getHarvestStyleVanilla();
+        int offs = harvestStyleVanilla ? 16 : 0;
+        int dim = harvestStyleVanilla ? 13 : 16;
 
         ILayoutStyle alignment = probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER);
-        IIconStyle iconStyle = probeInfo.defaultIconStyle().width(v ? 18 : 20).height(v ? 14 : 16).textureWidth(32).textureHeight(32);
+        IIconStyle iconStyle = probeInfo.defaultIconStyle().width(harvestStyleVanilla ? 18 : 20).height(harvestStyleVanilla ? 14 : 16).textureWidth(32).textureHeight(32);
         IProbeInfo horizontal = probeInfo.horizontal(alignment);
         if (harvestable) {
             horizontal.icon(ICONS, 0, offs, dim, dim, iconStyle)
