@@ -7,6 +7,7 @@ import mcjty.theoneprobe.api.TextStyleClass;
 import mcjty.theoneprobe.apiimpl.ProbeInfo;
 import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.rendering.RenderHelper;
+import mcjty.theoneprobe.setup.ModSetup;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -116,7 +117,7 @@ public class GuiConfig extends GuiScreen {
         mc.getTextureManager().bindTexture(scene);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
 
-        renderProbe(Blocks.LOG);
+        renderProbe(ConfigSetup.getProbeNoteBlock());
 
         int x = WIDTH + guiLeft + 10;
         int y = guiTop + 10;
@@ -204,11 +205,20 @@ public class GuiConfig extends GuiScreen {
     /**
      * Renders the fake TOP overlay in the GUI
      *
-     * @param block The {@link Block} to use for the example
+     * @param blockName The {@link Block} (as a string) to use for the example
      *
      * @author McJty
      */
-    private void renderProbe(Block block) {
+    private void renderProbe(String blockName) {
+        // Try to resolve the block from the string blockName
+        Block block = Block.getBlockFromName(blockName);
+
+        // If the block isn't found, default to air or handle error
+        if (block == Blocks.AIR || block == null) {
+            TheOneProbe.setup.getLogger().error("Block not found: {}! Defaulting to Log", blockName);
+            block = Blocks.LOG;
+        }
+
         String modid = Tools.getModName(block);
         ProbeInfo probeInfo = TheOneProbe.theOneProbeImp.create();
         ItemStack pickBlock = new ItemStack(block);

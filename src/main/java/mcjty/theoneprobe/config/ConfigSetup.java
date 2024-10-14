@@ -11,6 +11,7 @@ import mcjty.theoneprobe.apiimpl.styles.DefaultOverlayStyle;
 import mcjty.theoneprobe.setup.ModSetup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
@@ -98,6 +99,7 @@ public class ConfigSetup {
     public static int tankbarAlternateFilledColor = 0xff000043;
     public static int tankbarBorderColor = 0xff555555;
     public static int probeNoteStackSize = 1;
+    public static String probeNoteBlock = "minecraft:log";
 
     private static String[] harvestLevels = new String[]{
             "theoneprobe.harvestlevel.stone",
@@ -148,6 +150,7 @@ public class ConfigSetup {
     }
 
     public static void init(Configuration cfg) {
+        probeNoteBlock = cfg.getString("probeNoteBlock", CATEGORY_THEONEPROBE, probeNoteBlock,"What block should be used in inside the probe note example");
         showDebugUUID = cfg.getBoolean("showDebugUUID", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showDebugUUID,"Show a entities UUID in the debug probe menu");
         loggingThrowableTimeout = cfg.getInt("loggingThrowableTimeout", CATEGORY_THEONEPROBE, loggingThrowableTimeout, 1, 10000000, "How much time (in ms) to wait before reporting an exception again");
         needsProbe = cfg.getInt("needsProbe", CATEGORY_THEONEPROBE, needsProbe, 0, 3, "Is the probe needed to show the tooltip? 0 = no, 1 = yes, 2 = yes and clients cannot override, 3 = probe needed for extended info only");
@@ -311,6 +314,9 @@ public class ConfigSetup {
 
     public static float getScale() {
         return tooltipScale;
+    }
+    public static String getProbeNoteBlock() {
+        return probeNoteBlock;
     }
 
     public static void setBoxStyle(int thickness, int borderColor, int fillcolor) {
