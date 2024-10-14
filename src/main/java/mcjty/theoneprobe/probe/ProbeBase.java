@@ -14,6 +14,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * The base of a probe, to simplify probe creation
+ *
+ * @since 10/11/2024
+ * @author strubium
+ */
 public abstract class ProbeBase extends Item {
 
     public ProbeBase(String registryName, String unlocalizedName) {
