@@ -33,7 +33,7 @@ public class ElementProgressRender {
                 } else {
                     for (int xx = x + 1; xx <= x + dx + 1; xx++) {
                         int color = (xx & 1) == 0 ? style.getFilledColor() : style.getAlternatefilledColor();
-                        RenderHelper.drawVerticalLine(xx, y + 1, y + h - 1, color);
+                        RenderHelper.drawLine(xx, y + 1, xx, y + h - 1, color, 1, "VERTICAL");
                     }
                 }
             }

@@ -9,7 +9,9 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.item.Item;
@@ -72,41 +74,6 @@ public class RenderHelper {
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
     }
 
-    public static boolean renderObject(Minecraft mc, int x, int y, Object itm, boolean highlight) {
-        if (itm instanceof Entity) {
-            renderEntity((Entity) itm, x, y, 10);
-            return true;
-        }
-        RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
-        return renderObject(mc, itemRender, x, y, itm, highlight, 200);
-    }
-
-    public static boolean renderObject(Minecraft mc, RenderItem itemRender, int x, int y, Object itm, boolean highlight, float lvl) {
-        itemRender.zLevel = lvl;
-
-        if (itm == null) {
-            return renderItemStack(mc, itemRender, null, x, y, "", highlight);
-        }
-        if (itm instanceof Item) {
-            return renderItemStack(mc, itemRender, new ItemStack((Item) itm, 1), x, y, "", highlight);
-        }
-        if (itm instanceof Block) {
-            return renderItemStack(mc, itemRender, new ItemStack((Block) itm, 1), x, y, "", highlight);
-        }
-        if (itm instanceof ItemStack) {
-            return renderItemStackWithCount(mc, itemRender, (ItemStack) itm, x, y, highlight);
-        }
-        if (itm instanceof TextureAtlasSprite) {
-            return renderIcon(mc, itemRender, (TextureAtlasSprite) itm, x, y, highlight);
-        }
-        return renderItemStack(mc, itemRender, ItemStack.EMPTY, x, y, "", highlight);
-    }
-
-    public static boolean renderIcon(Minecraft mc, RenderItem itemRender, TextureAtlasSprite itm, int xo, int yo, boolean highlight) {
-        //itemRender.renderIcon(xo, yo, itm, 16, 16); //TODO: Make
-        return true;
-    }
-
     /**
      * Renders an item stack at the specified coordinates, including its count if greater than one.
      *
@@ -135,7 +102,7 @@ public class RenderHelper {
         boolean rc = false;
         if (highlight) {
             GlStateManager.disableLighting();
-            drawVerticalGradientRect(x, y, x + 16, y + 16, 0x80ffffff, 0xffffffff);
+            drawGradientRect(x, y, x + 16, y + 16, 0x80ffffff, 0xffffffff, true);
         }
         if (!itm.isEmpty() && itm.getItem() != null) {
             rc = true;
@@ -159,33 +126,53 @@ public class RenderHelper {
     }
 
     /**
-     * Draws a rectangle with a vertical gradient between the specified colors.
-     * x2 and y2 are not included.
+     * Draws a rectangle with a gradient between the specified colors.
+     *
+     * @param x1      The x-coordinate of the first corner of the rectangle.
+     * @param y1      The y-coordinate of the first corner of the rectangle.
+     * @param x2      The x-coordinate of the opposite corner of the rectangle (not included).
+     * @param y2      The y-coordinate of the opposite corner of the rectangle (not included).
+     * @param color1  The starting color of the gradient (ARGB format).
+     * @param color2  The ending color of the gradient (ARGB format).
+     * @param isVertical A boolean indicating whether the gradient should be vertical (true) or horizontal (false).
      */
-    public static void drawVerticalGradientRect(int x1, int y1, int x2, int y2, int color1, int color2) {
-//        this.zLevel = 300.0F;
+    public static void drawGradientRect(int x1, int y1, int x2, int y2, int color1, int color2, boolean isVertical) {
         float zLevel = 0.0f;
 
-        float f = (color1 >> 24 & 255) / 255.0F;
-        float f1 = (color1 >> 16 & 255) / 255.0F;
-        float f2 = (color1 >> 8 & 255) / 255.0F;
-        float f3 = (color1 & 255) / 255.0F;
-        float f4 = (color2 >> 24 & 255) / 255.0F;
-        float f5 = (color2 >> 16 & 255) / 255.0F;
-        float f6 = (color2 >> 8 & 255) / 255.0F;
-        float f7 = (color2 & 255) / 255.0F;
+        // Extract color components
+        float a1 = (color1 >> 24 & 255) / 255.0F;
+        float r1 = (color1 >> 16 & 255) / 255.0F;
+        float g1 = (color1 >> 8 & 255) / 255.0F;
+        float b1 = (color1 & 255) / 255.0F;
+        float a2 = (color2 >> 24 & 255) / 255.0F;
+        float r2 = (color2 >> 16 & 255) / 255.0F;
+        float g2 = (color2 >> 8 & 255) / 255.0F;
+        float b2 = (color2 & 255) / 255.0F;
+
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GlStateManager.shadeModel(GL11.GL_SMOOTH);
+
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-        buffer.pos(x2, y1, zLevel).color(f1, f2, f3, f).endVertex();
-        buffer.pos(x1, y1, zLevel).color(f1, f2, f3, f).endVertex();
-        buffer.pos(x1, y2, zLevel).color(f5, f6, f7, f4).endVertex();
-        buffer.pos(x2, y2, zLevel).color(f5, f6, f7, f4).endVertex();
+
+        if (isVertical) {
+            // Vertical gradient
+            buffer.pos(x2, y1, zLevel).color(r1, g1, b1, a1).endVertex();
+            buffer.pos(x1, y1, zLevel).color(r1, g1, b1, a1).endVertex();
+            buffer.pos(x1, y2, zLevel).color(r2, g2, b2, a2).endVertex();
+            buffer.pos(x2, y2, zLevel).color(r2, g2, b2, a2).endVertex();
+        } else {
+            // Horizontal gradient
+            buffer.pos(x1, y1, zLevel).color(r1, g1, b1, a1).endVertex();
+            buffer.pos(x1, y2, zLevel).color(r1, g1, b1, a1).endVertex();
+            buffer.pos(x2, y2, zLevel).color(r2, g2, b2, a2).endVertex();
+            buffer.pos(x2, y1, zLevel).color(r2, g2, b2, a2).endVertex();
+        }
+
         tessellator.draw();
 
         GlStateManager.shadeModel(GL11.GL_FLAT);
@@ -195,115 +182,66 @@ public class RenderHelper {
     }
 
     /**
-     * Draws a rectangle with a horizontal gradient between the specified colors.
-     * x2 and y2 are not included.
-     */
-    public static void drawHorizontalGradientRect(int x1, int y1, int x2, int y2, int color1, int color2) {
-//        this.zLevel = 300.0F;
-        float zLevel = 0.0f;
-
-        float f = (color1 >> 24 & 255) / 255.0F;
-        float f1 = (color1 >> 16 & 255) / 255.0F;
-        float f2 = (color1 >> 8 & 255) / 255.0F;
-        float f3 = (color1 & 255) / 255.0F;
-        float f4 = (color2 >> 24 & 255) / 255.0F;
-        float f5 = (color2 >> 16 & 255) / 255.0F;
-        float f6 = (color2 >> 8 & 255) / 255.0F;
-        float f7 = (color2 & 255) / 255.0F;
-        GlStateManager.disableTexture2D();
-        GlStateManager.enableBlend();
-        GlStateManager.disableAlpha();
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GlStateManager.shadeModel(GL11.GL_SMOOTH);
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder buffer = tessellator.getBuffer();
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-        buffer.pos(x1, y1, zLevel).color(f1, f2, f3, f).endVertex();
-        buffer.pos(x1, y2, zLevel).color(f1, f2, f3, f).endVertex();
-        buffer.pos(x2, y2, zLevel).color(f5, f6, f7, f4).endVertex();
-        buffer.pos(x2, y1, zLevel).color(f5, f6, f7, f4).endVertex();
-        tessellator.draw();
-        GlStateManager.shadeModel(GL11.GL_FLAT);
-        GlStateManager.disableBlend();
-        GlStateManager.enableAlpha();
-        GlStateManager.enableTexture2D();
-    }
-
-    /**
-     * Draws a horizontal line on the screen.
+     * Draws a line on the screen in the specified orientation.
      *
      * @param x1 The starting x-coordinate of the line.
-     * @param y1 The y-coordinate of the line.
-     * @param x2 The ending x-coordinate of the line.
+     * @param y1 The starting y-coordinate of the line (y-coordinate for horizontal, x-coordinate for vertical).
+     * @param x2 The ending x-coordinate of the line (not used for vertical lines).
+     * @param y2 The ending y-coordinate of the line (not used for horizontal lines).
      * @param color The color of the line.
+     * @param thickness The thickness of the line.
+     * @param orientation The orientation of the line (horizontal or vertical).
      */
-    public static void drawHorizontalLine(int x1, int y1, int x2, int color) {
-        Gui.drawRect(x1, y1, x2, y1 + 1, color);
+    public static void drawLine(int x1, int y1, int x2, int y2, int color, int thickness, String orientation) {
+        switch (orientation.toLowerCase()) {
+            case "vertical":
+                Gui.drawRect(x1, y1, x1 + thickness, y2, color); // Fixed x1 and used y2 for ending
+                break; // Added break statement
+
+            case "horizontal":
+                Gui.drawRect(x1, y1, x2, y1 + thickness, color); // Fixed y1 and used y2 for ending
+                break; // Added break statement
+
+            default:
+                throw new IllegalArgumentException("Invalid orientation: " + orientation);
+        }
     }
 
     /**
-     * Draws a vertical line on the screen.
+     * Draws a small triangle at specified coordinates.
      *
-     * @param x1 The x-coordinate of the line.
-     * @param y1 The starting y-coordinate of the line.
-     * @param y2 The ending y-coordinate of the line.
-     * @param color The color of the line.
-     */
-    public static void drawVerticalLine(int x1, int y1, int y2, int color) {
-        Gui.drawRect(x1, y1, x1 + 1, y2, color);
-    }
-
-    /**
-     * Draws a small triangle pointing to the left. The specified coordinates represent the left point of the triangle.
-     *
-     * @param x The x-coordinate of the left point of the triangle.
-     * @param y The y-coordinate of the left point of the triangle.
+     * @param x The x-coordinate of the reference point of the triangle.
+     * @param y The y-coordinate of the reference point of the triangle.
      * @param color The color of the triangle.
+     * @param direction The direction of the triangle: "left", "right", "up", "down".
      */
-    public static void drawLeftTriangle(int x, int y, int color) {
-        drawVerticalLine(x, y, y, color);
-        drawVerticalLine(x + 1, y - 1, y + 1, color);
-        drawVerticalLine(x + 2, y - 2, y + 2, color);
+    public static void drawTriangle(int x, int y, int color, String direction) {
+        switch (direction.toLowerCase()) {
+            case "left":
+                drawLine(x, y, x + 2, y, color, 1, "vertical"); // Base of the triangle
+                drawLine(x + 1, y - 1, x + 1, y + 1, color, 1, "vertical"); // Left side
+                drawLine(x + 2, y - 2, x + 2, y + 2, color, 1, "vertical"); // Right side
+                break;
+            case "right":
+                drawLine(x, y, x - 2, y, color, 1, "vertical"); // Base of the triangle
+                drawLine(x - 1, y - 1, x - 1, y + 1, color, 1, "vertical"); // Right side
+                drawLine(x - 2, y - 2, x - 2, y + 2, color, 1,"vertical"); // Left side
+                break;
+            case "up":
+                drawLine(x, y, x, y + 2, color, 1, "horizontal"); // Base of the triangle
+                drawLine(x - 1, y + 1, x + 1, y + 1, color, 1, "horizontal"); // Left side
+                drawLine(x - 2, y + 2, x + 2, y + 2, color, 1, "horizontal"); // Right side
+                break;
+            case "down":
+                drawLine(x, y, x, y - 2, color, 1, "horizontal"); // Base of the triangle
+                drawLine(x - 1, y - 1, x + 1, y - 1, color, 1, "horizontal"); // Left side
+                drawLine(x - 2, y - 2, x + 2, y - 2, color, 1, "horizontal"); // Right side
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid direction: " + direction);
+        }
     }
 
-    /**
-     * Draws a small triangle pointing to the right. The specified coordinates represent the right point of the triangle.
-     *
-     * @param x The x-coordinate of the right point of the triangle.
-     * @param y The y-coordinate of the right point of the triangle.
-     * @param color The color of the triangle.
-     */
-    public static void drawRightTriangle(int x, int y, int color) {
-        drawVerticalLine(x, y, y, color);
-        drawVerticalLine(x - 1, y - 1, y + 1, color);
-        drawVerticalLine(x - 2, y - 2, y + 2, color);
-    }
-
-    /**
-     * Draws a small triangle pointing upwards. The specified coordinates represent the top point of the triangle.
-     *
-     * @param x The x-coordinate of the top point of the triangle.
-     * @param y The y-coordinate of the top point of the triangle.
-     * @param color The color of the triangle.
-     */
-    public static void drawUpTriangle(int x, int y, int color) {
-        drawHorizontalLine(x, y, x, color);
-        drawHorizontalLine(x - 1, y + 1, x + 1, color);
-        drawHorizontalLine(x - 2, y + 2, x + 2, color);
-    }
-
-    /**
-     * Draws a small triangle pointing downwards. The specified coordinates represent the bottom point of the triangle.
-     *
-     * @param x The x-coordinate of the bottom point of the triangle.
-     * @param y The y-coordinate of the bottom point of the triangle.
-     * @param color The color of the triangle.
-     */
-    public static void drawDownTriangle(int x, int y, int color) {
-        drawHorizontalLine(x, y, x, color);
-        drawHorizontalLine(x - 1, y - 1, x + 1, color);
-        drawHorizontalLine(x - 2, y - 2, x + 2, color);
-    }
 
     /**
      * Draw a button box. x2 and y2 are not included.
@@ -316,11 +254,11 @@ public class RenderHelper {
      * Draw a button box. x2 and y2 are not included.
      */
     public static void drawFlatButtonBoxGradient(int x1, int y1, int x2, int y2, int bright, int average1, int average2, int dark) {
-        drawVerticalGradientRect(x1 + 1, y1 + 1, x2 - 1, y2 - 1, average2, average1);
-        drawHorizontalLine(x1, y1, x2 - 1, bright);
-        drawVerticalLine(x1, y1, y2 - 1, bright);
-        drawVerticalLine(x2 - 1, y1, y2 - 1, dark);
-        drawHorizontalLine(x1, y2 - 1, x2, dark);
+        drawGradientRect(x1 + 1, y1 + 1, x2 - 1, y2 - 1, average2, average1, true);
+        drawLine(x1, y1, x2 - 1, y1, bright, 1, "horizontal"); // Top edge
+        drawLine(x1, y1, x1, y2 - 1, bright, 1, "vertical"); // Left edge
+        drawLine(x2 - 1, y1, x2 - 1, y2 - 1, dark, 1, "vertical"); // Right edge
+        drawLine(x1, y2 - 1, x2, y2 - 1, dark, 1, "horizontal"); // Bottom edge
     }
 
     /**
@@ -330,10 +268,10 @@ public class RenderHelper {
         if (fillcolor != -1) {
             Gui.drawRect(x1 + 1, y1 + 1, x2 - 1, y2 - 1, fillcolor);
         }
-        drawHorizontalLine(x1, y1, x2 - 1, topleftcolor);
-        drawVerticalLine(x1, y1, y2 - 1, topleftcolor);
-        drawVerticalLine(x2 - 1, y1, y2 - 1, botrightcolor);
-        drawHorizontalLine(x1, y2 - 1, x2, botrightcolor);
+        drawLine(x1, y1, x2 - 1, y1, topleftcolor, 1, "horizontal"); // Top edge
+        drawLine(x1, y1, x1, y2 - 1, topleftcolor, 1, "vertical"); // Left edge
+        drawLine(x2 - 1, y1, x2 - 1, y2 - 1, botrightcolor, 1, "vertical"); // Right edge
+        drawLine(x1, y2 - 1, x2, y2 - 1, botrightcolor, 1, "horizontal"); // Bottom edge
     }
 
     /**
@@ -707,10 +645,10 @@ public class RenderHelper {
      */
     private static void draw(BufferBuilder renderer, int x, int y, int width, int height, int red, int green, int blue, int alpha) {
         renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-        renderer.pos((x + 0), (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((x + 0), (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos((x), (y), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos((x), (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
         renderer.pos((x + width), (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((x + width), (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos((x + width), (y), 0.0D).color(red, green, blue, alpha).endVertex();
         Tessellator.getInstance().draw();
     }
 

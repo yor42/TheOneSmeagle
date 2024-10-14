@@ -31,10 +31,10 @@ public abstract class AbstractElementPanel implements IElement, IProbeInfo {
         if (borderColor != null) {
             int w = getWidth();
             int h = getHeight();
-            RenderHelper.drawHorizontalLine(x, y, x + w - 1, borderColor);
-            RenderHelper.drawHorizontalLine(x, y + h - 1, x + w - 1, borderColor);
-            RenderHelper.drawVerticalLine(x, y, y + h - 1, borderColor);
-            RenderHelper.drawVerticalLine(x + w - 1, y, y + h, borderColor);
+            RenderHelper.drawLine(x, y, x + w - 1, y, borderColor, 1, "horizontal");
+            RenderHelper.drawLine(x, y + h - 1, x + w - 1, y + h - 1, borderColor, 1, "horizontal");
+            RenderHelper.drawLine(x, y, x, y + h - 1, borderColor, 1, "VERTICAL");
+            RenderHelper.drawLine(x + w - 1, y, x + w - 1, y + h - 1, borderColor, 1, "VERTICAL");
         }
     }
 
