@@ -11,7 +11,6 @@ import mcjty.theoneprobe.apiimpl.styles.DefaultOverlayStyle;
 import mcjty.theoneprobe.setup.ModSetup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Level;
@@ -73,6 +72,8 @@ public class ConfigSetup {
     public static boolean isVisible = true;
     public static boolean compactEqualStacks = true;
     public static boolean holdKeyToMakeVisible = false;
+    public static boolean showProbeConfigGUI = true;
+    public static boolean showProbeNoteGUI = true;
 
     public static boolean showDebugInfo = true;
 
@@ -150,6 +151,8 @@ public class ConfigSetup {
     }
 
     public static void init(Configuration cfg) {
+        showProbeNoteGUI = cfg.getBoolean("showProbeNoteGUI", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showProbeNoteGUI,"Show probes note screen on right-click");
+        showProbeConfigGUI = cfg.getBoolean("showProbeConfigGUI", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showProbeConfigGUI,"Show probes config screen on right-click");
         probeNoteBlock = cfg.getString("probeNoteBlock", CATEGORY_THEONEPROBE, probeNoteBlock,"What block should be used in inside the probe note example");
         showDebugUUID = cfg.getBoolean("showDebugUUID", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showDebugUUID,"Show a entities UUID in the debug probe menu");
         loggingThrowableTimeout = cfg.getInt("loggingThrowableTimeout", CATEGORY_THEONEPROBE, loggingThrowableTimeout, 1, 10000000, "How much time (in ms) to wait before reporting an exception again");
@@ -317,6 +320,12 @@ public class ConfigSetup {
     }
     public static String getProbeNoteBlock() {
         return probeNoteBlock;
+    }
+    public static boolean getShowProbeConfigGUI(){
+        return showProbeConfigGUI;
+    }
+    public static boolean getShowProbeNoteGUI(){
+        return showProbeNoteGUI;
     }
 
     public static void setBoxStyle(int thickness, int borderColor, int fillcolor) {
