@@ -7,7 +7,6 @@ import mcjty.theoneprobe.setup.GuiProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -18,15 +17,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
 @SideOnly(Side.CLIENT)
-public class CommandTopCfg implements ICommand {
-
+public class CommandTopCfg extends CommandBase {
 
     @Override
     public String getName() {
@@ -79,11 +76,6 @@ public class CommandTopCfg implements ICommand {
     }
 
     @Override
-    public List<String> getAliases() {
-        return Collections.emptyList();
-    }
-
-    @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) {
         if (args.length < 1) {
             ClientForgeEventHandlers.ignoreNextGuiClose = true;
@@ -105,19 +97,8 @@ public class CommandTopCfg implements ICommand {
         return true;
     }
 
-
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
         return CommandBase.getListOfStringsMatchingLastWord(args, SUBCOMMANDS.keySet());
-    }
-
-    @Override
-    public boolean isUsernameIndex(String[] args, int index) {
-        return false;
-    }
-
-    @Override
-    public int compareTo(ICommand o) {
-        return getName().compareTo(o.getName());
     }
 }
