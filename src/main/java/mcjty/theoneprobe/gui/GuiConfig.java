@@ -46,112 +46,6 @@ public class GuiConfig extends GuiScreen {
 
     private List<HitBox> hitboxes = Collections.emptyList();
 
-    static {
-        // "Default" preset
-        new PresetBuilder()
-                .setName("Default")
-                .setBoxBorderColor(0xff999999)
-                .setBoxFillColor(0x55006699)
-                .setBoxThickness(2)
-                .setBoxOffset(0)
-                .build();
-
-        // "WAILA" preset
-        new PresetBuilder()
-                .setName("WAILA")
-                .setBoxBorderColor(0xff4503d0)
-                .setBoxFillColor(0xff000000)
-                .setBoxThickness(1)
-                .setBoxOffset(1)
-                .build();
-
-        // "Jade" preset
-        new PresetBuilder()
-                .setName("Jade")
-                .setBoxBorderColor(0xff323331)
-                .setBoxFillColor(0xff20261a)
-                .setBoxThickness(1)
-                .setBoxOffset(1)
-                .build();
-
-        // "Fully transparent" preset
-        new PresetBuilder()
-                .setName("Fully transparent")
-                .setBoxBorderColor(0x00000000)
-                .setBoxFillColor(0x00000000)
-                .setBoxThickness(0)
-                .setBoxOffset(0)
-                .build();
-
-        // "Black & White" preset
-        new PresetBuilder()
-                .setName("Black & White")
-                .setBoxBorderColor(0xffffffff)
-                .setBoxFillColor(0xff000000)
-                .setBoxThickness(2)
-                .setBoxOffset(0)
-                .addTextStyleClass(TextStyleClass.MODNAME, "white,italic")
-                .addTextStyleClass(TextStyleClass.NAME, "white,bold")
-                .addTextStyleClass(TextStyleClass.INFO, "white")
-                .addTextStyleClass(TextStyleClass.INFOIMP, "white,bold")
-                .addTextStyleClass(TextStyleClass.WARNING, "white")
-                .addTextStyleClass(TextStyleClass.ERROR, "white,underline")
-                .addTextStyleClass(TextStyleClass.OBSOLETE, "white,strikethrough")
-                .addTextStyleClass(TextStyleClass.LABEL, "white,bold")
-                .addTextStyleClass(TextStyleClass.OK, "white")
-                .addTextStyleClass(TextStyleClass.PROGRESS, "white")
-                .build();
-
-        // "Crazy!" preset
-        new PresetBuilder()
-                .setName("Crazy!")
-                .setBoxBorderColor(0xff00ff00)
-                .setBoxFillColor(0x55ff0000)
-                .setBoxThickness(2)
-                .setBoxOffset(0)
-                .addTextStyleClass(TextStyleClass.MODNAME, "green")
-                .addTextStyleClass(TextStyleClass.NAME, "yellow,bold")
-                .addTextStyleClass(TextStyleClass.INFO, "cyan,bold")
-                .addTextStyleClass(TextStyleClass.INFOIMP, "magenta,bold")
-                .addTextStyleClass(TextStyleClass.WARNING, "orange,bold")
-                .addTextStyleClass(TextStyleClass.ERROR, "red,bold")
-                .addTextStyleClass(TextStyleClass.OBSOLETE, "gray,bold")
-                .addTextStyleClass(TextStyleClass.LABEL, "blue,bold")
-                .addTextStyleClass(TextStyleClass.OK, "green,bold")
-                .addTextStyleClass(TextStyleClass.PROGRESS, "white,bold")
-                .build();
-
-        // "Soft Pastels" preset
-        new PresetBuilder()
-                .setName("Soft Pastels")
-                .setBoxBorderColor(0xffe0bbff)
-                .setBoxFillColor(0x00000000)
-                .setBoxThickness(1)
-                .setBoxOffset(1)
-                .addTextStyleClass(TextStyleClass.MODNAME, "pink,bold,italic")
-                .build();
-
-        // "Ocean Blue" preset
-        new PresetBuilder()
-                .setName("Ocean Blue")
-                .setBoxBorderColor(0xff003366)
-                .setBoxFillColor(0x556699cc)
-                .setBoxThickness(2)
-                .setBoxOffset(0)
-                .addTextStyleClass(TextStyleClass.MODNAME, "cyan")
-                .addTextStyleClass(TextStyleClass.NAME, "light_blue,bold")
-                .addTextStyleClass(TextStyleClass.INFO, "white")
-                .addTextStyleClass(TextStyleClass.INFOIMP, "white,bold")
-                .addTextStyleClass(TextStyleClass.WARNING, "yellow,bold")
-                .addTextStyleClass(TextStyleClass.ERROR, "red,bold")
-                .addTextStyleClass(TextStyleClass.OBSOLETE, "gray,bold,italic")
-                .addTextStyleClass(TextStyleClass.LABEL, "aqua,bold")
-                .addTextStyleClass(TextStyleClass.OK, "green,bold")
-                .addTextStyleClass(TextStyleClass.PROGRESS, "white,bold")
-                .build();
-    }
-
-
     @Override
     public boolean doesGuiPauseGame() {
         return false;
@@ -163,6 +57,7 @@ public class GuiConfig extends GuiScreen {
         guiLeft = (this.width - WIDTH - WIDTH) / 2;
         guiTop = (this.height - HEIGHT) / 2;
     }
+
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -232,12 +127,10 @@ public class GuiConfig extends GuiScreen {
      * @param preset The {@link Preset} object containing the configuration to apply.
      */
     private void applyPreset(Preset preset) {
+        // Apply box styles from preset
         ConfigSetup.setBoxStyle(preset.getBoxThickness(), preset.getBoxBorderColor(), preset.getBoxFillColor());
 
-        for (Map.Entry<TextStyleClass, String> entry : ConfigSetup.defaultTextStyleClasses.entrySet()) {
-            ConfigSetup.setTextStyle(entry.getKey(), entry.getValue());
-        }
-
+        // Apply text styles from the preset
         for (Map.Entry<TextStyleClass, String> entry : preset.getTextStyleClasses().entrySet()) {
             ConfigSetup.setTextStyle(entry.getKey(), entry.getValue());
         }

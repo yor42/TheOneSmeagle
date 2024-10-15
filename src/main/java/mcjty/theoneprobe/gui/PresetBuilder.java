@@ -9,9 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
 /**
- * The Builder to make a new prest, basically for GroovyScript compact
+ * The Builder to make a new preset, basically for GroovyScript compact
  *
  * @since 10/15/2024
  * @author strubium
@@ -23,8 +22,8 @@ public class PresetBuilder {
     private String name;
     private int boxBorderColor = 0xFFFFFF; // default value
     private int boxFillColor = 0x000000;   // default value
-    private int boxThickness = 1;          // default value
-    private int boxOffset = 0;             // default value
+    private int boxThickness = 1;           // default value
+    private int boxOffset = 0;              // default value
     private final Map<TextStyleClass, String> textStyleClasses = new HashMap<>();
 
     public PresetBuilder() {}
@@ -87,9 +86,104 @@ public class PresetBuilder {
     }
 
     /**
+     * Get the name of the preset.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Get the box border color of the preset.
+     */
+    public int getBoxBorderColor() {
+        return boxBorderColor;
+    }
+
+    /**
+     * Get the box fill color of the preset.
+     */
+    public int getBoxFillColor() {
+        return boxFillColor;
+    }
+
+    /**
+     * Get the box thickness of the preset.
+     */
+    public int getBoxThickness() {
+        return boxThickness;
+    }
+
+    /**
+     * Get the box offset of the preset.
+     */
+    public int getBoxOffset() {
+        return boxOffset;
+    }
+
+    /**
+     * Get the text style classes of the preset.
+     */
+    public Map<TextStyleClass, String> getTextStyleClasses() {
+        return new HashMap<>(textStyleClasses); // Return a copy to avoid external modifications
+    }
+
+    /**
      * Get the ArrayList containing all the presets
      */
     public static List<Preset> getPresets() {
         return presets;
+    }
+
+    /**
+     * Clear the ArrayList containing all the presets
+     */
+    public static void clearPresets() {
+        presets.clear();
+    }
+
+    public static void addDefaultPresets() {
+        presets.add(new Preset("Default", 0xff999999, 0x55006699, 2, 0));
+        presets.add(new Preset("WAILA", 0xff4503d0, 0xff000000, 1, 1));
+        presets.add(new Preset("Jade", 0xff323331, 0xff20261a, 1, 1));
+        presets.add(new Preset("Fully transparent", 0x00000000, 0x00000000, 0, 0));
+        presets.add(new Preset("Black & White", 0xffffffff, 0xff000000, 2, 0,
+                Pair.of(TextStyleClass.MODNAME, "white,italic"),
+                Pair.of(TextStyleClass.NAME, "white,bold"),
+                Pair.of(TextStyleClass.INFO, "white"),
+                Pair.of(TextStyleClass.INFOIMP, "white,bold"),
+                Pair.of(TextStyleClass.WARNING, "white"),
+                Pair.of(TextStyleClass.ERROR, "white,underline"),
+                Pair.of(TextStyleClass.OBSOLETE, "white,strikethrough"),
+                Pair.of(TextStyleClass.LABEL, "white,bold"),
+                Pair.of(TextStyleClass.OK, "white"),
+                Pair.of(TextStyleClass.PROGRESS, "white")
+        ));
+        presets.add(new Preset("Crazy!", 0xff00ff00, 0x55ff0000, 2, 0,
+                Pair.of(TextStyleClass.MODNAME, "green"),
+                Pair.of(TextStyleClass.NAME, "yellow,bold"),
+                Pair.of(TextStyleClass.INFO, "cyan,bold"),
+                Pair.of(TextStyleClass.INFOIMP, "magenta,bold"),
+                Pair.of(TextStyleClass.WARNING, "orange,bold"),
+                Pair.of(TextStyleClass.ERROR, "red,bold"),
+                Pair.of(TextStyleClass.OBSOLETE, "gray,bold"),
+                Pair.of(TextStyleClass.LABEL, "blue,bold"),
+                Pair.of(TextStyleClass.OK, "green,bold"),
+                Pair.of(TextStyleClass.PROGRESS, "white,bold")
+        ));
+        presets.add(new Preset("Soft Pastels", 0xffe0bbff, 0x00000000, 1, 1,
+                Pair.of(TextStyleClass.MODNAME, "pink,bold,italic")
+        ));
+        presets.add(new Preset("Ocean Blue", 0xff003366, 0x556699cc, 2, 0,
+                Pair.of(TextStyleClass.MODNAME, "cyan"),
+                Pair.of(TextStyleClass.NAME, "light_blue,bold"),
+                Pair.of(TextStyleClass.INFO, "white"),
+                Pair.of(TextStyleClass.INFOIMP, "white,bold"),
+                Pair.of(TextStyleClass.WARNING, "yellow,bold"),
+                Pair.of(TextStyleClass.ERROR, "red,bold"),
+                Pair.of(TextStyleClass.OBSOLETE, "gray,bold,italic"),
+                Pair.of(TextStyleClass.LABEL, "aqua,bold"),
+                Pair.of(TextStyleClass.OK, "green,bold"),
+                Pair.of(TextStyleClass.PROGRESS, "white,bold")
+        ));
     }
 }

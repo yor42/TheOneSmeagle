@@ -2,6 +2,7 @@ package mcjty.theoneprobe;
 
 import mcjty.theoneprobe.api.ITheOneProbe;
 import mcjty.theoneprobe.apiimpl.TheOneProbeImp;
+import mcjty.theoneprobe.gui.PresetBuilder;
 import mcjty.theoneprobe.items.ModItems;
 import mcjty.theoneprobe.setup.IProxy;
 import mcjty.theoneprobe.setup.ModSetup;
@@ -45,6 +46,7 @@ public class TheOneProbe {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e) {
+        PresetBuilder.addDefaultPresets();
         setup.preInit(e);
         proxy.preInit(e);
     }
