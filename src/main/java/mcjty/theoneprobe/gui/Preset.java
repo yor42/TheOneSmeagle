@@ -4,6 +4,8 @@ import mcjty.theoneprobe.api.TextStyleClass;
 import org.apache.commons.lang3.tuple.Pair;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,5 +68,24 @@ class Preset {
      */
     public Map<TextStyleClass, String> getTextStyleClasses() {
         return textStyleClasses;
+    }
+
+    /**
+     * Gets all TextStyleClass keys in the preset.
+     *
+     * @return A collection of TextStyleClass keys.
+     */
+    public Collection<TextStyleClass> getTextStyleClassKeys() {
+        return textStyleClasses.keySet();
+    }
+
+    /**
+     * Gets the style name associated with a given TextStyleClass.
+     *
+     * @param styleClass The TextStyleClass to look up.
+     * @return The associated style name, or null if not found.
+     */
+    public String getStyleName(TextStyleClass styleClass) {
+        return textStyleClasses.get(styleClass);
     }
 }

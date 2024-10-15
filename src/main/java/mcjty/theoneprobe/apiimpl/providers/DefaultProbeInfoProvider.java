@@ -349,14 +349,14 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
                     probeInfo.horizontal()
                             .item(pickBlock)
                             .vertical()
-                            .text(blockDisplayName + "...")
+                            .text(NAME + blockDisplayName + "...")
                             .text(MODNAME + modid);
                 }
                 else{
                     probeInfo.horizontal()
                             .item(pickBlock)
                             .vertical()
-                            .text(blockDisplayName)
+                            .text(NAME + blockDisplayName)
                             .text(MODNAME + modid);
                 }
 

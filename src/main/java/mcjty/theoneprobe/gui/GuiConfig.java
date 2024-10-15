@@ -3,7 +3,6 @@ package mcjty.theoneprobe.gui;
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.Tools;
 import mcjty.theoneprobe.api.IOverlayStyle;
-import mcjty.theoneprobe.api.TextStyleClass;
 import mcjty.theoneprobe.apiimpl.ProbeInfo;
 import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.rendering.RenderHelper;
@@ -23,7 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static mcjty.theoneprobe.api.TextStyleClass.*;
 
@@ -121,25 +119,11 @@ public class GuiConfig extends GuiScreen {
         }
     }
 
-    /**
-     * Applies the given preset configuration.
-     *
-     * @param preset The {@link Preset} object containing the configuration to apply.
-     */
-    private void applyPreset(Preset preset) {
-        // Apply box styles from preset
-        ConfigSetup.setBoxStyle(preset.getBoxThickness(), preset.getBoxBorderColor(), preset.getBoxFillColor());
-
-        // Apply text styles from the preset
-        for (Map.Entry<TextStyleClass, String> entry : preset.getTextStyleClasses().entrySet()) {
-            ConfigSetup.setTextStyle(entry.getKey(), entry.getValue());
-        }
-    }
 
     private int addPreset(int x, int y, Preset preset) {
         drawRect(x + 10, y - 1, x + 10 + WIDTH - 50, y + 10, 0xff000000);
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 20, y, preset.getName());
-        hitboxes.add(new HitBox(x + 10 - guiLeft, y - 1 - guiTop, x + 10 + WIDTH - 50 - guiLeft, y + 10 - guiTop, () -> applyPreset(preset)));
+        hitboxes.add(new HitBox(x + 10 - guiLeft, y - 1 - guiTop, x + 10 + WIDTH - 50 - guiLeft, y + 10 - guiTop, () -> PresetBuilder.applyPreset(preset)));
         y += 14;
         return y;
     }

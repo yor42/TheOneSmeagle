@@ -1,6 +1,7 @@
 package mcjty.theoneprobe.gui;
 
 import mcjty.theoneprobe.api.TextStyleClass;
+import mcjty.theoneprobe.config.ConfigSetup;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
@@ -84,6 +85,22 @@ public class PresetBuilder {
 
         return preset;
     }
+
+    /**
+     * Applies the given preset configuration.
+     *
+     * @param preset The {@link Preset} object containing the configuration to apply.
+     */
+    public static void applyPreset(Preset preset) {
+        // Apply text styles from the preset
+        for (Map.Entry<TextStyleClass, String> entry : preset.getTextStyleClasses().entrySet()) {
+            ConfigSetup.setTextStyle(entry.getKey(), entry.getValue());
+        }
+
+        // Apply box styles from preset
+        ConfigSetup.setBoxStyle(preset.getBoxThickness(), preset.getBoxBorderColor(), preset.getBoxFillColor());
+    }
+
 
     /**
      * Get the name of the preset.
