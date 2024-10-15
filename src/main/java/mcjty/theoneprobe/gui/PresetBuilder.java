@@ -150,7 +150,7 @@ public class PresetBuilder {
     /**
      * Clear the ArrayList containing all the presets
      */
-    public static void clearPresets() {
+    public static void removeAll() {
         presets.clear();
     }
 
