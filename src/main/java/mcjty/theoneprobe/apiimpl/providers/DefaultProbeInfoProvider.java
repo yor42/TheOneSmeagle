@@ -342,11 +342,24 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
 
         if (!Objects.requireNonNull(pickBlock).isEmpty()) {
             if (Tools.show(mode, config.getShowModName())) {
-                probeInfo.horizontal()
-                        .item(pickBlock)
-                        .vertical()
-                        .itemLabel(pickBlock)
-                        .text(MODNAME + modid);
+
+                String blockDisplayName = pickBlock.getDisplayName();
+                if (blockDisplayName.length() > ConfigSetup.getProbeMaxChars()) {
+                    blockDisplayName = blockDisplayName.substring(0, ConfigSetup.getProbeMaxChars()); // Truncate to 4 characters
+                    probeInfo.horizontal()
+                            .item(pickBlock)
+                            .vertical()
+                            .text(blockDisplayName + "...")
+                            .text(MODNAME + modid);
+                }
+                else{
+                    probeInfo.horizontal()
+                            .item(pickBlock)
+                            .vertical()
+                            .text(blockDisplayName)
+                            .text(MODNAME + modid);
+                }
+
             } else {
                 probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
                         .item(pickBlock)

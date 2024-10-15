@@ -67,6 +67,7 @@ public class ConfigSetup {
     private static Set<ResourceLocation> dontSendNBTSet = null;
 
     public static float probeDistance = 6;
+    public static int probeMaxChars = 13;
     public static boolean showLiquids = false;
     public static boolean showDebugUUID = false;
     public static boolean isVisible = true;
@@ -151,6 +152,7 @@ public class ConfigSetup {
     }
 
     public static void init(Configuration cfg) {
+        probeMaxChars = cfg.getInt("probeMaxChars", CATEGORY_THEONEPROBE, probeMaxChars, 1,100, "The max length of a itemstack's display name to show");
         showProbeNoteGUI = cfg.getBoolean("showProbeNoteGUI", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showProbeNoteGUI,"Show probes note screen on right-click");
         showProbeConfigGUI = cfg.getBoolean("showProbeConfigGUI", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showProbeConfigGUI,"Show probes config screen on right-click");
         probeNoteBlock = cfg.getString("probeNoteBlock", CATEGORY_THEONEPROBE, probeNoteBlock,"What block should be used in inside the probe note example");
@@ -326,6 +328,9 @@ public class ConfigSetup {
     }
     public static boolean getShowProbeNoteGUI(){
         return showProbeNoteGUI;
+    }
+    public static int getProbeMaxChars(){
+        return probeMaxChars;
     }
 
     public static void setBoxStyle(int thickness, int borderColor, int fillcolor) {
