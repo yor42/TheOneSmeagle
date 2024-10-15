@@ -63,7 +63,7 @@ public class ModSetup {
         modConfigDir = e.getModConfigurationDirectory();
         ConfigSetup.init();
 
-        PacketHandler.registerMessages("theoneprobe");
+        PacketHandler.registerMessages(TheOneProbe.MODID);
 
         setupModCompat();
     }
