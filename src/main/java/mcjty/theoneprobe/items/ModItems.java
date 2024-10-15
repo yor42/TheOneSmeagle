@@ -32,7 +32,7 @@ public class ModItems {
     public static Item probeGoggles;
     public static ProbeNote probeNote;
 
-    public static final String PROBETAG = "theoneprobe";
+    public static final String PROBETAG = TheOneProbe.MODID;
 
     public static void init() {
         int stepCount;
