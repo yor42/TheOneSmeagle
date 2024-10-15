@@ -2,33 +2,22 @@ package mcjty.theoneprobe.items;
 
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.config.ConfigSetup;
+import mcjty.theoneprobe.probe.ProbeBase;
 import mcjty.theoneprobe.setup.GuiProxy;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class ProbeNote extends Item {
+public class ProbeNote extends ProbeBase {
 
     public ProbeNote() {
-        setUnlocalizedName(TheOneProbe.MODID + ".probenote");
-        setRegistryName("probenote");
-        setCreativeTab(TheOneProbe.tabProbe);
+        super("probenote", "probenote");
         setMaxStackSize(ConfigSetup.probeNoteStackSize);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
 
     @Override
