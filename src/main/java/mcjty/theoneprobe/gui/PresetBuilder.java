@@ -154,6 +154,16 @@ public class PresetBuilder {
         presets.clear();
     }
 
+    /**
+     * Remove a preset by name.
+     *
+     * @param name The name of the preset to remove.
+     * @return true if the preset was removed, false if not found.
+     */
+    public static boolean removePresetByName(String name) {
+        return presets.removeIf(preset -> preset.getName().equals(name));
+    }
+
     public static void addDefaultPresets() {
         presets.add(new Preset("Default", 0xff999999, 0x55006699, 2, 0));
         presets.add(new Preset("WAILA", 0xff4503d0, 0xff000000, 1, 1));
