@@ -7,7 +7,6 @@ import mcjty.theoneprobe.api.TextStyleClass;
 import mcjty.theoneprobe.apiimpl.ProbeInfo;
 import mcjty.theoneprobe.config.ConfigSetup;
 import mcjty.theoneprobe.rendering.RenderHelper;
-import mcjty.theoneprobe.setup.ModSetup;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -19,7 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,54 +44,111 @@ public class GuiConfig extends GuiScreen {
     private static final ResourceLocation background = new ResourceLocation(TheOneProbe.MODID, "textures/gui/config.png");
     private static final ResourceLocation scene = new ResourceLocation(TheOneProbe.MODID, "textures/gui/scene.png");
 
-    private static final List<Preset> presets = new ArrayList<>();
-
     private List<HitBox> hitboxes = Collections.emptyList();
 
     static {
-        presets.add(new Preset("Default", 0xff999999, 0x55006699, 2, 0));
-        presets.add(new Preset("WAILA", 0xff4503d0, 0xff000000, 1, 1));
-        presets.add(new Preset("Jade", 0xff323331, 0xff20261a, 1, 1));
-        presets.add(new Preset("Fully transparent", 0x00000000, 0x00000000, 0, 0));
-        presets.add(new Preset("Black & White", 0xffffffff, 0xff000000, 2, 0,
-                Pair.of(MODNAME, "white,italic"),
-                Pair.of(NAME, "white,bold"),
-                Pair.of(INFO, "white"),
-                Pair.of(INFOIMP, "white,bold"),
-                Pair.of(WARNING, "white"),
-                Pair.of(ERROR, "white,underline"),
-                Pair.of(OBSOLETE, "white,strikethrough"),
-                Pair.of(LABEL, "white,bold"),
-                Pair.of(OK, "white"),
-                Pair.of(PROGRESS, "white")
-        ));
-        presets.add(new Preset("Crazy!", 0xff00ff00, 0x55ff0000, 2, 0,
-                Pair.of(MODNAME, "green"),
-                Pair.of(NAME, "yellow,bold"),
-                Pair.of(INFO, "cyan,bold"),
-                Pair.of(INFOIMP, "magenta,bold"),
-                Pair.of(WARNING, "orange,bold"),
-                Pair.of(ERROR, "red,bold"),
-                Pair.of(OBSOLETE, "gray,bold"),
-                Pair.of(LABEL, "blue,bold"),
-                Pair.of(OK, "green,bold"),
-                Pair.of(PROGRESS, "white,bold")
-        ));
-        presets.add(new Preset("Soft Pastels", 0xffe0bbff, 0x00000000, 1, 1,
-                Pair.of(MODNAME, "pink,bold,italic")
-        ));
-        presets.add(new Preset("Ocean Blue", 0xff003366, 0x556699cc, 2, 0,
-                Pair.of(MODNAME, "cyan"),
-                Pair.of(NAME, "light_blue,bold"),
-                Pair.of(INFO, "white"),
-                Pair.of(INFOIMP, "white,bold"),
-                Pair.of(WARNING, "yellow,bold"),
-                Pair.of(ERROR, "red,bold"),
-                Pair.of(OBSOLETE, "gray,bold,italic"),
-                Pair.of(LABEL, "aqua,bold"),
-                Pair.of(OK, "green,bold"),
-                Pair.of(PROGRESS, "white,bold")
-        ));
+        // "Default" preset
+        new PresetBuilder()
+                .setName("Default")
+                .setBoxBorderColor(0xff999999)
+                .setBoxFillColor(0x55006699)
+                .setBoxThickness(2)
+                .setBoxOffset(0)
+                .build();
+
+        // "WAILA" preset
+        new PresetBuilder()
+                .setName("WAILA")
+                .setBoxBorderColor(0xff4503d0)
+                .setBoxFillColor(0xff000000)
+                .setBoxThickness(1)
+                .setBoxOffset(1)
+                .build();
+
+        // "Jade" preset
+        new PresetBuilder()
+                .setName("Jade")
+                .setBoxBorderColor(0xff323331)
+                .setBoxFillColor(0xff20261a)
+                .setBoxThickness(1)
+                .setBoxOffset(1)
+                .build();
+
+        // "Fully transparent" preset
+        new PresetBuilder()
+                .setName("Fully transparent")
+                .setBoxBorderColor(0x00000000)
+                .setBoxFillColor(0x00000000)
+                .setBoxThickness(0)
+                .setBoxOffset(0)
+                .build();
+
+        // "Black & White" preset
+        new PresetBuilder()
+                .setName("Black & White")
+                .setBoxBorderColor(0xffffffff)
+                .setBoxFillColor(0xff000000)
+                .setBoxThickness(2)
+                .setBoxOffset(0)
+                .addTextStyleClass(TextStyleClass.MODNAME, "white,italic")
+                .addTextStyleClass(TextStyleClass.NAME, "white,bold")
+                .addTextStyleClass(TextStyleClass.INFO, "white")
+                .addTextStyleClass(TextStyleClass.INFOIMP, "white,bold")
+                .addTextStyleClass(TextStyleClass.WARNING, "white")
+                .addTextStyleClass(TextStyleClass.ERROR, "white,underline")
+                .addTextStyleClass(TextStyleClass.OBSOLETE, "white,strikethrough")
+                .addTextStyleClass(TextStyleClass.LABEL, "white,bold")
+                .addTextStyleClass(TextStyleClass.OK, "white")
+                .addTextStyleClass(TextStyleClass.PROGRESS, "white")
+                .build();
+
+        // "Crazy!" preset
+        new PresetBuilder()
+                .setName("Crazy!")
+                .setBoxBorderColor(0xff00ff00)
+                .setBoxFillColor(0x55ff0000)
+                .setBoxThickness(2)
+                .setBoxOffset(0)
+                .addTextStyleClass(TextStyleClass.MODNAME, "green")
+                .addTextStyleClass(TextStyleClass.NAME, "yellow,bold")
+                .addTextStyleClass(TextStyleClass.INFO, "cyan,bold")
+                .addTextStyleClass(TextStyleClass.INFOIMP, "magenta,bold")
+                .addTextStyleClass(TextStyleClass.WARNING, "orange,bold")
+                .addTextStyleClass(TextStyleClass.ERROR, "red,bold")
+                .addTextStyleClass(TextStyleClass.OBSOLETE, "gray,bold")
+                .addTextStyleClass(TextStyleClass.LABEL, "blue,bold")
+                .addTextStyleClass(TextStyleClass.OK, "green,bold")
+                .addTextStyleClass(TextStyleClass.PROGRESS, "white,bold")
+                .build();
+
+        // "Soft Pastels" preset
+        new PresetBuilder()
+                .setName("Soft Pastels")
+                .setBoxBorderColor(0xffe0bbff)
+                .setBoxFillColor(0x00000000)
+                .setBoxThickness(1)
+                .setBoxOffset(1)
+                .addTextStyleClass(TextStyleClass.MODNAME, "pink,bold,italic")
+                .build();
+
+        // "Ocean Blue" preset
+        new PresetBuilder()
+                .setName("Ocean Blue")
+                .setBoxBorderColor(0xff003366)
+                .setBoxFillColor(0x556699cc)
+                .setBoxThickness(2)
+                .setBoxOffset(0)
+                .addTextStyleClass(TextStyleClass.MODNAME, "cyan")
+                .addTextStyleClass(TextStyleClass.NAME, "light_blue,bold")
+                .addTextStyleClass(TextStyleClass.INFO, "white")
+                .addTextStyleClass(TextStyleClass.INFOIMP, "white,bold")
+                .addTextStyleClass(TextStyleClass.WARNING, "yellow,bold")
+                .addTextStyleClass(TextStyleClass.ERROR, "red,bold")
+                .addTextStyleClass(TextStyleClass.OBSOLETE, "gray,bold,italic")
+                .addTextStyleClass(TextStyleClass.LABEL, "aqua,bold")
+                .addTextStyleClass(TextStyleClass.OK, "green,bold")
+                .addTextStyleClass(TextStyleClass.PROGRESS, "white,bold")
+                .build();
     }
 
 
@@ -131,7 +186,7 @@ public class GuiConfig extends GuiScreen {
         hitboxes = new ArrayList<>();
         RenderHelper.renderText(Minecraft.getMinecraft(), x, y, TextFormatting.GOLD + I18n.format("gui.theoneprobe.gui_note_config.title.presets"));
         y += 12;
-        for (Preset preset : presets) {
+        for (Preset preset : PresetBuilder.getPresets()) {
             y = addPreset(x, y, preset);
         }
 

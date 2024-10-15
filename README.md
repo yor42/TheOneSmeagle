@@ -15,15 +15,18 @@ This mod also has a flexible API that other mods can use to add more information
 * Features from TOP Extras
     * View the Enchantment power of Bookshelf's
     * View Inventory of Minecarts and Mules
-    * View how long the fuse of lit TNT has left
+    * View the time left until TNT explodes
     * View how much water is in a Cauldron
     * View what disk is playing in a Jukebox
     * View a paintings name
 * Fixes from TopFix
-   * Show fluid local name when playing on a server
+   * Show the fluid's local name when playing on a server
    * Fixed chests not displaying the local names of GregTechCE items when playing on a server               
 * Updated gradle version from 2.7 to 4.5
 * View more information with the Creative Probe
+* A greatly improved config screen
+  * View all config categories, not just the client ones.
+  * Sub categories to help group things
 * New theme presets
    * Jade: based on the [mod](https://www.curseforge.com/minecraft/mc-mods/jade) of the same name
    * Crazy: please don't use this, your eyeballs will thank me.
@@ -33,6 +36,10 @@ This mod also has a flexible API that other mods can use to add more information
    * showDebugUUID (Default: False) If you want to see the UUID of an NPC with the Creative Probe
    * probeNoteStackSize (Default: 1) Change the stack size of the One Probe Read Me.
    * harvestLevels (Default: Stone-Vibranium) Add/remove lang keys for the harvest levels if say you have a block with a > 8  harvest level
+   * probeMaxChars (Default: 13) The max length to display in the probe, will be truncated 
+   * showProbeConfigGUI (Default: true) If players can open the Config UI in the Probe/Note
+   * showProbeNoteGUI (Default: true) If players can open the Note UI in the Note
+   * probeNoteBlock (Default: minecraft:log) The block to use as the example in the probe config UI
 * Replaced the hardcoded strings with language-translatable versions
    * Updated ru_ru.lang (By: @bigenergy)
    * New en_ud.lang
@@ -40,9 +47,14 @@ This mod also has a flexible API that other mods can use to add more information
    * New zh_tw.lang (By: @HJ-zhtw)
    * New de_de.lang (By: @TheScienceDemon)
    * New zh_cn.lang and zh_tw.lang (Fully translated as of Dev-14)
+   * New ja_jp.lang (Fully translated as of Dev-15)
 * Javadoc's for the random methods lying around to make working easier
 * Many Progress Bars for slower computers (Almost impossible to see if you have a mid-teir computer)
-* Improved config GUI 
+* API improvements
+  * New ProbeBase to simplify probe creation of new probes 
+  * New PresetBuilder to simplify making new presets (And for GroovyScript compact!)
+* Fixed isProbeInHand() checking for the wrong NBT tag 
+* Fixed isProbeHelmet() always checking NBT even though we know that our helmets are probe helmets
 
 Note: Languages other than English may not be fully translated, feel free to submit a PR
 

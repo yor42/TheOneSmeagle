@@ -132,6 +132,9 @@ public class ModItems {
         if (stack.isEmpty()) {
             return false;
         }
+        if (stack.getItem() == diamondHelmetProbe || stack.getItem() == goldHelmetProbe || stack.getItem() == ironHelmetProbe) {
+            return true;
+        }
         if (stack.getTagCompound() == null) {
             return false;
         }
