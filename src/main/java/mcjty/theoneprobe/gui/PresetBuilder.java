@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * The Builder to make a new preset, basically for GroovyScript compact
@@ -16,6 +15,7 @@ import java.util.stream.Collectors;
  * @since 10/15/2024
  * @author strubium
  */
+@SuppressWarnings("unused") //This is suppressed because most of these are added for groovy compact
 public class PresetBuilder {
 
     private static final List<Preset> presets = new ArrayList<>();
@@ -64,12 +64,6 @@ public class PresetBuilder {
 
     // Build method to construct the Preset object and add it to the static presets list
     public Preset build() {
-        // Convert the Map entries to an array of Pair<TextStyleClass, String>
-        List<Pair<TextStyleClass, String>> stylePairs = textStyleClasses.entrySet()
-                .stream()
-                .map(entry -> Pair.of(entry.getKey(), entry.getValue()))
-                .collect(Collectors.toList());
-
         // Create the new Preset object
         Preset preset = new Preset(
                 name,
@@ -77,7 +71,9 @@ public class PresetBuilder {
                 boxFillColor,
                 boxThickness,
                 boxOffset,
-                stylePairs.toArray(new Pair[0])
+                textStyleClasses.entrySet()
+                        .stream()
+                        .map(entry -> Pair.of(entry.getKey(), entry.getValue())).toArray(Pair[]::new)
         );
 
         // Add the newly created preset to the static list
