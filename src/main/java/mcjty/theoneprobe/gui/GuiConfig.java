@@ -121,7 +121,7 @@ public class GuiConfig extends GuiScreen {
 
 
     private int addPreset(int x, int y, Preset preset) {
-        drawRect(x + 10, y - 1, x + 10 + WIDTH - 50, y + 10, 0xff000000);
+        drawRect(x + 10, y - 1, x + 10 + WIDTH - 50, y + 10, ConfigSetup.getProbeButtonColor());
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 20, y, preset.getName());
         hitboxes.add(new HitBox(x + 10 - guiLeft, y - 1 - guiTop, x + 10 + WIDTH - 50 - guiLeft, y + 10 - guiTop, () -> PresetBuilder.applyPreset(preset)));
         y += 14;
@@ -129,7 +129,7 @@ public class GuiConfig extends GuiScreen {
     }
 
     private void addButton(int x, int y, String text, Runnable runnable) {
-        drawRect(x, y, x + 30 -1, y + 14 -1, 0xff000000);
+        drawRect(x, y, x + 30 -1, y + 14 -1, ConfigSetup.getProbeButtonColor());
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 3, text);
         hitboxes.add(new HitBox(x - guiLeft, y - guiTop, x + 30 -1 - guiLeft, y + 14 -1 - guiTop, runnable));
     }

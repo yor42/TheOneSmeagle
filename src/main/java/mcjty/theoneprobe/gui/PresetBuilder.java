@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static mcjty.theoneprobe.config.ConfigSetup.defaultTextStyleClasses;
+
 /**
  * The Builder to make a new preset, basically for GroovyScript compact
  *
@@ -86,15 +88,29 @@ public class PresetBuilder {
      * Applies the given preset configuration.
      *
      * @param preset The {@link Preset} object containing the configuration to apply.
+     * @throws IllegalArgumentException if the preset is null.
      */
     public static void applyPreset(Preset preset) {
+        if (preset == null) {
+            throw new IllegalArgumentException("Preset cannot be null.");
+        }
+
+        // Apply text styles from the preset
+        for (Map.Entry<TextStyleClass, String> entry : ConfigSetup.defaultTextStyleClasses.entrySet()) {
+            ConfigSetup.setTextStyle(entry.getKey(), entry.getValue());
+        }
+
+        // Apply box styles from the preset
+        ConfigSetup.setBoxStyle(
+                preset.getBoxThickness(),
+                preset.getBoxBorderColor(),
+                preset.getBoxFillColor()
+        );
+
         // Apply text styles from the preset
         for (Map.Entry<TextStyleClass, String> entry : preset.getTextStyleClasses().entrySet()) {
             ConfigSetup.setTextStyle(entry.getKey(), entry.getValue());
         }
-
-        // Apply box styles from preset
-        ConfigSetup.setBoxStyle(preset.getBoxThickness(), preset.getBoxBorderColor(), preset.getBoxFillColor());
     }
 
 

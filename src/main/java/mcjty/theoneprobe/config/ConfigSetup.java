@@ -87,6 +87,7 @@ public class ConfigSetup {
     public static boolean harvestStyleVanilla = true;
 
     public static int chestContentsBorderColor = 0xff006699;
+    public static int probeButtonColor = 0xff000000;
     private static int boxBorderColor = 0xff999999;
     private static int boxFillColor = 0x55006699;
     private static int boxThickness = 2;
@@ -235,6 +236,7 @@ public class ConfigSetup {
         holdKeyToMakeVisible = cfg.getBoolean("holdKeyToMakeVisible", CATEGORY_CLIENT, holdKeyToMakeVisible, "If true, the probe hotkey must be held down to show the tooltip");
         compactEqualStacks = cfg.getBoolean("compactEqualStacks", CATEGORY_CLIENT, compactEqualStacks, "If true equal stacks will be compacted in the chest contents overlay");
         tooltipScale = cfg.getFloat("tooltipScale", CATEGORY_CLIENT, tooltipScale, 0.4f, 5.0f, "The scale of the tooltips, 1 is default, 2 is smaller");
+        probeButtonColor = parseColor(cfg.getString("probeButtonColor", CATEGORY_CLIENT, Integer.toHexString(probeButtonColor), "Color of the buttons in the probe note (0 to disable)"));
         chestContentsBorderColor = parseColor(cfg.getString("chestContentsBorderColor", CATEGORY_CLIENT, Integer.toHexString(chestContentsBorderColor), "Color of the border of the chest contents box (0 to disable)"));
         showBreakProgress = cfg.getInt("showBreakProgress", CATEGORY_CLIENT, showBreakProgress, 0, 2, "0 means don't show break progress, 1 is show as bar, 2 is show as text");
         harvestStyleVanilla = cfg.getBoolean("harvestStyleVanilla", CATEGORY_CLIENT, harvestStyleVanilla, "true means shows harvestability with vanilla style icons");
@@ -331,6 +333,9 @@ public class ConfigSetup {
     }
     public static int getProbeMaxChars(){
         return probeMaxChars;
+    }
+    public static int getProbeButtonColor(){
+        return probeButtonColor;
     }
 
     public static void setBoxStyle(int thickness, int borderColor, int fillcolor) {

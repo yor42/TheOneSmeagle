@@ -129,15 +129,15 @@ public class GuiNote extends GuiScreen {
 
         hitY = y + guiTop;
         hitX = x + guiLeft;
-        drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, 0xff000000);
+        drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, ConfigSetup.getProbeButtonColor());
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, I18n.format("gui.theoneprobe.gui_note.button.needed"));
         x += BUTTON_MARGIN;
 
-        drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, 0xff000000);
+        drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, ConfigSetup.getProbeButtonColor());
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, I18n.format("gui.theoneprobe.gui_note.button.not_needed"));
         x += BUTTON_MARGIN;
 
-        drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, 0xff000000);
+        drawRect(x, y, x + BUTTON_WIDTH, y + BUTTON_HEIGHT, ConfigSetup.getProbeButtonColor());
         RenderHelper.renderText(Minecraft.getMinecraft(), x + 3, y + 4, I18n.format("gui.theoneprobe.gui_note.button.extended"));
 
         y += BUTTON_HEIGHT - 4;
