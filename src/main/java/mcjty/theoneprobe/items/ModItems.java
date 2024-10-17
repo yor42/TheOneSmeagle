@@ -114,8 +114,15 @@ public class ModItems {
             BaubleTools.initProbeModel(probeGoggles);
         }
     }
+
     @SideOnly(Side.CLIENT)
+    @Deprecated //Old Hook, dont use
     public static boolean isProbeInHand(ItemStack stack) {
+        return isProbe(stack);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static boolean isProbe(ItemStack stack) {
         if (stack.isEmpty()) {
             return false;
         }
@@ -127,6 +134,7 @@ public class ModItems {
         }
         return stack.getTagCompound().hasKey(PROBETAG);
     }
+
     @SideOnly(Side.CLIENT)
     private static boolean isProbeHelmet(ItemStack stack) {
         if (stack.isEmpty()) {
@@ -140,10 +148,11 @@ public class ModItems {
         }
         return stack.getTagCompound().hasKey(PROBETAG);
     }
+
     @SideOnly(Side.CLIENT)
     public static boolean hasAProbeSomewhere(EntityPlayer player) {
-        return isProbeInHand(player.getHeldItem(EnumHand.MAIN_HAND))
-                || isProbeInHand(player.getHeldItem(EnumHand.OFF_HAND))
+        return isProbe(player.getHeldItem(EnumHand.MAIN_HAND))
+                || isProbe(player.getHeldItem(EnumHand.OFF_HAND))
                 || isProbeHelmet(player.inventory.getStackInSlot(36 + 3))
                 || (ModSetup.baubles && BaubleTools.hasProbeGoggle(player));
     }

@@ -55,7 +55,7 @@ public class HarvestInfoTools {
     }
 
     static void showCanBeHarvested(IProbeInfo probeInfo, World world, BlockPos pos, Block block, EntityPlayer player) {
-        if (ModItems.isProbeInHand(player.getHeldItemMainhand())) {
+        if (ModItems.isProbe(player.getHeldItemMainhand())) {
             return; // No need to show harvestability for the probe itself
         }
 

@@ -293,7 +293,7 @@ public class OverlayRenderer {
             // Protection for some invalid items.
             pickBlock = ItemStack.EMPTY;
         }
-        if (pickBlock != null && (!pickBlock.isEmpty()) && ConfigSetup.getDontSendNBTSet().contains(pickBlock.getItem().getRegistryName())) {
+        if (!pickBlock.isEmpty() && ConfigSetup.getDontSendNBTSet().contains(pickBlock.getItem().getRegistryName())) {
             pickBlock = pickBlock.copy();
             pickBlock.setTagCompound(null);
         }
