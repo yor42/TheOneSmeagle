@@ -3,6 +3,12 @@ package mcjty.theoneprobe.gui;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+
+/**
+ * HitBox's are basically buttons. They can be used by a GUI for actions when pressed
+ *
+ * @author McJty
+ */
 @SideOnly(Side.CLIENT)
 class HitBox {
     private final int x1;
