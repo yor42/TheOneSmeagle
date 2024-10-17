@@ -44,6 +44,18 @@ public class GuiConfig extends GuiScreen {
 
     private List<HitBox> hitboxes = Collections.emptyList();
 
+    int[][] hitboxPositionMap = {
+            {2, 2, -1, -1},   // Top-left
+            {-1, 2, -1, -1},  // Top-center
+            {-1, 2, 2, -1},   // Top-right
+            {2, -1, -1, -1},  // Middle-left
+            {-1, -1, -1, -1}, // Center
+            {-1, -1, 5, -1},  // Middle-right
+            {2, -1, -1, 5},   // Bottom-left
+            {-1, -1, -1, 15}, // Bottom-center
+            {-1, -1, 5, 2}    // Bottom-right
+    };
+
     @Override
     public boolean doesGuiPauseGame() {
         return false;
@@ -96,15 +108,24 @@ public class GuiConfig extends GuiScreen {
         addButton(x+10, y, "++", () -> ConfigSetup.setScale(ConfigSetup.getScale() - 0.2F));
 
         int margin = 90;
-        hitboxes.add(new HitBox(0, 0, margin, margin, () -> ConfigSetup.setPos(2, 2, -1, -1)));
-        hitboxes.add(new HitBox(margin, 0, WIDTH - margin, margin, () -> ConfigSetup.setPos(-1, 2, -1, -1)));
-        hitboxes.add(new HitBox(WIDTH - margin, 0, WIDTH, margin, () -> ConfigSetup.setPos(-1, 2, 2, -1)));
-        hitboxes.add(new HitBox(0, margin, margin, HEIGHT - margin, () -> ConfigSetup.setPos(2, -1, -1, -1)));
-        hitboxes.add(new HitBox(margin, margin, WIDTH - margin, HEIGHT - margin, () -> ConfigSetup.setPos(-1, -1, -1, -1)));
-        hitboxes.add(new HitBox(WIDTH - margin, margin, WIDTH, HEIGHT - margin, () -> ConfigSetup.setPos(-1, -1, 5, -1)));
-        hitboxes.add(new HitBox(0, HEIGHT - margin, margin, HEIGHT, () -> ConfigSetup.setPos(2, -1, -1, 5)));
-        hitboxes.add(new HitBox(margin, HEIGHT - margin, WIDTH - margin, HEIGHT, () -> ConfigSetup.setPos(-1, -1, -1, 20)));
-        hitboxes.add(new HitBox(WIDTH - margin, HEIGHT - margin, WIDTH, HEIGHT, () -> ConfigSetup.setPos(-1, -1, 5, 2)));
+
+        int[] xPositions = {0, margin, WIDTH - margin};
+        int[] yPositions = {0, margin, HEIGHT - margin};
+
+        // Create the hitboxes
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int x1 = xPositions[i];
+                int y1 = yPositions[j];
+                int x2 = (i == 2) ? WIDTH : xPositions[i + 1];
+                int y2 = (j == 2) ? HEIGHT : yPositions[j + 1];
+
+                int[] pos = hitboxPositionMap[j * 3 + i];
+
+                hitboxes.add(new HitBox(x1, y1, x2, y2, () -> ConfigSetup.setPos(pos[0], pos[1], pos[2], pos[3])));
+            }
+        }
+
     }
 
     @Override
