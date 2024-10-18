@@ -1,3 +1,11 @@
+/**
+ * This class was created by <TechLord22>. It was distributed as
+ * part of the TOPExtras Mod. Get the Source Code in github:
+ * https://github.com/TechLord22/TOPExtras
+ *
+ * TOPExtras is Open Source and distributed under the
+ * MIT License: https://github.com/TechLord22/TOPExtras/blob/master/LICENSE
+ */
 package mcjty.theoneprobe.apiimpl.providers;
 
 import mcjty.theoneprobe.api.IProbeHitEntityData;
