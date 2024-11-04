@@ -21,8 +21,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import javax.annotation.Nonnull;
 import java.util.*;
 
-import static mcjty.theoneprobe.api.TextStyleClass.INFO;
-
 public class ChestInfoTools {
 
     static void showChestInfo(ProbeMode mode, IProbeInfo probeInfo, World world, BlockPos pos, IProbeConfig config) {

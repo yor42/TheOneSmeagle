@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static mcjty.theoneprobe.config.ConfigSetup.defaultTextStyleClasses;
-
 /**
  * The Builder to make a new preset, basically for GroovyScript compact
  *

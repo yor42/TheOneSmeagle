@@ -177,6 +177,15 @@ public class RenderHelper {
         GlStateManager.enableTexture2D();
     }
 
+    @Deprecated
+    public static void drawVerticalLine(int x1, int y1, int y2, int color) {
+        Gui.drawRect(x1, y1, x1 + 1, y2, color);
+    }
+    @Deprecated
+    public static void drawHorizontalLine(int x1, int y1, int x2, int color) {
+        Gui.drawRect(x1, y1, x2, y1 + 1, color);
+    }
+
     /**
      * Draws a line on the screen in the specified orientation.
      *
