@@ -12,6 +12,8 @@ import mcjty.theoneprobe.setup.ModSetup;
 import net.minecraft.block.*;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -310,10 +312,9 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
     public static void showStandardBlockInfo(IProbeConfig config, ProbeMode mode, IProbeInfo probeInfo, IBlockState blockState, Block block,
                                              IProbeHitData data) {
         String modid = Tools.getModName(block);
-
         ItemStack pickBlock = data.getPickBlock();
 
-        if (block instanceof BlockSilverfish && mode != ProbeMode.DEBUG && !Tools.show(mode,config.getShowSilverfish())) {
+        if (block instanceof BlockSilverfish && mode != ProbeMode.DEBUG && !Tools.show(mode, config.getShowSilverfish())) {
             BlockSilverfish.EnumType type = blockState.getValue(BlockSilverfish.VARIANT);
             blockState = type.getModelBlock();
             block = blockState.getBlock();
@@ -342,23 +343,27 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
 
         if (!Objects.requireNonNull(pickBlock).isEmpty()) {
             if (Tools.show(mode, config.getShowModName())) {
-
                 String blockDisplayName = pickBlock.getDisplayName();
-                if (blockDisplayName.length() > ConfigSetup.getProbeMaxChars()) {
-                    blockDisplayName = blockDisplayName.substring(0, ConfigSetup.getProbeMaxChars()); // Truncate to 4 characters
-                    probeInfo.horizontal()
-                            .item(pickBlock)
-                            .vertical()
-                            .text(NAME + blockDisplayName + "...")
-                            .text(MODNAME + modid);
+
+                // Calculate available width for text
+                Minecraft mc = Minecraft.getMinecraft();
+                ScaledResolution resolution = new ScaledResolution(mc);
+                int screenWidth = resolution.getScaledWidth();
+                int availableWidth = screenWidth / 4;  // adjust based on layout
+
+                // Estimate max characters based on font width and available width
+                int maxChars = availableWidth / mc.fontRenderer.getCharWidth('A'); // assuming average width of 'A'
+
+                // Truncate if needed
+                if (blockDisplayName.length() > maxChars) {
+                    blockDisplayName = blockDisplayName.substring(0, maxChars - 3) + "...";
                 }
-                else{
-                    probeInfo.horizontal()
-                            .item(pickBlock)
-                            .vertical()
-                            .text(NAME + blockDisplayName)
-                            .text(MODNAME + modid);
-                }
+
+                probeInfo.horizontal()
+                        .item(pickBlock)
+                        .vertical()
+                        .text(NAME + blockDisplayName)
+                        .text(MODNAME + modid);
 
             } else {
                 probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
