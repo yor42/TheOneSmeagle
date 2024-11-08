@@ -378,8 +378,8 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
                             else
                                 index++;
                         }
-                        blockDisplayName = truncated + "...";
                         cachedBlockName = blockDisplayName;
+                        blockDisplayName = truncated + "...";
                         cachedTruncatedBlockName = blockDisplayName;
                     } else {
                         cachedBlockName = blockDisplayName;
