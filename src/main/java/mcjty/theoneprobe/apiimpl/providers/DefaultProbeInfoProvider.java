@@ -13,6 +13,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -296,6 +297,8 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
         }
     }
 
+    private static String cachedBlockName;
+    private static String cachedTruncatedBlockName;
     /**
      * Shows standard information about a block based on the probe configuration and mode.
      * This method handles different types of blocks and their display in the probe info.
@@ -345,18 +348,43 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
             if (Tools.show(mode, config.getShowModName())) {
                 String blockDisplayName = pickBlock.getDisplayName();
 
-                // Calculate available width for text
-                Minecraft mc = Minecraft.getMinecraft();
-                ScaledResolution resolution = new ScaledResolution(mc);
-                int screenWidth = resolution.getScaledWidth();
-                int availableWidth = screenWidth / 4;  // adjust based on layout
+                if (ConfigSetup.getBlockNameMaxWidth() != 0) {
+                    // Calculate available width for text
+                    FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+                    ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
+                    int screenWidth = resolution.getScaledWidth();
+                    int availableWidth = (int)(screenWidth * ConfigSetup.getBlockNameMaxWidth());
 
-                // Estimate max characters based on font width and available width
-                int maxChars = availableWidth / mc.fontRenderer.getCharWidth('A'); // assuming average width of 'A'
+                    // String truncation
+                    if (blockDisplayName.equals(cachedBlockName))
+                        blockDisplayName = cachedTruncatedBlockName;
+                    else if (fontRenderer.getStringWidth(blockDisplayName) > availableWidth) {
+                        int charWidth = fontRenderer.getCharWidth(blockDisplayName.charAt(0));
+                        // Estimate
+                        int index = availableWidth / charWidth - 1;
+                        index = Math.max(index, 0);
+                        String truncated = null;
+                        boolean quit = false;
+                        // This loop usually runs 2-4 times
+                        while (!quit) {
+                            truncated = blockDisplayName.substring(0, index);
+                            int width = fontRenderer.getStringWidth(truncated);
+                            int nextWidth = fontRenderer.getStringWidth(blockDisplayName.substring(0, index + 1));
 
-                // Truncate if needed
-                if (blockDisplayName.length() > maxChars) {
-                    blockDisplayName = blockDisplayName.substring(0, maxChars - 3) + "...";
+                            if ((width <= availableWidth && nextWidth > availableWidth) || width == availableWidth)
+                                quit = true;
+                            else if (width > availableWidth)
+                                index /= 2;
+                            else
+                                index++;
+                        }
+                        cachedBlockName = blockDisplayName;
+                        blockDisplayName = truncated + "...";
+                        cachedTruncatedBlockName = blockDisplayName;
+                    } else {
+                        cachedBlockName = blockDisplayName;
+                        cachedTruncatedBlockName = blockDisplayName;
+                    }
                 }
 
                 probeInfo.horizontal()
@@ -364,7 +392,6 @@ public class DefaultProbeInfoProvider implements IProbeInfoProvider {
                         .vertical()
                         .text(NAME + blockDisplayName)
                         .text(MODNAME + modid);
-
             } else {
                 probeInfo.horizontal(probeInfo.defaultLayoutStyle().alignment(ElementAlignment.ALIGN_CENTER))
                         .item(pickBlock)
