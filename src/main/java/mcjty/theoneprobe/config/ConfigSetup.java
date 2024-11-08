@@ -67,7 +67,6 @@ public class ConfigSetup {
     private static Set<ResourceLocation> dontSendNBTSet = null;
 
     public static float probeDistance = 6;
-    public static int probeMaxChars = 13;
     public static boolean showLiquids = false;
     public static boolean showDebugUUID = false;
     public static boolean isVisible = true;
@@ -115,6 +114,8 @@ public class ConfigSetup {
             "theoneprobe.harvestlevel.vibranium"
     };
 
+    private static float blockNameMaxWidth = 0.0f;
+
     public static Map<TextStyleClass, String> defaultTextStyleClasses = new HashMap<>();
     public static Map<TextStyleClass, String> textStyleClasses;
 
@@ -153,7 +154,6 @@ public class ConfigSetup {
     }
 
     public static void init(Configuration cfg) {
-        probeMaxChars = cfg.getInt("probeMaxChars", CATEGORY_THEONEPROBE, probeMaxChars, 1,100, "The max length of a itemstack's display name to show");
         showProbeNoteGUI = cfg.getBoolean("showProbeNoteGUI", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showProbeNoteGUI,"Show probes note screen on right-click");
         showProbeConfigGUI = cfg.getBoolean("showProbeConfigGUI", CATEGORY_THEONEPROBE + "." + SUBCATEGORY_SHOW, showProbeConfigGUI,"Show probes config screen on right-click");
         probeNoteBlock = cfg.getString("probeNoteBlock", CATEGORY_THEONEPROBE, probeNoteBlock,"What block should be used in inside the probe note example");
@@ -241,6 +241,7 @@ public class ConfigSetup {
         showBreakProgress = cfg.getInt("showBreakProgress", CATEGORY_CLIENT, showBreakProgress, 0, 2, "0 means don't show break progress, 1 is show as bar, 2 is show as text");
         harvestStyleVanilla = cfg.getBoolean("harvestStyleVanilla", CATEGORY_CLIENT, harvestStyleVanilla, "true means shows harvestability with vanilla style icons");
         harvestLevels = cfg.getStringList("harvestLevels", CATEGORY_CLIENT, harvestLevels, "The language translation keys to use when showing harvest levels");
+        blockNameMaxWidth = cfg.getFloat("blockNameMaxWidth", CATEGORY_CLIENT, blockNameMaxWidth, 0.0f, 1.0f, "The max displaying width of a block name, 0.0 is no limit, otherwise represents the percentage with respect to the whole screen");
 
         Map<TextStyleClass, String> newformat = new HashMap<>();
         for (TextStyleClass styleClass : textStyleClasses.keySet()) {
@@ -315,6 +316,10 @@ public class ConfigSetup {
         return harvestLevels;
     }
 
+    public static float getBlockNameMaxWidth(){
+        return blockNameMaxWidth;
+    }
+
     public static boolean getHarvestStyleVanilla(){
         return harvestStyleVanilla;
     }
@@ -330,9 +335,6 @@ public class ConfigSetup {
     }
     public static boolean getShowProbeNoteGUI(){
         return showProbeNoteGUI;
-    }
-    public static int getProbeMaxChars(){
-        return probeMaxChars;
     }
     public static int getProbeButtonColor(){
         return probeButtonColor;
